@@ -1,0 +1,504 @@
+{
+    "users": [
+
+        {
+            "screenname": "Shia LaBeouf",
+            "handle": "@thecampaignbook"
+        },
+
+        {
+            "screenname": "Conan O'Brien",
+            "handle": "@ConanOBrien"
+        },
+
+        {
+            "screenname": "Russell Peters",
+            "handle": "@therealrussellp"
+        },
+
+        {
+            "screenname": "KATY PERRY",
+            "handle": "@katyperry"
+        },
+
+        {
+            "screenname": "Charlie Sheen",
+            "handle": "@charliesheen"
+        },
+
+        {
+            "screenname": "Justin Bieber",
+            "handle": "@justinbieber"
+        },
+
+        {
+            "screenname": "Barack Obama",
+            "handle": "@BarackObama"
+        },
+
+        {
+            "screenname": "Taylor Swift",
+            "handle": "@taylorswift13"
+        },
+
+        {
+            "screenname": "Lady Gaga",
+            "handle": "@ladygaga"
+        },
+
+        {
+            "screenname": "Rihanna",
+            "handle": "@rihanna"
+        },
+
+        {
+            "screenname": "Kevin Hart",
+            "handle": "@KevinHart4real"
+        },
+
+        {
+            "screenname": "Justin Timberlake",
+            "handle": "@jtimberlake"
+        },
+
+        {
+            "screenname": "Ellen DeGeneres",
+            "handle": "@TheEllenShow"
+        },
+
+        {
+            "screenname": "Britney Spears",
+            "handle": "@britneyspears"
+        },
+
+        {
+            "screenname": "Cristiano Ronaldo",
+            "handle": "@Cristiano"
+        },
+
+        {
+            "screenname": "Kim Kardashian West",
+            "handle": "@KimKardashian"
+        },
+
+        {
+            "screenname": "Shakira",
+            "handle": "@shakira"
+        },
+
+        {
+            "screenname": "Jennifer Lopez",
+            "handle": "@JLo"
+        },
+
+        {
+            "screenname": "Jimmy Kimmel",
+            "handle": "@jimmykimmel"
+        },
+
+        {
+            "screenname": "Selena Gomez",
+            "handle": "@selenagomez"
+        },
+
+        {
+            "screenname": "Sarah Silverman",
+            "handle": "@SarahKSilverman"
+        },
+
+        {
+            "screenname": "Ariana Grande",
+            "handle": "@ArianaGrande"
+        },
+
+        {
+            "screenname": "Demi Lovato",
+            "handle": "@ddlovato"
+        },
+
+        {
+            "screenname": "Oprah Winfrey",
+            "handle": "@Oprah"
+        },
+
+        {
+            "screenname": "jimmy fallon",
+            "handle": "@jimmyfallon"
+        },
+
+        {
+            "screenname": "Maisie Williams",
+            "handle": "@Maisie_Williams"
+        },
+
+        {
+            "screenname": "P!nk",
+            "handle": "@Pink"
+        },
+
+        {
+            "screenname": "Harry Styles.",
+            "handle": "@Harry_Styles"
+        },
+
+        {
+            "screenname": "Sophie Turner",
+            "handle": "@SophieT"
+        },
+
+        {
+            "screenname": "One Direction",
+            "handle": "@onedirection"
+        },
+
+        {
+            "screenname": "Drizzy",
+            "handle": "@Drake"
+        },
+
+        {
+            "screenname": "Eric Stonestreet",
+            "handle": "@ericstonestreet"
+        },
+
+        {
+            "screenname": "Lil Wayne WEEZY F",
+            "handle": "@LilTunechi"
+        },
+
+        {
+            "screenname": "Kaka",
+            "handle": "@KAKA"
+        },
+
+        {
+            "screenname": "Adele",
+            "handle": "@OfficialAdele"
+        },
+
+        {
+            "screenname": "Bruno Mars",
+            "handle": "@BrunoMars"
+        },
+
+        {
+            "screenname": "Niall Horan",
+            "handle": "@NiallOfficial"
+        },
+
+        {
+            "screenname": "Alicia Keys",
+            "handle": "@aliciakeys"
+        },
+
+        {
+            "screenname": "LeBron James",
+            "handle": "@KingJames"
+        },
+
+        {
+            "screenname": "Pitbull",
+            "handle": "@pitbull"
+        },
+
+        {
+            "screenname": "Liam",
+            "handle": "@Real_Liam_Payne"
+        },
+
+        {
+            "screenname": "Miley Ray Cyrus",
+            "handle": "@MileyCyrus"
+        },
+
+        {
+            "screenname": "Natasha Leggero",
+            "handle": "@natashaleggero"
+        },
+
+        {
+            "screenname": "NICKI MINAJ",
+            "handle": "@NICKIMINAJ"
+        },
+
+        {
+            "screenname": "Jasmeet Singh",
+            "handle": "@JusReign"
+        },
+
+        {
+            "screenname": "Marshall Mathers",
+            "handle": "@Eminem"
+        },
+
+        {
+            "screenname": "Avril Lavigne",
+            "handle": "@AvrilLavigne"
+        },
+
+        {
+            "screenname": "Neymar Jr",
+            "handle": "@neymarjr"
+        },
+
+        {
+            "screenname": "Aziz Ansari",
+            "handle": "@azizansari"
+        },
+
+        {
+            "screenname": "Emma Watson",
+            "handle": "@EmWatson"
+        },
+
+        {
+            "screenname": "David Guetta",
+            "handle": "@davidguetta"
+        },
+
+        {
+            "screenname": "Neil Patrick Harris",
+            "handle": "@ActuallyNPH"
+        },
+
+        {
+            "screenname": "Amitabh Bachchan",
+            "handle": "@SrBachchan"
+        },
+
+        {
+            "screenname": "Mariah Carey",
+            "handle": "@MariahCarey"
+        },
+
+        {
+            "screenname": "Kourtney Kardashian",
+            "handle": "@kourtneykardash"
+        },
+
+        {
+            "screenname": "Khloé",
+            "handle": "@khloekardashian"
+        },
+
+        {
+            "screenname": "rob delaney",
+            "handle": "@robdelaney"
+        },
+
+        {
+            "screenname": "zaynmalik",
+            "handle": "@zaynmalik"
+        },
+
+        {
+            "screenname": "Jim Carrey",
+            "handle": "@JimCarrey"
+        },
+
+        {
+            "screenname": "Chris Brown",
+            "handle": "@chrisbrown"
+        },
+
+        {
+            "screenname": "Stephen Colbert",
+            "handle": "@StephenAtHome"
+        },
+
+        {
+            "screenname": "Ed Sheeran",
+            "handle": "@edsheeran"
+        },
+
+        {
+            "screenname": "Patton Oswalt",
+            "handle": "@pattonoswalt"
+        },
+
+        {
+            "screenname": "Ryan Seacrest",
+            "handle": "@RyanSeacrest"
+        },
+
+        {
+            "screenname": "Lena Dunham",
+            "handle": "@lenadunham"
+        },
+
+        {
+            "screenname": "Paris Hilton",
+            "handle": "@ParisHilton"
+        },
+
+        {
+            "screenname": "will.i.am",
+            "handle": "@iamwill"
+        },
+
+        {
+            "screenname": "Leonardo DiCaprio",
+            "handle": "@LeoDiCaprio"
+        },
+
+        {
+            "screenname": "Paul McCartney",
+            "handle": "@PaulMcCartney"
+        },
+
+        {
+            "screenname": "AshleyTisdaleFrench",
+            "handle": "@ashleytisdale"
+        },
+
+        {
+            "screenname": "Tyra Banks",
+            "handle": "@tyrabanks"
+        },
+
+        {
+            "screenname": "Ricky Martin",
+            "handle": "@ricky_martin"
+        },
+
+        {
+            "screenname": "Snoop Dogg",
+            "handle": "@SnoopDogg"
+        },
+
+        {
+            "screenname": "Dalai Lama",
+            "handle": "@DalaiLama"
+        },
+
+        {
+            "screenname": "James Franco",
+            "handle": "@JamesFrancoTV"
+        },
+
+        {
+            "screenname": "Claudia Leitte",
+            "handle": "@ClaudiaLeitte"
+        },
+
+        {
+            "screenname": "Seth Rogen",
+            "handle": "@Sethrogen"
+        },
+
+        {
+            "screenname": "Kendall Jenner",
+            "handle": "@KendallJenner"
+        },
+
+        {
+            "screenname": "Maroon 5",
+            "handle": "@maroon5"
+        },
+
+        {
+            "screenname": "Zac Efron",
+            "handle": "@ZacEfron"
+        },
+
+        {
+            "screenname": "Kevin Durant",
+            "handle": "@KDTrey5"
+        },
+
+        {
+            "screenname": "Carly Rae Jepsen",
+            "handle": "@carlyraejepsen"
+        },
+
+        {
+            "screenname": "Gerard Piqué",
+            "handle": "@3gerardpique"
+        },
+
+        {
+            "screenname": "Ludacris",
+            "handle": "@Ludacris"
+        },
+
+        {
+            "screenname": "Kelly Clarkson",
+            "handle": "@kelly_clarkson"
+        },
+
+        {
+            "screenname": "Russell Brand",
+            "handle": "@rustyrockets"
+        },
+
+        {
+            "screenname": "Kylie Jenner",
+            "handle": "@KylieJenner"
+        },
+
+        {
+            "screenname": "SHAQ",
+            "handle": "@SHAQ"
+        },
+
+        {
+            "screenname": "Tom Hanks",
+            "handle": "@tomhanks"
+        },
+
+        {
+            "screenname": "Nick Jonas",
+            "handle": "@nickjonas"
+        },
+
+        {
+            "screenname": "Lindsay Lohan",
+            "handle": "@lindsaylohan"
+        },
+
+        {
+            "screenname": "Dwayne Johnson",
+            "handle": "@TheRock"
+        },
+
+        {
+            "screenname": "Victoria Beckham",
+            "handle": "@victoriabeckham"
+        },
+
+        {
+            "screenname": "Trey Songs",
+            "handle": "@TreySongz"
+        },
+
+        {
+            "screenname": "Jessica Alba",
+            "handle": "@jessicaalba"
+        },
+
+        {
+            "screenname": "Sofia Vergara",
+            "handle": "@SofiaVergara"
+        },
+
+        {
+            "screenname": "Rafa Nadal",
+            "handle": "@RafaelNadal"
+        },
+
+        {
+            "screenname": "50cent",
+            "handle": "@50cent"
+        },
+
+        {
+            "screenname": "Miranda Cosgrove",
+            "handle": "@MirandaCosgrove"
+        },
+
+        {
+            "screenname": "Channing Tatum",
+            "handle": "@channingtatum"
+        }
+    ]
+}
