@@ -1,5 +1,5 @@
 .table {
-    width: 50vw;
+    width: 60%;
     margin: auto;
 }
 
@@ -8,21 +8,60 @@ th {
     font-size: 2.5vw;
 }
 
-.userCard {
-    position: relative;
-    border-radius: 4px;
-    border: 1px solid #f3f3f3;
-    padding: 1vw;
+th:first-child {
+    width: 35%;
 }
 
-.userCard div {
-    position: relative;
+td:first-child {
+    display: flex;
+}
+
+td:nth-child(2) {
+    padding-left: 5%;
+}
+
+.userCard, .tweetCard {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #f3f3f3;
+    padding: 3%;
+    margin-bottom: 3%;
+}
+
+.userCard>div {
     display: inline-table;
 }
 
+.followButton {
+    box-sizing: border-box;
+}
+
+.followContent {
+    box-sizing: border-box;
+}
+
+.followButton .followContent>a {
+    display: inline-grid;
+    box-sizing: border-box;
+    padding: 10%;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.followButton .followContent>a:hover {
+    color: white;
+    background-color: #337ab7;
+    text-decoration: none;
+}
+
+.followButton .followContent>a>* {
+    display: inline;
+}
+
+
 .userImg {
-    width: 7vh;
-    height: 7vh;
+    width: 4vw;
+    height: 4vw;
 }
 
 .userImg img {
@@ -32,10 +71,9 @@ th {
 
 .userInfo {
     vertical-align: top;
-    width: 10vw;
     margin-left: 2vw;
 }
-
+        
 .userInfo div {
     display: block;
 }
@@ -49,4 +87,16 @@ th {
 .userHandle {
     margin-top: 5px;
     color: rgba(0,0,0,0.6);
+}
+
+.tweetCard p {
+    word-break: break-word;
+}
+
+.imgLink {
+    display: inline;
+}
+
+.tweetImg {
+    width: 100%;
 }
