@@ -1,0 +1,52 @@
+.table {
+    width: 50vw;
+    margin: auto;
+}
+
+th {
+    text-align: center;
+    font-size: 2.5vw;
+}
+
+.userCard {
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #f3f3f3;
+    padding: 1vw;
+}
+
+.userCard div {
+    position: relative;
+    display: inline-table;
+}
+
+.userImg {
+    width: 7vh;
+    height: 7vh;
+}
+
+.userImg img {
+    width: inherit;
+    height: inherit;
+}
+
+.userInfo {
+    vertical-align: top;
+    width: 10vw;
+    margin-left: 2vw;
+}
+
+.userInfo div {
+    display: block;
+}
+
+.userName {
+    font-size: 2vh;
+    font-weight: bolder;
+    color: black;
+}
+
+.userHandle {
+    margin-top: 5px;
+    color: rgba(0,0,0,0.6);
+}
