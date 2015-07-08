@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var people = $.getJSON('people.json',function(){
 	});
 
+
 	/**
 	* This method provides a JSON object containing the information about a tweet given a 
 	* Twitter handle.
@@ -107,16 +108,16 @@ $(document).ready(function(){
 			gameObj['correct'][tweet['user']['name']] = {};
 			gameObj['correct'][tweet['user']['name']]['userInfo'] = userObj;
 
-
 			// Fill in Tweet Object Details
 			tweetObj['tweetID'] = tweet['id'];
 			tweetObj['tweetDate'] = tweet['created_at'];
-			tweetObj['tweetHTML'] = // TODO --> Add a function that takes in tweet and then create the HTML tweet text for return.
+			tweetObj['tweetHTML'] = GetTweetHTML(tweet);
 			tweetObj['tweetText'] = tweet['text'];
 			tweetObj['numOfRetweets'] = tweet['retweet_count'];
 			tweetObj['numOfFavorites'] = tweet['favorite_count'];
 
 			// TODO --> Add tweet object to the Game Object
+			gameObj['correct'][tweet['user']['name']]['tweetInfo'] = tweetObj;
 
 		});
 
@@ -125,6 +126,86 @@ $(document).ready(function(){
 		return gameObj;
 	}
 
+
+	/**
+	* This method creates the HTML text suited for the Game Application.
+	*
+	* @param tweet : Tweet Object provided by the Twitter API
+	*
+	* @returns : HTML text of the Tweet that can directly be used for the App 
+	*/
+	function GetTweetHTML(tweet){
+
+		// HTML Tweet Text that needs to be returned
+		var tweetHTML = "";
+
+		// Text of the Tweet
+		var tweetText = tweet['text'];
+
+		// Array of words in the Tweet
+		var tweetWords = tweet['text'].split(" ");
+
+		var hashtags = tweet['entities']['hashtags'];
+		var symbols = tweet['entities']['symbols'];
+		var urls = tweet['entities']['urls'];
+		var media = tweet['entities']['media'];
+		var userMentions = tweet['entities']['user_mentions'];
+
+		// Replace all the Hashtags with hashtag links
+		if(hashtags != undefined && hashtags['length'] > 0){
+
+			hashtags.forEach(function(hashtag){
+
+				tweetText = tweetText.replace('#' + hashtag['text'], '<a href="https://twitter.com/hashtag/' + hashtag['text'] + '?src=hash">#' + hashtag['text'] + '</a>');
+			});
+		}
+
+		// Replace all the user-Mentions with User Links
+		if(userMentions != undefined && userMentions['length'] > 0){
+
+			userMentions.forEach(function(user){
+
+				tweetText = tweetText.replace('@' + user['screen_name'], '<a href="https://twitter.com/' + user['screen_name'] + '">@' + user['screen_name'] + '</a>');
+			});
+		}
+
+		// Replace is all the Media Content with HTML Links
+		// Twitter Dev URL: https://dev.twitter.com/overview/api/entities-in-twitter-objects#media
+		// NOTE: The media type (media['type']) for now only supports 'photo'. If later it supports more
+		// media content such as video etc, that also needs to be taken care of in the Application.
+		if(media != undefined && media['length'] > 0){
+
+			media.forEach(function(mediaEle){
+
+				// TODO --> Ask for Width and height Properties and set them for the image
+				tweetText = tweetText.replace(mediaEle['url'], '<img src="' + mediaEle['media_url'] + '">');
+			});
+		}	
+
+		// Replace all the Url(s) with the HTML links for the Url(s)
+		if(urls != undefined && urls['length'] > 0){
+
+			urls.forEach(function(url){
+
+				tweetText = tweetText.replace(url['url'], '<a href="' + url['expanded_url'] + '">' + url['url'] + '</a>');
+			});
+
+		}
+
+		// Replace all the Symbols with the Symbol HTML Links
+		if(symbols != undefined && symbols['length'] > 0){
+
+			symbols.forEach(function(symbol){
+
+				tweetText = tweetText.replace('$' + symbol['text'], '<a href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
+			});
+		}
+		
+		// TODO --> <p> </p> confirm and add <p> tags
+		tweetHTML = tweetText;
+		return tweetHTML;
+
+	}
 
 });
 
