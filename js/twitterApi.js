@@ -6,8 +6,8 @@ $(document).ready(function(){
 	});
 
 	/**
-	* This method provides a JSON object containign the information about a tweet given a 
-	* Twitter screen-name and a Twitter handle.
+	* This method provides a JSON object containing the information about a tweet given a 
+	* Twitter handle.
 	*
 	* @param twitterHandle: The Twitter Handle (@xyz) of the User whose Tweet is being collected
 	*
@@ -20,6 +20,12 @@ $(document).ready(function(){
 
 		// Getting content for the latest 200 tweets by the user
 		var count = 200;
+
+		// AJAX request 20 get 200 tweet data
+		var tweetData = $.ajax({
+			url: "http://midnightjabber.com/tweets_json.php?screen_name=" + screenName + "&count=" + String(count),
+			async: false
+		});
 
 		var tweetArr = JSON.parse(tweetData['responseText']);
 		
@@ -60,11 +66,63 @@ $(document).ready(function(){
 
 			// So that no person is selected more than once
 			twitterUsersArr.splice(rand, 1);
-
-			console.log(twitterUsersArr.length);
 		}
 
 		return gamePeople;
+	}
+
+
+	/**
+	* This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game. 
+	* This method creates an object of a particular JSON structure (see ExampleData.json for structure).
+	* 
+	* @returns gameObj : Object containing the 'correct' and the 'incorrect'
+	*/
+	function CreateUserTweetGameObject(){
+
+		// Get List of People(handle, screenname) Objects 
+		var gamePeople = GetRandomGamePeople(people, 10);
+
+		// Declare main Game Object
+		var gameObj = {};
+		gameObj['correct'] = {};
+		gameObj['incorrect'] = {};
+
+		// Objects for each Person
+		var userObj = {};
+		var tweetObj = {};
+
+		gamePeople.forEach(function(person){
+
+			// Get a random tweet for the person
+			// Substring Method is used to remove the '@' before the handle
+			var tweet = GetTweet(person['handle'].substring(1));
+
+			// Fill in User Object Details
+			userObj['name'] = tweet['user']['name'];
+			userObj['handle'] = '@' + tweet['user']['screen_name'];
+			userObj['profilePicURL'] = tweet['user']['profile_img_url'];
+			userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
+
+			gameObj['correct'][tweet['user']['name']] = {};
+			gameObj['correct'][tweet['user']['name']]['userInfo'] = userObj;
+
+
+			// Fill in Tweet Object Details
+			tweetObj['tweetID'] = tweet['id'];
+			tweetObj['tweetDate'] = tweet['created_at'];
+			tweetObj['tweetHTML'] = // TODO --> Add a function that takes in tweet and then create the HTML tweet text for return.
+			tweetObj['tweetText'] = tweet['text'];
+			tweetObj['numOfRetweets'] = tweet['retweet_count'];
+			tweetObj['numOfFavorites'] = tweet['favorite_count'];
+
+			// TODO --> Add tweet object to the Game Object
+
+		});
+
+		// TODO --> create shuffled incorrect object 
+
+		return gameObj;
 	}
 
 
