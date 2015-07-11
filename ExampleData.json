@@ -1,0 +1,326 @@
+{  
+    "correct":{  
+        "Seth Rogen":{  
+            "userInfo":{  
+                "name":"Seth Rogen",
+                "handle":"@Sethrogen",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/500459292781449216/yhdYeWHt_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@Sethrogen"
+            },
+            "tweetInfo":{  
+                "tweetID":599419105939038200,
+                "tweetDate":"Sat May 16 03:40:26 +0000 2015",
+                "tweetHTML":"<p>Help amazing animator Bill Plympton make his movie!! <a class=\"webLink\" target=\"_blank\" href=\"https://www.kickstarter.com/projects/billplympton/bill-plymptons-revengeance-an-animated-feature-fil\">https://t.co/l9CMJl4URz</a></p>",
+                "tweetText":"Help amazing animator Bill Plympton make his movie!! https://t.co/l9CMJl4URz",
+                "numOfRetweets":120,
+                "numOfFavorites":316
+            }
+        },
+        "50cent":{  
+            "userInfo":{  
+                "name":"50cent",
+                "handle":"@50cent",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/601607748078411776/nZLcUeV5_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@50cent"
+            },
+            "tweetInfo":{  
+                "tweetID":613238072097013800,
+                "tweetDate":"Tue Jun 23 06:52:04 +0000 2015",
+                "tweetHTML":"<p>Too much puffy juice, will make you catch a case. Lol <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/EFFENVODKA?src=hash\">#EFFENVODKA</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/FRIGO?src=hash\">#FRIGO</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SMSAUDIO?src=hash\">#SMSAUDIO</a> <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/4QyQFzsL_A/\">https://t.co/alqu6Lb36G</a></p>",
+                "tweetText":"Too much puffy juice, will make you catch a case. Lol #EFFENVODKA #FRIGO #SMSAUDIO https://t.co/alqu6Lb36G",
+                "numOfRetweets":218,
+                "numOfFavorites":229
+            }
+        },
+        "Dalai Lama":{  
+            "userInfo":{  
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
+            },
+            "tweetInfo":{  
+                "tweetID":543352170960003100,
+                "tweetDate":"Fri Dec 12 10:30:27 +0000 2014",
+                "tweetHTML":"<p>If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.</p>",
+                "tweetText":"If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.",
+                "numOfRetweets":9381,
+                "numOfFavorites":8721
+            }
+        },
+        "Lady Gaga":{  
+            "userInfo":{  
+                "name":"Lady Gaga",
+                "handle":"@ladygaga",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/619180257170616320/hR-FIzfn_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ladygaga"
+            },
+            "tweetInfo":{  
+                "tweetID":615176894686851100,
+                "tweetDate":"Sun Jun 28 15:16:15 +0000 2015",
+                "tweetHTML":"<p>Istanbul? Who are these \"leaders\"! Stop attacking innocent happy people who are celebrating this is madness! This is inhumane!</p>",
+                "tweetText":"Istanbul? Who are these \"leaders\"! Stop attacking innocent happy people who are celebrating this is madness! This is inhumane!",
+                "numOfRetweets":25873,
+                "numOfFavorites":27658
+            }
+        },
+        "Jimmy Kimmel":{  
+            "userInfo":{  
+                "name":"Jimmy Kimmel",
+                "handle":"@jimmykimmel",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/3207958590/0f620b41b7dc5cb1d0ced3140847e03f_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@jimmykimmel"
+            },
+            "tweetInfo":{  
+                "tweetID":616441246924472300,
+                "tweetDate":"Thu Jul 02 03:00:20 +0000 2015",
+                "tweetHTML":"<p><a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Kimmel?src=hash\">#Kimmel</a> tonight <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LievSchreiber\">@LievSchreiber</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/RayDonovan?src=hash\">#RayDonovan</a> <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/RondaRousey\">@RondaRousey</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/UFC190?src=hash\">#UFC190</a> @VinceStaples &amp; the World's Ugliest Dog gets a makeover from <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/CarsonKressley\">@CarsonKressley</a></p>",
+                "tweetText":"#Kimmel tonight @LievSchreiber #RayDonovan @RondaRousey #UFC190 @VinceStaples &amp; the World's Ugliest Dog gets a makeover from @CarsonKressley",
+                "numOfRetweets":79,
+                "numOfFavorites":215
+            }
+        },
+        "Patton Oswalt":{  
+            "userInfo":{  
+                "name":"Patton Oswalt",
+                "handle":"@pattonoswalt",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/866556637/teatime__normal.JPG",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@pattonoswalt"
+            },
+            "tweetInfo":{  
+                "tweetID":601574184729219100,
+                "tweetDate":"Fri May 22 02:23:57 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/gregfoleybooks\">@gregfoleybooks</a>: <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/pattonoswalt\">@pattonoswalt</a> - Last day to snag my T shirt design for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/pattonoswalt?src=hash\">#pattonoswalt</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/NewOrleans?src=hash\">#NewOrleans</a> show on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/threadless\">@threadless</a> http://t.co/PAquTs…</p>",
+                "tweetText":"RT @gregfoleybooks: @pattonoswalt - Last day to snag my T shirt design for #pattonoswalt #NewOrleans show on @threadless http://t.co/PAquTs…",
+                "numOfRetweets":2,
+                "numOfFavorites":0
+            }
+        },
+        "AshleyTisdaleFrench":{  
+            "userInfo":{  
+                "name":"AshleyTisdaleFrench",
+                "handle":"@ashleytisdale",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/616652425399681024/aSeLm_Nd_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ashleytisdale"
+            },
+            "tweetInfo":{  
+                "tweetID":616114608827334700,
+                "tweetDate":"Wed Jul 01 05:22:24 +0000 2015",
+                "tweetHTML":"<p><a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/TeamTisdaleNYC\">@TeamTisdaleNYC</a> that's a good one!</p>",
+                "tweetText":"@TeamTisdaleNYC that's a good one!",
+                "numOfRetweets":39,
+                "numOfFavorites":54
+            }
+        },
+        "Paul McCartney":{  
+            "userInfo":{  
+                "name":"Paul McCartney",
+                "handle":"@PaulMcCartney",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000377993502/d0902018703013481df7caa1176a7c22_normal.png",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@PaulMcCartney"
+            },
+            "tweetInfo":{  
+                "tweetID":604200738370252800,
+                "tweetDate":"Fri May 29 08:20:56 +0000 2015",
+                "tweetHTML":"<p>What are Paul's favourite places in Liverpool? Find out HERE: <a class=\"webLink\" target=\"_blank\" href=\"http://www.paulmccartney.com/news-blogs/news/you-gave-me-the-answer-line-asks-part-ii\">http://t.co/xxXT1XPo5H</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/OutThere?src=hash\">#OutThere</a></p>",
+                "tweetText":"What are Paul's favourite places in Liverpool? Find out HERE: http://t.co/xxXT1XPo5H #OutThere",
+                "numOfRetweets":106,
+                "numOfFavorites":281
+            }
+        },
+        "Ludacris":{  
+            "userInfo":{  
+                "name":"Ludacris",
+                "handle":"@Ludacris",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/572478125473153024/d7N5CO9S_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@Ludacris"
+            },
+            "tweetInfo":{  
+                "tweetID":613108575913812000,
+                "tweetDate":"Mon Jun 22 22:17:30 +0000 2015",
+                "tweetHTML":"<p>Best Hood Bday cake Award goes to.... <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/bakingsodaigotbakingsoda?src=hash\">#bakingsodaigotbakingsoda</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/nowthatsludicrous?src=hash\">#nowthatsludicrous</a> 😳😳😳😔😔 <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/4P3XLYwa0h/\">https://t.co/nJa8W9e0oT</a></p>",
+                "tweetText":"Best Hood Bday cake Award goes to.... #bakingsodaigotbakingsoda #nowthatsludicrous 😳😳😳😔😔 https://t.co/nJa8W9e0oT",
+                "numOfRetweets":49,
+                "numOfFavorites":135
+            }
+        },
+        "Tom Hanks":{  
+            "userInfo":{  
+                "name":"Tom Hanks",
+                "handle":"@tomhanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/280455139/l_ecdf8f7aa81d5163129fee54d83a5e63_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tomhanks"
+            },
+            "tweetInfo":{  
+                "tweetID":499768991108575200,
+                "tweetDate":"Thu Aug 14 04:06:27 +0000 2014",
+                "tweetHTML":"<p>Clang. Clack. Shook-shook. Don’t just write it: <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/HanxWriter?src=hash\">#HanxWriter</a> <a class=\"webLink\" target=\"_blank\" href=\"http://appstore.com/HanxWriter\">http://t.co/m1Rnwg9po9</a></p>",
+                "tweetText":"Clang. Clack. Shook-shook. Don’t just write it: #HanxWriter http://t.co/m1Rnwg9po9",
+                "numOfRetweets":342,
+                "numOfFavorites":833
+            }
+        }
+    },
+    "incorrect":{  
+        "Seth Rogen":{  
+            "userInfo":{  
+                "name":"Seth Rogen",
+                "handle":"@Sethrogen",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/500459292781449216/yhdYeWHt_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@Sethrogen"
+            },
+            "tweetInfo":{  
+                "tweetID":616441246924472300,
+                "tweetDate":"Thu Jul 02 03:00:20 +0000 2015",
+                "tweetHTML":"<p><a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Kimmel?src=hash\">#Kimmel</a> tonight <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LievSchreiber\">@LievSchreiber</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/RayDonovan?src=hash\">#RayDonovan</a> <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/RondaRousey\">@RondaRousey</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/UFC190?src=hash\">#UFC190</a> @VinceStaples &amp; the World's Ugliest Dog gets a makeover from <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/CarsonKressley\">@CarsonKressley</a></p>",
+                "tweetText":"#Kimmel tonight @LievSchreiber #RayDonovan @RondaRousey #UFC190 @VinceStaples &amp; the World's Ugliest Dog gets a makeover from @CarsonKressley",
+                "numOfRetweets":79,
+                "numOfFavorites":215
+            }
+        },
+        "50cent":{  
+            "userInfo":{  
+                "name":"50cent",
+                "handle":"@50cent",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/601607748078411776/nZLcUeV5_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@50cent"
+            },
+            "tweetInfo":{  
+                "tweetID":601574184729219100,
+                "tweetDate":"Fri May 22 02:23:57 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/gregfoleybooks\">@gregfoleybooks</a>: <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/pattonoswalt\">@pattonoswalt</a> - Last day to snag my T shirt design for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/pattonoswalt?src=hash\">#pattonoswalt</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/NewOrleans?src=hash\">#NewOrleans</a> show on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/threadless\">@threadless</a> http://t.co/PAquTs…</p>",
+                "tweetText":"RT @gregfoleybooks: @pattonoswalt - Last day to snag my T shirt design for #pattonoswalt #NewOrleans show on @threadless http://t.co/PAquTs…",
+                "numOfRetweets":2,
+                "numOfFavorites":0
+            }
+        },
+        "Dalai Lama":{  
+            "userInfo":{  
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
+            },
+            "tweetInfo":{  
+                "tweetID":616441246924472300,
+                "tweetDate":"Thu Jul 02 03:00:20 +0000 2015",
+                "tweetHTML":"<p><a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Kimmel?src=hash\">#Kimmel</a> tonight <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LievSchreiber\">@LievSchreiber</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/RayDonovan?src=hash\">#RayDonovan</a> <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/RondaRousey\">@RondaRousey</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/UFC190?src=hash\">#UFC190</a> @VinceStaples &amp; the World's Ugliest Dog gets a makeover from <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/CarsonKressley\">@CarsonKressley</a></p>",
+                "tweetText":"#Kimmel tonight @LievSchreiber #RayDonovan @RondaRousey #UFC190 @VinceStaples &amp; the World's Ugliest Dog gets a makeover from @CarsonKressley",
+                "numOfRetweets":79,
+                "numOfFavorites":215
+            }
+        },
+        "Lady Gaga":{  
+            "userInfo":{  
+                "name":"Lady Gaga",
+                "handle":"@ladygaga",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/619180257170616320/hR-FIzfn_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ladygaga"
+            },
+            "tweetInfo":{  
+                "tweetID":601574184729219100,
+                "tweetDate":"Fri May 22 02:23:57 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/gregfoleybooks\">@gregfoleybooks</a>: <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/pattonoswalt\">@pattonoswalt</a> - Last day to snag my T shirt design for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/pattonoswalt?src=hash\">#pattonoswalt</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/NewOrleans?src=hash\">#NewOrleans</a> show on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/threadless\">@threadless</a> http://t.co/PAquTs…</p>",
+                "tweetText":"RT @gregfoleybooks: @pattonoswalt - Last day to snag my T shirt design for #pattonoswalt #NewOrleans show on @threadless http://t.co/PAquTs…",
+                "numOfRetweets":2,
+                "numOfFavorites":0
+            }
+        },
+        "Jimmy Kimmel":{  
+            "userInfo":{  
+                "name":"Jimmy Kimmel",
+                "handle":"@jimmykimmel",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/3207958590/0f620b41b7dc5cb1d0ced3140847e03f_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@jimmykimmel"
+            },
+            "tweetInfo":{  
+                "tweetID":543352170960003100,
+                "tweetDate":"Fri Dec 12 10:30:27 +0000 2014",
+                "tweetHTML":"<p>If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.</p>",
+                "tweetText":"If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.",
+                "numOfRetweets":9381,
+                "numOfFavorites":8721
+            }
+        },
+        "Patton Oswalt":{  
+            "userInfo":{  
+                "name":"Patton Oswalt",
+                "handle":"@pattonoswalt",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/866556637/teatime__normal.JPG",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@pattonoswalt"
+            },
+            "tweetInfo":{  
+                "tweetID":543352170960003100,
+                "tweetDate":"Fri Dec 12 10:30:27 +0000 2014",
+                "tweetHTML":"<p>If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.</p>",
+                "tweetText":"If you develop care and concern for others, you’ll develop a kind of inner strength in spite of your own difficulties and problems.",
+                "numOfRetweets":9381,
+                "numOfFavorites":8721
+            }
+        },
+        "AshleyTisdaleFrench":{  
+            "userInfo":{  
+                "name":"AshleyTisdaleFrench",
+                "handle":"@ashleytisdale",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/616652425399681024/aSeLm_Nd_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ashleytisdale"
+            },
+            "tweetInfo":{  
+                "tweetID":613238072097013800,
+                "tweetDate":"Tue Jun 23 06:52:04 +0000 2015",
+                "tweetHTML":"<p>Too much puffy juice, will make you catch a case. Lol <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/EFFENVODKA?src=hash\">#EFFENVODKA</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/FRIGO?src=hash\">#FRIGO</a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SMSAUDIO?src=hash\">#SMSAUDIO</a> <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/4QyQFzsL_A/\">https://t.co/alqu6Lb36G</a></p>",
+                "tweetText":"Too much puffy juice, will make you catch a case. Lol #EFFENVODKA #FRIGO #SMSAUDIO https://t.co/alqu6Lb36G",
+                "numOfRetweets":218,
+                "numOfFavorites":229
+            }
+        },
+        "Paul McCartney":{  
+            "userInfo":{  
+                "name":"Paul McCartney",
+                "handle":"@PaulMcCartney",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000377993502/d0902018703013481df7caa1176a7c22_normal.png",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@PaulMcCartney"
+            },
+            "tweetInfo":{  
+                "tweetID":599419105939038200,
+                "tweetDate":"Sat May 16 03:40:26 +0000 2015",
+                "tweetHTML":"<p>Help amazing animator Bill Plympton make his movie!! <a class=\"webLink\" target=\"_blank\" href=\"https://www.kickstarter.com/projects/billplympton/bill-plymptons-revengeance-an-animated-feature-fil\">https://t.co/l9CMJl4URz</a></p>",
+                "tweetText":"Help amazing animator Bill Plympton make his movie!! https://t.co/l9CMJl4URz",
+                "numOfRetweets":120,
+                "numOfFavorites":316
+            }
+        },
+        "Ludacris":{  
+            "userInfo":{  
+                "name":"Ludacris",
+                "handle":"@Ludacris",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/572478125473153024/d7N5CO9S_normal.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@Ludacris"
+            },
+            "tweetInfo":{  
+                "tweetID":599419105939038200,
+                "tweetDate":"Sat May 16 03:40:26 +0000 2015",
+                "tweetHTML":"<p>Help amazing animator Bill Plympton make his movie!! <a class=\"webLink\" target=\"_blank\" href=\"https://www.kickstarter.com/projects/billplympton/bill-plymptons-revengeance-an-animated-feature-fil\">https://t.co/l9CMJl4URz</a></p>",
+                "tweetText":"Help amazing animator Bill Plympton make his movie!! https://t.co/l9CMJl4URz",
+                "numOfRetweets":120,
+                "numOfFavorites":316
+            }
+        },
+        "Tom Hanks":{  
+            "userInfo":{  
+                "name":"Tom Hanks",
+                "handle":"@tomhanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/280455139/l_ecdf8f7aa81d5163129fee54d83a5e63_normal.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tomhanks"
+            },
+            "tweetInfo":{  
+                "tweetID":599419105939038200,
+                "tweetDate":"Sat May 16 03:40:26 +0000 2015",
+                "tweetHTML":"<p>Help amazing animator Bill Plympton make his movie!! <a class=\"webLink\" target=\"_blank\" href=\"https://www.kickstarter.com/projects/billplympton/bill-plymptons-revengeance-an-animated-feature-fil\">https://t.co/l9CMJl4URz</a></p>",
+                "tweetText":"Help amazing animator Bill Plympton make his movie!! https://t.co/l9CMJl4URz",
+                "numOfRetweets":120,
+                "numOfFavorites":316
+            }
+        }
+    }
+}
