@@ -109,12 +109,12 @@ $(document).ready(function(){
 			userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
 
 			// Correct Person User Info
-			gameObj['correct'][tweet['user']['name']] = {};
-			gameObj['correct'][tweet['user']['name']]['userInfo'] = userObj;
+			gameObj['correct'][tweet['user']['screen_name']] = {};
+			gameObj['correct'][tweet['user']['screen_name']]['userInfo'] = userObj;
 
 			// Incorrect Person User Info
-			gameObj['incorrect'][tweet['user']['name']] = {};
-			gameObj['incorrect'][tweet['user']['name']]['userInfo'] = userObj;
+			gameObj['incorrect'][tweet['user']['screen_name']] = {};
+			gameObj['incorrect'][tweet['user']['screen_name']]['userInfo'] = userObj;
 
 			// Fill in Tweet Object Details
 			tweetObj['tweetID'] = tweet['id'];
@@ -124,7 +124,7 @@ $(document).ready(function(){
 			tweetObj['numOfRetweets'] = tweet['retweet_count'];
 			tweetObj['numOfFavorites'] = tweet['favorite_count'];
 
-			gameObj['correct'][tweet['user']['name']]['tweetInfo'] = tweetObj;
+			gameObj['correct'][tweet['user']['screen_name']]['tweetInfo'] = tweetObj;
 
 		});
 
