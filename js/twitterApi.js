@@ -99,14 +99,22 @@ $(document).ready(function(){
 			// Substring Method is used to remove the '@' before the handle
 			var tweet = GetTweet(person['handle'].substring(1));
 
+			userObj = {};
+			tweetObj = {};
+
 			// Fill in User Object Details
 			userObj['name'] = tweet['user']['name'];
 			userObj['handle'] = '@' + tweet['user']['screen_name'];
-			userObj['profilePicURL'] = tweet['user']['profile_img_url'];
+			userObj['profilePicURL'] = tweet['user']['profile_image_url'];
 			userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
 
-			gameObj['correct'][tweet['user']['name']] = {};
-			gameObj['correct'][tweet['user']['name']]['userInfo'] = userObj;
+			// Correct Person User Info
+			gameObj['correct'][tweet['user']['screen_name']] = {};
+			gameObj['correct'][tweet['user']['screen_name']]['userInfo'] = userObj;
+
+			// Incorrect Person User Info
+			gameObj['incorrect'][tweet['user']['screen_name']] = {};
+			gameObj['incorrect'][tweet['user']['screen_name']]['userInfo'] = userObj;
 
 			// Fill in Tweet Object Details
 			tweetObj['tweetID'] = tweet['id'];
@@ -116,12 +124,24 @@ $(document).ready(function(){
 			tweetObj['numOfRetweets'] = tweet['retweet_count'];
 			tweetObj['numOfFavorites'] = tweet['favorite_count'];
 
-			// TODO --> Add tweet object to the Game Object
-			gameObj['correct'][tweet['user']['name']]['tweetInfo'] = tweetObj;
+			gameObj['correct'][tweet['user']['screen_name']]['tweetInfo'] = tweetObj;
 
 		});
 
-		// TODO --> create shuffled incorrect object 
+		var keys = Object.keys(gameObj['correct']);
+
+		// Duplicate of keys
+		var allPeople = Object.keys(gameObj['correct']);
+
+		for (i = 0; i < allPeople.length; i++){
+
+			var rand = Math.floor((Math.random() * keys.length) + 0);
+
+			gameObj['incorrect'][allPeople[i]]['tweetInfo'] = gameObj['correct'][allPeople[rand]]['tweetInfo'];
+
+			// So that no person's tweet is selected more than once
+			keys.splice(rand, 1);
+		}
 
 		return gameObj;
 	}
@@ -135,6 +155,10 @@ $(document).ready(function(){
 	* @returns : HTML text of the Tweet that can directly be used for the App 
 	*/
 	function GetTweetHTML(tweet){
+
+		var intToString = ["Zero", "One", "Two", "Three", "Four", "Five"];
+
+		var mediaString = "";
 
 		// HTML Tweet Text that needs to be returned
 		var tweetHTML = "";
@@ -156,7 +180,7 @@ $(document).ready(function(){
 
 			hashtags.forEach(function(hashtag){
 
-				tweetText = tweetText.replace('#' + hashtag['text'], '<a href="https://twitter.com/hashtag/' + hashtag['text'] + '?src=hash">#' + hashtag['text'] + '</a>');
+				tweetText = tweetText.replace('#' + hashtag['text'], '<a class="hashtagLink" target="_blank" href="https://twitter.com/hashtag/' + hashtag['text'] + '?src=hash">#' + hashtag['text'] + '</a>');
 			});
 		}
 
@@ -165,7 +189,7 @@ $(document).ready(function(){
 
 			userMentions.forEach(function(user){
 
-				tweetText = tweetText.replace('@' + user['screen_name'], '<a href="https://twitter.com/' + user['screen_name'] + '">@' + user['screen_name'] + '</a>');
+				tweetText = tweetText.replace('@' + user['screen_name'], '<a class="userMentionLink" target="_blank" href="https://twitter.com/' + user['screen_name'] + '">@' + user['screen_name'] + '</a>');
 			});
 		}
 
@@ -175,10 +199,14 @@ $(document).ready(function(){
 		// media content such as video etc, that also needs to be taken care of in the Application.
 		if(media != undefined && media['length'] > 0){
 
+			var index = 1;
+
 			media.forEach(function(mediaEle){
 
 				// TODO --> Ask for Width and height Properties and set them for the image
-				tweetText = tweetText.replace(mediaEle['url'], '<img src="' + mediaEle['media_url'] + '">');
+				tweetText = tweetText.replace(mediaEle['url'], '<div class="imgLink link' + intToString[index] + '">' + mediaEle['url'] + '</div>');
+				mediaString += '<img class="tweetImg link' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
+				index += 1;
 			});
 		}	
 
@@ -187,7 +215,7 @@ $(document).ready(function(){
 
 			urls.forEach(function(url){
 
-				tweetText = tweetText.replace(url['url'], '<a href="' + url['expanded_url'] + '">' + url['url'] + '</a>');
+				tweetText = tweetText.replace(url['url'], '<a class="webLink" target="_blank" href="' + url['expanded_url'] + '">' + url['url'] + '</a>');
 			});
 
 		}
@@ -197,12 +225,11 @@ $(document).ready(function(){
 
 			symbols.forEach(function(symbol){
 
-				tweetText = tweetText.replace('$' + symbol['text'], '<a href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
+				tweetText = tweetText.replace('$' + symbol['text'], '<a class="symbolLink" target="_blank" href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
 			});
 		}
 		
-		// TODO --> <p> </p> confirm and add <p> tags
-		tweetHTML = tweetText;
+		tweetHTML = '<p>' + tweetText + mediaString + '</p>';
 		return tweetHTML;
 
 	}
