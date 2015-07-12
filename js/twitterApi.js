@@ -137,7 +137,7 @@ $(document).ready(function(){
 
 			var rand = Math.floor((Math.random() * keys.length) + 0);
 
-			gameObj['incorrect'][allPeople[i]]['tweetInfo'] = gameObj['correct'][allPeople[rand]]['tweetInfo'];
+			gameObj['incorrect'][allPeople[i]]['tweetInfo'] = gameObj['correct'][keys[rand]]['tweetInfo'];
 
 			// So that no person's tweet is selected more than once
 			keys.splice(rand, 1);
