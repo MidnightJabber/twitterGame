@@ -61,28 +61,21 @@ td:nth-child(2) {
 }
 
 .followButton {
-    box-sizing: border-box;
-}
-
-.followContent {
-    box-sizing: border-box;
-}
-
-.followButton .followContent>a {
     display: inline-grid;
+    float: right;
     box-sizing: border-box;
-    padding: 10%;
-    border-radius: 10px;
+    padding: 6px;
+    border-radius: 6px;
     text-decoration: none;
 }
 
-.followButton .followContent>a:hover {
+.followButton:hover {
     color: white;
     background-color: #337ab7;
     text-decoration: none;
 }
 
-.followButton .followContent>a>* {
+.followButton>* {
     display: inline;
 }
 
