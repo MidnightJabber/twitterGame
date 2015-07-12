@@ -205,7 +205,7 @@ $(document).ready(function(){
 
 				// TODO --> Ask for Width and height Properties and set them for the image
 				tweetText = tweetText.replace(mediaEle['url'], '<div class="imgLink link' + intToString[index] + '">' + mediaEle['url'] + '</div>');
-				mediaString += '<img class="tweetImg link' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
+				mediaString += '<img class="tweetImg img' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
 				index += 1;
 			});
 		}	
