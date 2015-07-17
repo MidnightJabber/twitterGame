@@ -1,10 +1,11 @@
 {
-   "correct": {
+    "correct": 
+    {
         "zaynmalik": {
             "userInfo": {
                 "name": "zaynmalik",
                 "handle": "@zaynmalik",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@zaynmalik"
             },
             "tweetInfo": {
@@ -21,7 +22,7 @@
             "userInfo": {
                 "name": "Stephen Colbert",
                 "handle": "@StephenAtHome",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@StephenAtHome"
             },
             "tweetInfo": {
@@ -38,7 +39,7 @@
             "userInfo": {
                 "name": "Drizzy",
                 "handle": "@Drake",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_normal.png",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S.png",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@Drake"
             },
             "tweetInfo": {
@@ -55,7 +56,7 @@
             "userInfo": {
                 "name": "KATY PERRY",
                 "handle": "@katyperry",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e_normal.png",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e.png",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@katyperry"
             },
             "tweetInfo": {
@@ -72,7 +73,7 @@
             "userInfo": {
                 "name": "Trey Songz",
                 "handle": "@TreySongz",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@TreySongz"
             },
             "tweetInfo": {
@@ -89,7 +90,7 @@
             "userInfo": {
                 "name": "Aziz Ansari",
                 "handle": "@azizansari",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@azizansari"
             },
             "tweetInfo": {
@@ -106,7 +107,7 @@
             "userInfo": {
                 "name": "Tyra Banks",
                 "handle": "@tyrabanks",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@tyrabanks"
             },
             "tweetInfo": {
@@ -123,7 +124,7 @@
             "userInfo": {
                 "name": "David Guetta",
                 "handle": "@davidguetta",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@davidguetta"
             },
             "tweetInfo": {
@@ -140,7 +141,7 @@
             "userInfo": {
                 "name": "Kevin Hart",
                 "handle": "@KevinHart4real",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@KevinHart4real"
             },
             "tweetInfo": {
@@ -157,7 +158,7 @@
             "userInfo": {
                 "name": "Rihanna",
                 "handle": "@rihanna",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@rihanna"
             },
             "tweetInfo": {
@@ -171,12 +172,13 @@
         }
     },
 
-   "incorrect": {
+    "incorrect": 
+    {
         "zaynmalik": {
             "userInfo": {
                 "name": "zaynmalik",
                 "handle": "@zaynmalik",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@zaynmalik"
             },
             "tweetInfo": {
@@ -193,7 +195,7 @@
             "userInfo": {
                 "name": "Stephen Colbert",
                 "handle": "@StephenAtHome",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@StephenAtHome"
             },
             "tweetInfo": {
@@ -210,7 +212,7 @@
             "userInfo": {
                 "name": "Drizzy",
                 "handle": "@Drake",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_normal.png",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S.png",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@Drake"
             },
             "tweetInfo": {
@@ -227,7 +229,7 @@
             "userInfo": {
                 "name": "KATY PERRY",
                 "handle": "@katyperry",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e_normal.png",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e.png",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@katyperry"
             },
             "tweetInfo": {
@@ -244,7 +246,7 @@
             "userInfo": {
                 "name": "Trey Songz",
                 "handle": "@TreySongz",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@TreySongz"
             },
             "tweetInfo": {
@@ -261,7 +263,7 @@
             "userInfo": {
                 "name": "Aziz Ansari",
                 "handle": "@azizansari",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@azizansari"
             },
             "tweetInfo": {
@@ -278,7 +280,7 @@
             "userInfo": {
                 "name": "Tyra Banks",
                 "handle": "@tyrabanks",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@tyrabanks"
             },
             "tweetInfo": {
@@ -295,7 +297,7 @@
             "userInfo": {
                 "name": "David Guetta",
                 "handle": "@davidguetta",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@davidguetta"
             },
             "tweetInfo": {
@@ -312,7 +314,7 @@
             "userInfo": {
                 "name": "Kevin Hart",
                 "handle": "@KevinHart4real",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX_normal.jpeg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX.jpeg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@KevinHart4real"
             },
             "tweetInfo": {
@@ -329,7 +331,7 @@
             "userInfo": {
                 "name": "Rihanna",
                 "handle": "@rihanna",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2_normal.jpg",
+                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2.jpg",
                 "followURL": "https://twitter.com/intent/follow?screen_name=@rihanna"
             },
             "tweetInfo": {
