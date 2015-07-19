@@ -1,236 +1,256 @@
-$(document).ready(function(){
 
-    var people = $.getJSON('people.json',function(){
+var people = $.ajax({
+        url: "http://tweety.midnightjabber.com/people.json",
+        async: false
     });
 
 
-    /**
-    * This method provides a JSON object containing the information about a tweet given a 
-    * Twitter handle.
-    *
-    * @param twitterHandle: The Twitter Handle (@xyz) of the User whose Tweet is being collected
-    *
-    * @returns gameTweet: JSON data of one random tweet from recent 200 for the user
-    */
-    function GetTweet(twitterHandle){
-
-        // Twitter handle is considered as the Screen-Name
-        var screenName = twitterHandle;
+/**
+* This method provides a JSON object containing the information about a tweet given a 
+* Twitter handle.
+*
+* @param twitterHandle: The Twitter Handle (@xyz) of the User whose Tweet is being collected
+*
+* @returns gameTweet: JSON data of one random tweet from recent 200 for the user
+*/
+function GetTweet(twitterHandle){
+
+	// Twitter handle is considered as the Screen-Name
+	var screenName = twitterHandle;
+	
+	// Out of 200 tweets lets select a random tweet
+	// Math.random() never equals 1 but it can be 0 or some value between 0 and 1
+	var randomIndex = Math.floor((Math.random() * 200) + 1);
+
+	// AJAX request 20 get 200 tweet data
+	var tweetData = $.ajax({
+		url: "http://tweety.midnightjabber.com/php/tweets_json.php?screen_name=" + screenName + "&count=" + String(randomIndex),
+		async: false
+	});
+	
+
+	// console.log(randomIndex);
+
+	var tweetArr = JSON.parse(tweetData['responseText']);
+	
+	
+	
+	// // console.log('\n');
+	// Tweet that got selected
+	// // console.log('randomIndex - 1 : ' + (randomIndex - 1));
+
+	var gameTweet = tweetArr[randomIndex - 1];
+	
+	while(gameTweet == undefined){
+		randomIndex = randomIndex - 1;
+		gameTweet = tweetArr[randomIndex - 1];
+	}
+	
+	return gameTweet;
+}
+
+
+/**
+* This method selects 10 random people from the a JSON file with an array of people/users.
+*
+* @param people: Object with the list of all the people (In our game)
+* @param numPeople: Number of random people
+* @returns gamePeople: 10 random people from the provided JSON file
+*/
+function GetRandomGamePeople(allPeople, numPeople){
+
+	var gamePeople = [];
+	var twitterUsersJSON;
+	var twitterUsersArr;
+	// console.log('allPeople');
+	// console.log(allPeople);
+	var peopleObj = allPeople['responseJSON'];
+	
+	// console.log('peopleObj');
+	// console.log(peopleObj);
+	// console.log('length: (PeopleObj)' + peopleObj['users'].length);
+	
+	twitterUsersArr = peopleObj['users'];
+
+	// Now we select 10 random users
+	for (i = 0; i < numPeople; i++){
+
+		// console.log('\n');
+		var rand = Math.floor((Math.random() * twitterUsersArr.length) + 0);
+		// console.log('Index Selected: ' + rand);
+
+		gamePeople.push(twitterUsersArr[rand]);
+
+		// So that no person is selected more than once
+		twitterUsersArr.splice(rand, 1);
+		// console.log('Length after Splice (peopleObj): ' + peopleObj['users'].length);
+		// console.log('Length after Splice (twitterUserArr): ' + twitterUsersArr.length);
+	}
+
+	
+	return gamePeople;
+}
+
+
+/**
+* This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game. 
+* This method creates an object of a particular JSON structure (see ExampleData.json for structure).
+* 
+* @returns gameObj : Object containing the 'correct' and the 'incorrect'
+*/
+function CreateUserTweetGameObject(){
+
+	// Get List of People(handle, screenname) Objects 
+	var gamePeople = GetRandomGamePeople(people, 10);
+
+	// Declare main Game Object
+	var gameObj = {};
+	gameObj['correct'] = {};
+	gameObj['incorrect'] = {};
 
-        // Getting content for the latest 200 tweets by the user
-        var count = 200;
-
-        // AJAX request 20 get 200 tweet data
-        var tweetData = $.ajax({
-            url: "http://midnightjabber.com/tweets_json.php?screen_name=" + screenName + "&count=" + String(count),
-            async: false
-        });
-
-        var tweetArr = JSON.parse(tweetData['responseText']);
-        
-        // Out of 200 tweets lets select a random tweet
-        // Math.random() never equals 1 but it can be 0 or some value between 0 and 1
-        var randomIndex = Math.floor((Math.random() * 200) + 0);
+	// Objects for each Person
+	var userObj = {};
+	var tweetObj = {};
 
-        // Tweet that got selected
-        var gameTweet = tweetArr[randomIndex];
+	gamePeople.forEach(function(person){
 
-        return gameTweet;
-    }
+		// Get a random tweet for the person
+		// Substring Method is used to remove the '@' before the handle
+		var tweet = GetTweet(person['handle'].substring(1));
+		
+		// console.log(tweet);
+		
+		userObj = {};
+		tweetObj = {};
 
+		// Fill in User Object Details
+		userObj['name'] = tweet['user']['name'];
+		userObj['handle'] = '@' + tweet['user']['screen_name'];
+		userObj['profilePicURL'] = tweet['user']['profile_image_url'].replace("_normal", "");
+		userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
 
-    /**
-    * This method selects 10 random people from the a JSON file with an array of people/users.
-    *
-    * @param people: Object with the list of all the people (In our game)
-    * @param numPeople: Number of random people
-    * @returns gamePeople: 10 random people from the provided JSON file
-    */
-    function GetRandomGamePeople(people, numPeople){
+		// Correct Person User Info
+		gameObj['correct'][tweet['user']['screen_name']] = {};
+		gameObj['correct'][tweet['user']['screen_name']]['userInfo'] = userObj;
 
-        var gamePeople = [];
-        var twitterUsersJSON;
-        var twitterUsersArr
+		// Incorrect Person User Info
+		gameObj['incorrect'][tweet['user']['screen_name']] = {};
+		gameObj['incorrect'][tweet['user']['screen_name']]['userInfo'] = userObj;
 
-        var peopleObj = JSON.parse(people['responseText']);
+		// Fill in Tweet Object Details
+		tweetObj['tweetID'] = tweet['id'];
+		tweetObj['tweetDate'] = tweet['created_at'];
+		tweetObj['tweetHTML'] = GetTweetHTML(tweet);
+		tweetObj['tweetText'] = tweet['text'];
+		tweetObj['numOfRetweets'] = tweet['retweet_count'];
+		tweetObj['numOfFavorites'] = tweet['favorite_count'];
 
-        twitterUsersArr = peopleObj['users'];
+		gameObj['correct'][tweet['user']['screen_name']]['tweetInfo'] = tweetObj;
 
-        // Now we select 10 random users
-        for (i = 0; i < numPeople; i++){
+	});
 
-            var rand = Math.floor((Math.random() * twitterUsersArr.length) + 0);
+	var keys = Object.keys(gameObj['correct']);
 
-            gamePeople.push(twitterUsersArr[rand]);
+	// Duplicate of keys
+	var allPeople = Object.keys(gameObj['correct']);
 
-            // So that no person is selected more than once
-            twitterUsersArr.splice(rand, 1);
-        }
+	for (i = 0; i < allPeople.length; i++){
 
-        return gamePeople;
-    }
+		var rand = Math.floor((Math.random() * keys.length) + 0);
 
+		gameObj['incorrect'][allPeople[i]]['tweetInfo'] = gameObj['correct'][keys[rand]]['tweetInfo'];
 
-    /**
-    * This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game. 
-    * This method creates an object of a particular JSON structure (see ExampleData.json for structure).
-    * 
-    * @returns gameObj : Object containing the 'correct' and the 'incorrect'
-    */
-    function CreateUserTweetGameObject(){
+		// So that no person's tweet is selected more than once
+		keys.splice(rand, 1);
+	}
 
-        // Get List of People(handle, screenname) Objects 
-        var gamePeople = GetRandomGamePeople(people, 10);
+	return gameObj;
+}
 
-        // Declare main Game Object
-        var gameObj = {};
-        gameObj['correct'] = {};
-        gameObj['incorrect'] = {};
 
-        // Objects for each Person
-        var userObj = {};
-        var tweetObj = {};
+/**
+* This method creates the HTML text suited for the Game Application.
+*
+* @param tweet : Tweet Object provided by the Twitter API
+*
+* @returns : HTML text of the Tweet that can directly be used for the App 
+*/
+function GetTweetHTML(tweet){
 
-        gamePeople.forEach(function(person){
+	var intToString = ["Zero", "One", "Two", "Three", "Four", "Five"];
 
-            // Get a random tweet for the person
-            // Substring Method is used to remove the '@' before the handle
-            var tweet = GetTweet(person['handle'].substring(1));
+	var mediaString = "";
 
-            userObj = {};
-            tweetObj = {};
+	// HTML Tweet Text that needs to be returned
+	var tweetHTML = "";
 
-            // Fill in User Object Details
-            userObj['name'] = tweet['user']['name'];
-            userObj['handle'] = '@' + tweet['user']['screen_name'];
-            userObj['profilePicURL'] = tweet['user']['profile_image_url'];
-            userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
+	// Text of the Tweet
+	var tweetText = tweet['text'];
 
-            // Correct Person User Info
-            gameObj['correct'][tweet['user']['screen_name']] = {};
-            gameObj['correct'][tweet['user']['screen_name']]['userInfo'] = userObj;
+	// Array of words in the Tweet
+	var tweetWords = tweet['text'].split(" ");
 
-            // Incorrect Person User Info
-            gameObj['incorrect'][tweet['user']['screen_name']] = {};
-            gameObj['incorrect'][tweet['user']['screen_name']]['userInfo'] = userObj;
+	var hashtags = tweet['entities']['hashtags'];
+	var symbols = tweet['entities']['symbols'];
+	var urls = tweet['entities']['urls'];
+	var media = tweet['entities']['media'];
+	var userMentions = tweet['entities']['user_mentions'];
 
-            // Fill in Tweet Object Details
-            tweetObj['tweetID'] = tweet['id'];
-            tweetObj['tweetDate'] = tweet['created_at'];
-            tweetObj['tweetHTML'] = GetTweetHTML(tweet);
-            tweetObj['tweetText'] = tweet['text'];
-            tweetObj['numOfRetweets'] = tweet['retweet_count'];
-            tweetObj['numOfFavorites'] = tweet['favorite_count'];
+	// Replace all the Hashtags with hashtag links
+	if(hashtags != undefined && hashtags['length'] > 0){
 
-            gameObj['correct'][tweet['user']['screen_name']]['tweetInfo'] = tweetObj;
+		hashtags.forEach(function(hashtag){
 
-        });
+			tweetText = tweetText.replace('#' + hashtag['text'], '<a class="hashtagLink" target="_blank" href="https://twitter.com/hashtag/' + hashtag['text'] + '?src=hash">#' + hashtag['text'] + '</a>');
+		});
+	}
 
-        var keys = Object.keys(gameObj['correct']);
+	// Replace all the user-Mentions with User Links
+	if(userMentions != undefined && userMentions['length'] > 0){
 
-        // Duplicate of keys
-        var allPeople = Object.keys(gameObj['correct']);
+		userMentions.forEach(function(user){
 
-        for (i = 0; i < allPeople.length; i++){
+			tweetText = tweetText.replace('@' + user['screen_name'], '<a class="userMentionLink" target="_blank" href="https://twitter.com/' + user['screen_name'] + '">@' + user['screen_name'] + '</a>');
+		});
+	}
 
-            var rand = Math.floor((Math.random() * keys.length) + 0);
+	// Replace is all the Media Content with HTML Links
+	// Twitter Dev URL: https://dev.twitter.com/overview/api/entities-in-twitter-objects#media
+	// NOTE: The media type (media['type']) for now only supports 'photo'. If later it supports more
+	// media content such as video etc, that also needs to be taken care of in the Application.
+	if(media != undefined && media['length'] > 0){
 
-            gameObj['incorrect'][allPeople[i]]['tweetInfo'] = gameObj['correct'][allPeople[rand]]['tweetInfo'];
+		var index = 1;
 
-            // So that no person's tweet is selected more than once
-            keys.splice(rand, 1);
-        }
+		media.forEach(function(mediaEle){
 
-        return gameObj;
-    }
+			// TODO --> Ask for Width and height Properties and set them for the image
+			tweetText = tweetText.replace(mediaEle['url'], '<div class="imgLink link' + intToString[index] + '">' + mediaEle['url'] + '</div>');
+			mediaString += '<img class="tweetImg img' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
+			index += 1;
+		});
+	}	
 
+	// Replace all the Url(s) with the HTML links for the Url(s)
+	if(urls != undefined && urls['length'] > 0){
 
-    /**
-    * This method creates the HTML text suited for the Game Application.
-    *
-    * @param tweet : Tweet Object provided by the Twitter API
-    *
-    * @returns : HTML text of the Tweet that can directly be used for the App 
-    */
-    function GetTweetHTML(tweet){
+		urls.forEach(function(url){
 
-        var intToString = ["Zero", "One", "Two", "Three", "Four", "Five"];
+			tweetText = tweetText.replace(url['url'], '<a class="webLink" target="_blank" href="' + url['expanded_url'] + '">' + url['url'] + '</a>');
+		});
 
-        var mediaString = "";
+	}
 
-        // HTML Tweet Text that needs to be returned
-        var tweetHTML = "";
+	// Replace all the Symbols with the Symbol HTML Links
+	if(symbols != undefined && symbols['length'] > 0){
 
-        // Text of the Tweet
-        var tweetText = tweet['text'];
+		symbols.forEach(function(symbol){
 
-        // Array of words in the Tweet
-        var tweetWords = tweet['text'].split(" ");
+			tweetText = tweetText.replace('$' + symbol['text'], '<a class="symbolLink" target="_blank" href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
+		});
+	}
+	
+	tweetHTML = '<p>' + tweetText + mediaString + '</p>';
+	return tweetHTML;
 
-        var hashtags = tweet['entities']['hashtags'];
-        var symbols = tweet['entities']['symbols'];
-        var urls = tweet['entities']['urls'];
-        var media = tweet['entities']['media'];
-        var userMentions = tweet['entities']['user_mentions'];
-
-        // Replace all the Hashtags with hashtag links
-        if(hashtags != undefined && hashtags['length'] > 0){
-
-            hashtags.forEach(function(hashtag){
-
-                tweetText = tweetText.replace('#' + hashtag['text'], '<a class="hashtagLink" target="_blank" href="https://twitter.com/hashtag/' + hashtag['text'] + '?src=hash">#' + hashtag['text'] + '</a>');
-            });
-        }
-
-        // Replace all the user-Mentions with User Links
-        if(userMentions != undefined && userMentions['length'] > 0){
-
-            userMentions.forEach(function(user){
-
-                tweetText = tweetText.replace('@' + user['screen_name'], '<a class="userMentionLink" target="_blank" href="https://twitter.com/' + user['screen_name'] + '">@' + user['screen_name'] + '</a>');
-            });
-        }
-
-        // Replace is all the Media Content with HTML Links
-        // Twitter Dev URL: https://dev.twitter.com/overview/api/entities-in-twitter-objects#media
-        // NOTE: The media type (media['type']) for now only supports 'photo'. If later it supports more
-        // media content such as video etc, that also needs to be taken care of in the Application.
-        if(media != undefined && media['length'] > 0){
-
-            var index = 1;
-
-            media.forEach(function(mediaEle){
-
-                // TODO --> Ask for Width and height Properties and set them for the image
-                tweetText = tweetText.replace(mediaEle['url'], '<div class="imgLink link' + intToString[index] + '">' + mediaEle['url'] + '</div>');
-                mediaString += '<img class="tweetImg link' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
-                index += 1;
-            });
-        }   
-
-        // Replace all the Url(s) with the HTML links for the Url(s)
-        if(urls != undefined && urls['length'] > 0){
-
-            urls.forEach(function(url){
-
-                tweetText = tweetText.replace(url['url'], '<a class="webLink" target="_blank" href="' + url['expanded_url'] + '">' + url['url'] + '</a>');
-            });
-
-        }
-
-        // Replace all the Symbols with the Symbol HTML Links
-        if(symbols != undefined && symbols['length'] > 0){
-
-            symbols.forEach(function(symbol){
-
-                tweetText = tweetText.replace('$' + symbol['text'], '<a class="symbolLink" target="_blank" href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
-            });
-        }
-        
-        tweetHTML = '<p>' + tweetText + mediaString + '</p>';
-        return tweetHTML;
-
-    }
-
-});
-
+}
