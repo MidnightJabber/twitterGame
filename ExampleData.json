@@ -1,344 +1,325 @@
-{
-   "correct": {
-        "zaynmalik": {
-            "userInfo": {
-                "name": "zaynmalik",
-                "handle": "@zaynmalik",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@zaynmalik"
+{  
+    "correct":{  
+        "kelly_clarkson":{  
+            "userInfo":{  
+                "name":"Kelly Clarkson",
+                "handle":"@kelly_clarkson",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/565273523564736512/Bhh8z_cE.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@kelly_clarkson"
             },
-            "tweetInfo": {
-                "tweetID": 608555658510782500,
-                "tweetDate": "Wed Jun 10 08:45:50 +0000 2015",
-                "tweetHTML": "<p>White hair <div class=\"imgLink linkOne\">http://t.co/77q89RfxhS<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CHIGI-DW4AANQwu.jpg\"><\/p>",
-                "tweetText": "White hair http://t.co/77q89RfxhS",
-                "numOfRetweets": 162239,
-                "numOfFavorites": 242932
+            "tweetInfo":{  
+                "tweetID":585131724025294800,
+                "tweetDate":"Mon Apr 06 17:27:28 +0000 2015",
+                "tweetHTML":"<p>Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SoDifferent?src=hash\">#SoDifferent</a></p>",
+                "tweetText":"Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"#SoDifferent",
+                "numOfRetweets":326,
+                "numOfFavorites":1346
             }
         },
-
-        "StephenAtHome": {
-            "userInfo": {
-                "name": "Stephen Colbert",
-                "handle": "@StephenAtHome",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@StephenAtHome"
+        "ricky_martin":{  
+            "userInfo":{  
+                "name":"Ricky Martin",
+                "handle":"@ricky_martin",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/588872134241427457/OUVHF8MR.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ricky_martin"
             },
-            "tweetInfo": {
-                "tweetID": 532941261494579200,
-                "tweetDate": "Thu Nov 13 17:01:12 +0000 2014",
-                "tweetHTML": "<p>Yahoo! just bought an online ad platform for $640M, great news for everyone who thought Yahoo! just needed more ads.<\/p>",
-                "tweetText": "Yahoo! just bought an online ad platform for $640M, great news for everyone who thought Yahoo! just needed more ads.",
-                "numOfRetweets": 481,
-                "numOfFavorites": 993
+            "tweetInfo":{  
+                "tweetID":583693341096808400,
+                "tweetDate":"Thu Apr 02 18:11:51 +0000 2015",
+                "tweetHTML":"<p>Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/sexysouls?src=hash\">#sexysouls</a> que me inspiran a <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/VivirLaVidaBold?src=hash\">#VivirLaVidaBold</a> <div class=\"imgLink linkOne\">http://t.co/CASVsoCXoG</div><img class=\"tweetImg imgOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CBmyADJW4AAnbeP.png\"></p>",
+                "tweetText":"Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los #sexysouls que me inspiran a #VivirLaVidaBold http://t.co/CASVsoCXoG",
+                "numOfRetweets":203,
+                "numOfFavorites":416
             }
         },
-
-        "Drake": {
-            "userInfo": {
-                "name": "Drizzy",
-                "handle": "@Drake",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_normal.png",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@Drake"
+        "NiallOfficial":{  
+            "userInfo":{  
+                "name":"Niall Horan",
+                "handle":"@NiallOfficial",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/552488743555567619/AhR_vBw9.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@NiallOfficial"
             },
-            "tweetInfo": {
-                "tweetID": 416820775098662900,
-                "tweetDate": "Sat Dec 28 06:39:51 +0000 2013",
-                "tweetHTML": "<p>The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers<\/p>",
-                "tweetText": "The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers",
-                "numOfRetweets": 7868,
-                "numOfFavorites": 9129
+            "tweetInfo":{  
+                "tweetID":608331138420080600,
+                "tweetDate":"Tue Jun 09 17:53:40 +0000 2015",
+                "tweetHTML":"<p>I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  <a class=\"webLink\" target=\"_blank\" href=\"https://twitter.com/fifawwc/status/608323259998838786\">https://t.co/cUOIohVl1I</a></p>",
+                "tweetText":"I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  https://t.co/cUOIohVl1I",
+                "numOfRetweets":73299,
+                "numOfFavorites":117881
             }
         },
-
-        "katyperry": {
-            "userInfo": {
-                "name": "KATY PERRY",
-                "handle": "@katyperry",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e_normal.png",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@katyperry"
+        "ericstonestreet":{  
+            "userInfo":{  
+                "name":"Eric Stonestreet",
+                "handle":"@ericstonestreet",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000626926058/aa196b61745a1bd09d5e27c394f608fb.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ericstonestreet"
             },
-            "tweetInfo": {
-                "tweetID": 579089744568578000,
-                "tweetDate": "Sat Mar 21 01:18:48 +0000 2015",
-                "tweetHTML": "<p>☁️❄️<a class=\"webLink\" target=\"_blank\" href=\"https://soundcloud.com/kevinogarrett/control\">https://t.co/FUIWZVlJ1V<\/a>❄️☁️ <div class=\"imgLink linkOne\">http://t.co/tDpQBvqit8<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CAlXBbAVAAEPpEX.jpg\"><\/p>",
-                "tweetText": "☁️❄️https://t.co/FUIWZVlJ1V❄️☁️ http://t.co/tDpQBvqit8",
-                "numOfRetweets": 5261,
-                "numOfFavorites": 12325
+            "tweetInfo":{  
+                "tweetID":588746452735631400,
+                "tweetDate":"Thu Apr 16 16:51:07 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/JoeManganiello\">@JoeManganiello</a>: Tonight! See <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/ericstonestreet\">@ericstonestreet</a> as Charlie Donovan and Eddie Harris in the LIVE read of <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LACMA\">@LACMA</a>'s <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/MajorLeague?src=hash\">#MajorLeague</a> @filmindepe…</p>",
+                "tweetText":"RT @JoeManganiello: Tonight! See @ericstonestreet as Charlie Donovan and Eddie Harris in the LIVE read of @LACMA's #MajorLeague @filmindepe…",
+                "numOfRetweets":41,
+                "numOfFavorites":0
             }
         },
-
-        "TreySongz": {
-            "userInfo": {
-                "name": "Trey Songz",
-                "handle": "@TreySongz",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@TreySongz"
+        "SrBachchan":{  
+            "userInfo":{  
+                "name":"Amitabh Bachchan",
+                "handle":"@SrBachchan",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/622497417863131136/o95FrYtE.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SrBachchan"
             },
-            "tweetInfo": {
-                "tweetID": 610519437175697400,
-                "tweetDate": "Mon Jun 15 18:49:11 +0000 2015",
-                "tweetHTML": "<p>Peep <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SlowMotion?src=hash\">#SlowMotion<\/a> featured on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/Spotify\">@Spotify<\/a>’s ‘Today’s Top Hits’ playlist <a class=\"webLink\" target=\"_blank\" href=\"http://spoti.fi/1rhnAlP\">http://t.co/UcOP0foabH<\/a><\/p>",
-                "tweetText": "Peep #SlowMotion featured on @Spotify’s ‘Today’s Top Hits’ playlist http://t.co/UcOP0foabH",
-                "numOfRetweets": 268,
-                "numOfFavorites": 525
+            "tweetInfo":{  
+                "tweetID":622324101227515900,
+                "tweetDate":"Sat Jul 18 08:36:42 +0000 2015",
+                "tweetHTML":"<p>T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!</p>",
+                "tweetText":"T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!",
+                "numOfRetweets":242,
+                "numOfFavorites":686
             }
         },
-
-        "azizansari": {
-            "userInfo": {
-                "name": "Aziz Ansari",
-                "handle": "@azizansari",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@azizansari"
+        "tyrabanks":{  
+            "userInfo":{  
+                "name":"Tyra Banks",
+                "handle":"@tyrabanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tyrabanks"
             },
-            "tweetInfo": {
-                "tweetID": 611243405910388700,
-                "tweetDate": "Wed Jun 17 18:45:58 +0000 2015",
-                "tweetHTML": "<p>Twitter Q&amp;A. Ask me stuff. Tag it <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/ModernRomanceQandA?src=hash\">#ModernRomanceQandA<\/a> and get the book here: <a class=\"webLink\" target=\"_blank\" href=\"http://book.azizansari.com\">http://t.co/kztneKCBsB<\/a><\/p>",
-                "tweetText": "Twitter Q&amp;A. Ask me stuff. Tag it #ModernRomanceQandA and get the book here: http://t.co/kztneKCBsB",
-                "numOfRetweets": 20,
-                "numOfFavorites": 71
+            "tweetInfo":{  
+                "tweetID":592361757856763900,
+                "tweetDate":"Sun Apr 26 16:17:03 +0000 2015",
+                "tweetHTML":"<p>Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/DaytimeEmmys?src=hash\">#DaytimeEmmys</a></p>",
+                "tweetText":"Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n#DaytimeEmmys",
+                "numOfRetweets":143,
+                "numOfFavorites":741
             }
         },
-
-        "tyrabanks": {
-            "userInfo": {
-                "name": "Tyra Banks",
-                "handle": "@tyrabanks",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@tyrabanks"
+        "edsheeran":{  
+            "userInfo":{  
+                "name":"Ed Sheeran",
+                "handle":"@edsheeran",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/454206880676851712/jVypIZpS.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@edsheeran"
             },
-            "tweetInfo": {
-                "tweetID": 592498970464686100,
-                "tweetDate": "Mon Apr 27 01:22:17 +0000 2015",
-                "tweetHTML": "<p>Who caught Tyra's <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/BankSigns?src=hash\">#BankSigns<\/a> drop at the start of the show? �� <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Fierce200?src=hash\">#Fierce200<\/a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/DaytimeEmmys?src=hash\">#DaytimeEmmys<\/a> - Team TyTy<\/p>",
-                "tweetText": "Who caught Tyra's #BankSigns drop at the start of the show? �� #Fierce200 #DaytimeEmmys - Team TyTy",
-                "numOfRetweets": 44,
-                "numOfFavorites": 183
+            "tweetInfo":{  
+                "tweetID":622146080034168800,
+                "tweetDate":"Fri Jul 17 20:49:19 +0000 2015",
+                "tweetHTML":"<p>iArena, 11pm - latitude</p>",
+                "tweetText":"iArena, 11pm - latitude",
+                "numOfRetweets":4718,
+                "numOfFavorites":12082
             }
         },
-
-        "davidguetta": {
-            "userInfo": {
-                "name": "David Guetta",
-                "handle": "@davidguetta",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@davidguetta"
+        "SnoopDogg":{  
+            "userInfo":{  
+                "name":"Snoop Dogg",
+                "handle":"@SnoopDogg",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/595448225982623744/lT2g5UVA.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SnoopDogg"
             },
-            "tweetInfo": {
-                "tweetID": 593487405765816300,
-                "tweetDate": "Wed Apr 29 18:49:58 +0000 2015",
-                "tweetHTML": "<p>Talked w <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/kingsthings\">@kingsthings<\/a> about <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Coachella?src=hash\">#Coachella<\/a> <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/NICKIMINAJ\">@NICKIMINAJ<\/a> &amp; <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/Beyonce\">@Beyonce<\/a>. Think Larry &amp; I should collab? <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/OraTV\">@OraTV<\/a>: <a class=\"webLink\" target=\"_blank\" href=\"http://www.ora.tv/larrykingnow/david-guetta-rare-interview-larry-king-0_75bkpbkqki3f\">http://t.co/vgmArNw6DT<\/a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/LarryKingNow?src=hash\">#LarryKingNow<\/a><\/p>",
-                "tweetText": "Talked w @kingsthings about #Coachella @NICKIMINAJ &amp; @Beyonce. Think Larry &amp; I should collab? @OraTV: http://t.co/vgmArNw6DT #LarryKingNow",
-                "numOfRetweets": 299,
-                "numOfFavorites": 549
+            "tweetInfo":{  
+                "tweetID":621749717094019100,
+                "tweetDate":"Thu Jul 16 18:34:18 +0000 2015",
+                "tweetHTML":"<p>Just posted a photo <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/5NQ5ooP9AX/\">https://t.co/e79Pz6ULis</a></p>",
+                "tweetText":"Just posted a photo https://t.co/e79Pz6ULis",
+                "numOfRetweets":21,
+                "numOfFavorites":57
             }
         },
-
-        "KevinHart4real": {
-            "userInfo": {
-                "name": "Kevin Hart",
-                "handle": "@KevinHart4real",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@KevinHart4real"
+        "taylorswift13":{  
+            "userInfo":{  
+                "name":"Taylor Swift",
+                "handle":"@taylorswift13",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/505200807503867904/osJXmYRl.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@taylorswift13"
             },
-            "tweetInfo": {
-                "tweetID": 619847064260857900,
-                "tweetDate": "Sat Jul 11 12:33:50 +0000 2015",
-                "tweetHTML": "<p>LIVE on <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/Periscope?src=hash\">#Periscope<\/a>: A quick <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/HartaScope?src=hash\">#HartaScope<\/a> Before my 5K run in Brooklyn NY <a class=\"webLink\" target=\"_blank\" href=\"https://www.periscope.tv/w/aHEErjEzNTQ4MXwzNzc5NzQzMe1bwfzm6smQhKKQVB_bHNsx0-dAdGrnVieeNSWnK5Z_\">https://t.co/6OcGj83cMA<\/a><\/p>",
-                "tweetText": "LIVE on #Periscope: A quick #HartaScope Before my 5K run in Brooklyn NY https://t.co/6OcGj83cMA",
-                "numOfRetweets": 39,
-                "numOfFavorites": 201
+            "tweetInfo":{  
+                "tweetID":605841586841206800,
+                "tweetDate":"Tue Jun 02 21:01:04 +0000 2015",
+                "tweetHTML":"<p>So excited for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/1989TourLouisville?src=hash\">#1989TourLouisville</a> tonight!!!!!</p>",
+                "tweetText":"So excited for #1989TourLouisville tonight!!!!!",
+                "numOfRetweets":12249,
+                "numOfFavorites":31080
             }
         },
-
-        "rihanna": {
-            "userInfo": {
-                "name": "Rihanna",
-                "handle": "@rihanna",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@rihanna"
+        "DalaiLama":{  
+            "userInfo":{  
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
             },
-            "tweetInfo": {
-                "tweetID": 606056415891976200,
-                "tweetDate": "Wed Jun 03 11:14:44 +0000 2015",
-                "tweetHTML": "<p>Chile!!! Can’t wait to see you September 29. Find more info here —&gt; <a class=\"webLink\" target=\"_blank\" href=\"http://transistor.cl/rihanna\">http://t.co/oL1Y5A4ZN3<\/a> <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/RihannaEnChile?src=hash\">#RihannaEnChile<\/a><\/p>",
-                "tweetText": "Chile!!! Can’t wait to see you September 29. Find more info here —&gt; http://t.co/oL1Y5A4ZN3 #RihannaEnChile",
-                "numOfRetweets": 8316,
-                "numOfFavorites": 12251
+            "tweetInfo":{  
+                "tweetID":375913853541830660,
+                "tweetDate":"Fri Sep 06 09:30:21 +0000 2013",
+                "tweetHTML":"<p>If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.</p>",
+                "tweetText":"If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.",
+                "numOfRetweets":11395,
+                "numOfFavorites":4826
             }
         }
     },
-
-   "incorrect": {
-        "zaynmalik": {
-            "userInfo": {
-                "name": "zaynmalik",
-                "handle": "@zaynmalik",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/616004209817862144/MquoUnkS_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@zaynmalik"
+    "incorrect":{  
+        "kelly_clarkson":{  
+            "userInfo":{  
+                "name":"Kelly Clarkson",
+                "handle":"@kelly_clarkson",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/565273523564736512/Bhh8z_cE.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@kelly_clarkson"
             },
-            "tweetInfo": {
-                "tweetID": 416820775098662900,
-                "tweetDate": "Sat Dec 28 06:39:51 +0000 2013",
-                "tweetHTML": "<p>The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers<\/p>",
-                "tweetText": "The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers",
-                "numOfRetweets": 7868,
-                "numOfFavorites": 9129
+            "tweetInfo":{  
+                "tweetID":588746452735631400,
+                "tweetDate":"Thu Apr 16 16:51:07 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/JoeManganiello\">@JoeManganiello</a>: Tonight! See <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/ericstonestreet\">@ericstonestreet</a> as Charlie Donovan and Eddie Harris in the LIVE read of <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LACMA\">@LACMA</a>'s <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/MajorLeague?src=hash\">#MajorLeague</a> @filmindepe…</p>",
+                "tweetText":"RT @JoeManganiello: Tonight! See @ericstonestreet as Charlie Donovan and Eddie Harris in the LIVE read of @LACMA's #MajorLeague @filmindepe…",
+                "numOfRetweets":41,
+                "numOfFavorites":0
             }
         },
-
-        "StephenAtHome": {
-            "userInfo": {
-                "name": "Stephen Colbert",
-                "handle": "@StephenAtHome",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/593935800712175616/Fo__NcxJ_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@StephenAtHome"
+        "ricky_martin":{  
+            "userInfo":{  
+                "name":"Ricky Martin",
+                "handle":"@ricky_martin",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/588872134241427457/OUVHF8MR.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ricky_martin"
             },
-            "tweetInfo": {
-                "tweetID": 610519437175697400,
-                "tweetDate": "Mon Jun 15 18:49:11 +0000 2015",
-                "tweetHTML": "<p>Peep <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SlowMotion?src=hash\">#SlowMotion<\/a> featured on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/Spotify\">@Spotify<\/a>’s ‘Today’s Top Hits’ playlist <a class=\"webLink\" target=\"_blank\" href=\"http://spoti.fi/1rhnAlP\">http://t.co/UcOP0foabH<\/a><\/p>",
-                "tweetText": "Peep #SlowMotion featured on @Spotify’s ‘Today’s Top Hits’ playlist http://t.co/UcOP0foabH",
-                "numOfRetweets": 268,
-                "numOfFavorites": 525
+            "tweetInfo":{  
+                "tweetID":583693341096808400,
+                "tweetDate":"Thu Apr 02 18:11:51 +0000 2015",
+                "tweetHTML":"<p>Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/sexysouls?src=hash\">#sexysouls</a> que me inspiran a <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/VivirLaVidaBold?src=hash\">#VivirLaVidaBold</a> <div class=\"imgLink linkOne\">http://t.co/CASVsoCXoG</div><img class=\"tweetImg imgOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CBmyADJW4AAnbeP.png\"></p>",
+                "tweetText":"Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los #sexysouls que me inspiran a #VivirLaVidaBold http://t.co/CASVsoCXoG",
+                "numOfRetweets":203,
+                "numOfFavorites":416
             }
         },
-
-        "Drake": {
-            "userInfo": {
-                "name": "Drizzy",
-                "handle": "@Drake",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_normal.png",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@Drake"
+        "NiallOfficial":{  
+            "userInfo":{  
+                "name":"Niall Horan",
+                "handle":"@NiallOfficial",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/552488743555567619/AhR_vBw9.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@NiallOfficial"
             },
-            "tweetInfo": {
-                "tweetID": 579089744568578000,
-                "tweetDate": "Sat Mar 21 01:18:48 +0000 2015",
-                "tweetHTML": "<p>☁️❄️<a class=\"webLink\" target=\"_blank\" href=\"https://soundcloud.com/kevinogarrett/control\">https://t.co/FUIWZVlJ1V<\/a>❄️☁️ <div class=\"imgLink linkOne\">http://t.co/tDpQBvqit8<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CAlXBbAVAAEPpEX.jpg\"><\/p>",
-                "tweetText": "☁️❄️https://t.co/FUIWZVlJ1V❄️☁️ http://t.co/tDpQBvqit8",
-                "numOfRetweets": 5261,
-                "numOfFavorites": 12325
+            "tweetInfo":{  
+                "tweetID":621749717094019100,
+                "tweetDate":"Thu Jul 16 18:34:18 +0000 2015",
+                "tweetHTML":"<p>Just posted a photo <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/5NQ5ooP9AX/\">https://t.co/e79Pz6ULis</a></p>",
+                "tweetText":"Just posted a photo https://t.co/e79Pz6ULis",
+                "numOfRetweets":21,
+                "numOfFavorites":57
             }
         },
-
-        "katyperry": {
-            "userInfo": {
-                "name": "KATY PERRY",
-                "handle": "@katyperry",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/609748341119844352/7dUd606e_normal.png",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@katyperry"
+        "ericstonestreet":{  
+            "userInfo":{  
+                "name":"Eric Stonestreet",
+                "handle":"@ericstonestreet",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000626926058/aa196b61745a1bd09d5e27c394f608fb.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ericstonestreet"
             },
-            "tweetInfo": {
-                "tweetID": 579089744568578000,
-                "tweetDate": "Sat Mar 21 01:18:48 +0000 2015",
-                "tweetHTML": "<p>☁️❄️<a class=\"webLink\" target=\"_blank\" href=\"https://soundcloud.com/kevinogarrett/control\">https://t.co/FUIWZVlJ1V<\/a>❄️☁️ <div class=\"imgLink linkOne\">http://t.co/tDpQBvqit8<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CAlXBbAVAAEPpEX.jpg\"><\/p>",
-                "tweetText": "☁️❄️https://t.co/FUIWZVlJ1V❄️☁️ http://t.co/tDpQBvqit8",
-                "numOfRetweets": 5261,
-                "numOfFavorites": 12325
+            "tweetInfo":{  
+                "tweetID":375913853541830660,
+                "tweetDate":"Fri Sep 06 09:30:21 +0000 2013",
+                "tweetHTML":"<p>If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.</p>",
+                "tweetText":"If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.",
+                "numOfRetweets":11395,
+                "numOfFavorites":4826
             }
         },
-
-        "TreySongz": {
-            "userInfo": {
-                "name": "Trey Songz",
-                "handle": "@TreySongz",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/562818271687495681/n2FuIK6x_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@TreySongz"
+        "SrBachchan":{  
+            "userInfo":{  
+                "name":"Amitabh Bachchan",
+                "handle":"@SrBachchan",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/622497417863131136/o95FrYtE.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SrBachchan"
             },
-            "tweetInfo": {
-                "tweetID": 416820775098662900,
-                "tweetDate": "Sat Dec 28 06:39:51 +0000 2013",
-                "tweetHTML": "<p>The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers<\/p>",
-                "tweetText": "The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers",
-                "numOfRetweets": 7868,
-                "numOfFavorites": 9129
+            "tweetInfo":{  
+                "tweetID":585131724025294800,
+                "tweetDate":"Mon Apr 06 17:27:28 +0000 2015",
+                "tweetHTML":"<p>Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SoDifferent?src=hash\">#SoDifferent</a></p>",
+                "tweetText":"Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"#SoDifferent",
+                "numOfRetweets":326,
+                "numOfFavorites":1346
             }
         },
-
-        "azizansari": {
-            "userInfo": {
-                "name": "Aziz Ansari",
-                "handle": "@azizansari",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/421377161/azizlittletwitter_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@azizansari"
+        "tyrabanks":{  
+            "userInfo":{  
+                "name":"Tyra Banks",
+                "handle":"@tyrabanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tyrabanks"
             },
-            "tweetInfo": {
-                "tweetID": 610519437175697400,
-                "tweetDate": "Mon Jun 15 18:49:11 +0000 2015",
-                "tweetHTML": "<p>Peep <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SlowMotion?src=hash\">#SlowMotion<\/a> featured on <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/Spotify\">@Spotify<\/a>’s ‘Today’s Top Hits’ playlist <a class=\"webLink\" target=\"_blank\" href=\"http://spoti.fi/1rhnAlP\">http://t.co/UcOP0foabH<\/a><\/p>",
-                "tweetText": "Peep #SlowMotion featured on @Spotify’s ‘Today’s Top Hits’ playlist http://t.co/UcOP0foabH",
-                "numOfRetweets": 268,
-                "numOfFavorites": 525
+            "tweetInfo":{  
+                "tweetID":592361757856763900,
+                "tweetDate":"Sun Apr 26 16:17:03 +0000 2015",
+                "tweetHTML":"<p>Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/DaytimeEmmys?src=hash\">#DaytimeEmmys</a></p>",
+                "tweetText":"Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n#DaytimeEmmys",
+                "numOfRetweets":143,
+                "numOfFavorites":741
             }
         },
-
-        "tyrabanks": {
-            "userInfo": {
-                "name": "Tyra Banks",
-                "handle": "@tyrabanks",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@tyrabanks"
+        "edsheeran":{  
+            "userInfo":{  
+                "name":"Ed Sheeran",
+                "handle":"@edsheeran",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/454206880676851712/jVypIZpS.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@edsheeran"
             },
-            "tweetInfo": {
-                "tweetID": 579089744568578000,
-                "tweetDate": "Sat Mar 21 01:18:48 +0000 2015",
-                "tweetHTML": "<p>☁️❄️<a class=\"webLink\" target=\"_blank\" href=\"https://soundcloud.com/kevinogarrett/control\">https://t.co/FUIWZVlJ1V<\/a>❄️☁️ <div class=\"imgLink linkOne\">http://t.co/tDpQBvqit8<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CAlXBbAVAAEPpEX.jpg\"><\/p>",
-                "tweetText": "☁️❄️https://t.co/FUIWZVlJ1V❄️☁️ http://t.co/tDpQBvqit8",
-                "numOfRetweets": 5261,
-                "numOfFavorites": 12325
+            "tweetInfo":{  
+                "tweetID":605841586841206800,
+                "tweetDate":"Tue Jun 02 21:01:04 +0000 2015",
+                "tweetHTML":"<p>So excited for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/1989TourLouisville?src=hash\">#1989TourLouisville</a> tonight!!!!!</p>",
+                "tweetText":"So excited for #1989TourLouisville tonight!!!!!",
+                "numOfRetweets":12249,
+                "numOfFavorites":31080
             }
         },
-
-        "davidguetta": {
-            "userInfo": {
-                "name": "David Guetta",
-                "handle": "@davidguetta",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/535477460054208513/Vq47wekj_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@davidguetta"
+        "SnoopDogg":{  
+            "userInfo":{  
+                "name":"Snoop Dogg",
+                "handle":"@SnoopDogg",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/595448225982623744/lT2g5UVA.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SnoopDogg"
             },
-            "tweetInfo": {
-                "tweetID": 416820775098662900,
-                "tweetDate": "Sat Dec 28 06:39:51 +0000 2013",
-                "tweetHTML": "<p>The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers<\/p>",
-                "tweetText": "The only thing I'm seeing I'd like to put an amend on...perhaps a little more room here for the fixinsssss - Kenny Powers",
-                "numOfRetweets": 7868,
-                "numOfFavorites": 9129
+            "tweetInfo":{  
+                "tweetID":622146080034168800,
+                "tweetDate":"Fri Jul 17 20:49:19 +0000 2015",
+                "tweetHTML":"<p>iArena, 11pm - latitude</p>",
+                "tweetText":"iArena, 11pm - latitude",
+                "numOfRetweets":4718,
+                "numOfFavorites":12082
             }
         },
-
-        "KevinHart4real": {
-            "userInfo": {
-                "name": "Kevin Hart",
-                "handle": "@KevinHart4real",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/568041122765606912/APfVoUzX_normal.jpeg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@KevinHart4real"
+        "taylorswift13":{  
+            "userInfo":{  
+                "name":"Taylor Swift",
+                "handle":"@taylorswift13",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/505200807503867904/osJXmYRl.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@taylorswift13"
             },
-            "tweetInfo": {
-                "tweetID": 608555658510782500,
-                "tweetDate": "Wed Jun 10 08:45:50 +0000 2015",
-                "tweetHTML": "<p>White hair <div class=\"imgLink linkOne\">http://t.co/77q89RfxhS<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CHIGI-DW4AANQwu.jpg\"><\/p>",
-                "tweetText": "White hair http://t.co/77q89RfxhS",
-                "numOfRetweets": 162239,
-                "numOfFavorites": 242932
+            "tweetInfo":{  
+                "tweetID":608331138420080600,
+                "tweetDate":"Tue Jun 09 17:53:40 +0000 2015",
+                "tweetHTML":"<p>I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  <a class=\"webLink\" target=\"_blank\" href=\"https://twitter.com/fifawwc/status/608323259998838786\">https://t.co/cUOIohVl1I</a></p>",
+                "tweetText":"I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  https://t.co/cUOIohVl1I",
+                "numOfRetweets":73299,
+                "numOfFavorites":117881
             }
         },
-
-        "rihanna": {
-            "userInfo": {
-                "name": "Rihanna",
-                "handle": "@rihanna",
-                "profilePicURL": "http://pbs.twimg.com/profile_images/582747937958076418/ZrNhtrD2_normal.jpg",
-                "followURL": "https://twitter.com/intent/follow?screen_name=@rihanna"
+        "DalaiLama":{  
+            "userInfo":{  
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
             },
-            "tweetInfo": {
-                "tweetID": 608555658510782500,
-                "tweetDate": "Wed Jun 10 08:45:50 +0000 2015",
-                "tweetHTML": "<p>White hair <div class=\"imgLink linkOne\">http://t.co/77q89RfxhS<\/div><img class=\"tweetImg linkOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CHIGI-DW4AANQwu.jpg\"><\/p>",
-                "tweetText": "White hair http://t.co/77q89RfxhS",
-                "numOfRetweets": 162239,
-                "numOfFavorites": 242932
+            "tweetInfo":{  
+                "tweetID":622324101227515900,
+                "tweetDate":"Sat Jul 18 08:36:42 +0000 2015",
+                "tweetHTML":"<p>T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!</p>",
+                "tweetText":"T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!",
+                "numOfRetweets":242,
+                "numOfFavorites":686
             }
         }
     }
