@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
-    var people = $.getJSON('people.json',function(){
-    });
-
+    var people;
+    $.getJSON('http://tweety.midnightjabber.com/people.json', function(data) {people = data; });
 
     /**
     * This method provides a JSON object containing the information about a tweet given a 

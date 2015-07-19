@@ -4,7 +4,6 @@
 
 $(document).ready(function() {
 
-
     /**
      * Function generates a table containing Twitter Users and their randomized tweets.
      * Function also appends this table to the <body> on the front-end
@@ -405,6 +404,14 @@ $(document).ready(function() {
 
     console.log(peopleJSON);
     createTable(peopleJSON);
+    
+    var correctOrder = peopleJSON['correct'];
+    var incorrectOrder = peopleJSON['incorrect'];
+    var hasSelectedUser = false;
+    var hasSelectedTweet = false;
+
+    var selectedUser;
+    var selectedTweet;
 
     $('.linkOne').on('click', function(data) {
         console.log("link: ");
@@ -434,6 +441,7 @@ $(document).ready(function() {
         }
     });
 
+    //Highlighting the selected card (userCard)
     $('.userCard').on('click', function(event) {
         console.log('click on userCard');
         var block = $(this);
@@ -441,8 +449,17 @@ $(document).ready(function() {
             $(this).css('box-shadow', 'none');
         });
         block.css('box-shadow', '0px 0px 5px #66CCFF');
+
+        selectedUser = block.find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
+        console.log(selectedUser);
+        hasSelectedUser = true;
+
+        if(hasSelectedTweet) {
+
+        }
     });
 
+    //Highlighting the selected card (tweetCard)
     $('.tweetCard').on('click', function(event) {
         console.log('click on tweetCard');
         var block = $(this);
@@ -450,6 +467,16 @@ $(document).ready(function() {
             $(this).css('box-shadow', 'none');
         });
         block.css('box-shadow', '0px 0px 5px #66CCFF');
+
+        selectedTweet = block.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
+        console.log(selectedTweet);
+        hasSelectedTweet = true;
+
+        if(hasSelectedUser) {
+            if()
+        }
     });
+
+
 
 });
