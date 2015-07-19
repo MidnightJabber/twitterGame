@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-	var people = $.getJSON('people.json',function(){
+	var people = $.getJSON('../people.json',function(){
 	});
 
 
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 		// AJAX request 20 get 200 tweet data
 		var tweetData = $.ajax({
-			url: "http://midnightjabber.com/tweets_json.php?screen_name=" + screenName + "&count=" + String(count),
+			url: "http://tweety.midnightjabber.com/php/tweets_json.php?screen_name=" + screenName + "&count=" + String(count),
 			async: false
 		});
 
@@ -105,7 +105,7 @@ $(document).ready(function(){
 			// Fill in User Object Details
 			userObj['name'] = tweet['user']['name'];
 			userObj['handle'] = '@' + tweet['user']['screen_name'];
-			userObj['profilePicURL'] = tweet['user']['profile_image_url'];
+			userObj['profilePicURL'] = tweet['user']['profile_image_url'].replace("_normal", "");
 			userObj['followURL'] = "https://twitter.com/intent/follow?screen_name=" + userObj['handle'];
 
 			// Correct Person User Info
