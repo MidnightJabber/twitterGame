@@ -122,7 +122,34 @@ td:nth-child(2) {
     width: 100%;
 }
 
+.selectedCard {
+    box-shadow: 0px 0px 10px #66CCFF;
+}
 
+ .correctSelection {
+    box-shadow: 0px 0px 4px #2EB82E;
+}
+
+/* 
+@keyframes input-shadow {
+    0% {
+        box-shadow: 0px 0px 4px #2EB82E;
+    }
+    50% {
+        box-shadow: 0px 0px 12px #2EB82E;
+    }
+    100% {
+        box-shadow: 0px 0px 4px #2EB82E;
+    }
+ }
+
+.correctSelection {
+    animation: input-shadow linear 1s;
+} */
+
+.incorrectSelection {
+    box-shadow: 0px 0px 10px #CC0000;
+}
 
 
 

@@ -1,4 +1,3 @@
-
 var people = $.ajax({
         url: "http://tweety.midnightjabber.com/people.json",
         async: false
@@ -6,7 +5,7 @@ var people = $.ajax({
 
 
 /**
-* This method provides a JSON object containing the information about a tweet given a 
+* This method provides a JSON object containing the information about a tweet given a
 * Twitter handle.
 *
 * @param twitterHandle: The Twitter Handle (@xyz) of the User whose Tweet is being collected
@@ -17,7 +16,7 @@ function GetTweet(twitterHandle){
 
 	// Twitter handle is considered as the Screen-Name
 	var screenName = twitterHandle;
-	
+
 	// Out of 200 tweets lets select a random tweet
 	// Math.random() never equals 1 but it can be 0 or some value between 0 and 1
 	var randomIndex = Math.floor((Math.random() * 200) + 1);
@@ -27,25 +26,25 @@ function GetTweet(twitterHandle){
 		url: "http://tweety.midnightjabber.com/php/tweets_json.php?screen_name=" + screenName + "&count=" + String(randomIndex),
 		async: false
 	});
-	
+
 
 	// console.log(randomIndex);
 
 	var tweetArr = JSON.parse(tweetData['responseText']);
-	
-	
-	
+
+
+
 	// // console.log('\n');
 	// Tweet that got selected
 	// // console.log('randomIndex - 1 : ' + (randomIndex - 1));
 
 	var gameTweet = tweetArr[randomIndex - 1];
-	
+
 	while(gameTweet == undefined){
 		randomIndex = randomIndex - 1;
 		gameTweet = tweetArr[randomIndex - 1];
 	}
-	
+
 	return gameTweet;
 }
 
@@ -65,11 +64,11 @@ function GetRandomGamePeople(allPeople, numPeople){
 	// console.log('allPeople');
 	// console.log(allPeople);
 	var peopleObj = allPeople['responseJSON'];
-	
+
 	// console.log('peopleObj');
 	// console.log(peopleObj);
 	// console.log('length: (PeopleObj)' + peopleObj['users'].length);
-	
+
 	twitterUsersArr = peopleObj['users'];
 
 	// Now we select 10 random users
@@ -87,20 +86,20 @@ function GetRandomGamePeople(allPeople, numPeople){
 		// console.log('Length after Splice (twitterUserArr): ' + twitterUsersArr.length);
 	}
 
-	
+
 	return gamePeople;
 }
 
 
 /**
-* This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game. 
+* This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game.
 * This method creates an object of a particular JSON structure (see ExampleData.json for structure).
-* 
+*
 * @returns gameObj : Object containing the 'correct' and the 'incorrect'
 */
 function CreateUserTweetGameObject(){
 
-	// Get List of People(handle, screenname) Objects 
+	// Get List of People(handle, screenname) Objects
 	var gamePeople = GetRandomGamePeople(people, 10);
 
 	// Declare main Game Object
@@ -117,9 +116,9 @@ function CreateUserTweetGameObject(){
 		// Get a random tweet for the person
 		// Substring Method is used to remove the '@' before the handle
 		var tweet = GetTweet(person['handle'].substring(1));
-		
+
 		// console.log(tweet);
-		
+
 		userObj = {};
 		tweetObj = {};
 
@@ -173,7 +172,7 @@ function CreateUserTweetGameObject(){
 *
 * @param tweet : Tweet Object provided by the Twitter API
 *
-* @returns : HTML text of the Tweet that can directly be used for the App 
+* @returns : HTML text of the Tweet that can directly be used for the App
 */
 function GetTweetHTML(tweet){
 
@@ -229,7 +228,7 @@ function GetTweetHTML(tweet){
 			mediaString += '<img class="tweetImg img' + intToString[index] + '" width="450px" style="display: none;" height="auto" src="' + mediaEle['media_url'] + '">';
 			index += 1;
 		});
-	}	
+	}
 
 	// Replace all the Url(s) with the HTML links for the Url(s)
 	if(urls != undefined && urls['length'] > 0){
@@ -249,8 +248,7 @@ function GetTweetHTML(tweet){
 			tweetText = tweetText.replace('$' + symbol['text'], '<a class="symbolLink" target="_blank" href="https://twitter.com/search?q=$' + symbol['text'] + '&src=tyah">$' + symbol['text'] + '</a>');
 		});
 	}
-	
+
 	tweetHTML = '<p>' + tweetText + mediaString + '</p>';
 	return tweetHTML;
-
 }
