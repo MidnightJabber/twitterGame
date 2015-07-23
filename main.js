@@ -32,7 +32,7 @@ $(document).ready(function() {
             html = html + '                        <div class="userHandle">' + element['userInfo']['handle'] + '</div>\n';
             html = html + '                    </div>\n';
 
-            html = html + '                    <a class="followButton" href="' + element['userInfo']['followURL'] + '">\n';
+            html = html + '                    <a class="followButton" href="' + element['userInfo']['followURL'] + '" target="_blank">\n';
             html = html + '                        <span class="fa fa-twitter"></span>\n';
             html = html + '                        <p class="text">Follow</p>\n';
             html = html + '                    </a>\n';
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
             html = html + '            <td>\n';
             html = html + '                <div class="tweetCard">\n';
-            html = html + element['tweetInfo']['tweetHTML'];
+            html = html +                       element['tweetInfo']['tweetHTML'];
             html = html + '                </div>\n';
             html = html + '            </td>\n';
             html = html + '        </tr>\n';
