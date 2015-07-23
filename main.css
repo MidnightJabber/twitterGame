@@ -86,8 +86,8 @@ td:nth-child(2) {
 }
 
 .userImg img {
-    width: inherit;
-    height: inherit;
+    width: 4vw;
+    height: 4vw;
 }
 
 .userInfo {

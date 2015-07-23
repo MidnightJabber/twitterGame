@@ -24,7 +24,7 @@ $(document).ready(function() {
             html = html + '            <td>\n';
             html = html + '                <div class="userCard">\n';
             html = html + '                    <div class="userImg">\n';
-            html = html + '                        <img src="' + element['userInfo']['profilePicURL'] + '">\n';
+            html = html + '                        <a href="https://twitter.com/' + element['userInfo']['handle'].substring(1) + '" target="_blank"><img src="' + element['userInfo']['profilePicURL'] + '"></a>\n';
             html = html + '                    </div>\n';
 
             html = html + '                    <div class="userInfo">\n';
@@ -110,23 +110,28 @@ $(document).ready(function() {
     //Highlighting the selected card (userCard)
     $('.userCard').on('click', function(event) {
         console.log('\n\nclick on userCard');
+        var clickedClassName = event.toElement.className;
+        var clickedTagLocalName = event.toElement.localName;
+
         var block = $(this);
         var localSelectedUser = block.find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
 
         if(!(selectedCorrectUser.indexOf(localSelectedUser) >= 0)) {
-            if(selectedUserCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
-                selectedUserCard = $(this);                     // This is now the selectedUserCard
-                selectedUserCard.toggleClass('selectedCard');   // because this was selected, highlight it
-            } else {                                            // If something was selected, before this
-                selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
-                selectedUserCard = $(this);                     // Change selection to block that was clicked right now
-                selectedUserCard.toggleClass('selectedCard');   // Highlight this new block
-            }
+            if(!((clickedTagLocalName.indexOf('img') >= 0) || (clickedClassName.indexOf('followButton') >= 0))) {
+                if(selectedUserCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
+                    selectedUserCard = $(this);                     // This is now the selectedUserCard
+                    selectedUserCard.toggleClass('selectedCard');   // because this was selected, highlight it
+                } else {                                            // If something was selected, before this
+                    selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
+                    selectedUserCard = $(this);                     // Change selection to block that was clicked right now
+                    selectedUserCard.toggleClass('selectedCard');   // Highlight this new block
+                }
 
-            hasSelectedUser = true;
+                hasSelectedUser = true;
 
-            if(hasSelectedTweet) {
-                parseSelectedPair(selectedUserCard, selectedTweetCard);
+                if(hasSelectedTweet) {
+                    parseSelectedPair(selectedUserCard, selectedTweetCard);
+                }
             }
         }
     });
