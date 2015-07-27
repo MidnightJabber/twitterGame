@@ -206,6 +206,8 @@ $(document).ready(function() {
         //Selected Correct
         if(correctOrder[selectedUser]['tweetInfo']['tweetID'] == incorrectOrder[selectedTweet]['tweetInfo']['tweetID']) {
             console.log('selected correct');
+            $('table').trigger('correct-selection');        //Triggering correct selection event
+
             selectedUserCard.toggleClass('correctSelection');
             selectedTweetCard.toggleClass('correctSelection');
 
@@ -213,12 +215,10 @@ $(document).ready(function() {
             selectedCorrectTweet = selectedCorrectTweet + selectedTweet;    //Adding tweet to list of correctly selected tweets
         } else {    //Selected Incorrect
             console.log('selected incorrect');
-            deductTime(10);     //Deducting 10 seconds for incorrect selection
+            $('table').trigger('incorrect-selection');      //Triggering incorrect selection event
 
             selectedUserCard.toggleClass('incorrectSelection');
             selectedTweetCard.toggleClass('incorrectSelection');
-
-            removeIncorrectSelectionShadow(500, selectedUserCard, selectedTweetCard);
 
         }
 
@@ -231,6 +231,20 @@ $(document).ready(function() {
     }
 
     /**
+     * This function is listening for an event which is fired when an INCORRECT selection is made in the table
+     */
+    $('table').on('incorrect-selection', function(event) {
+        deductTime(10);     //Deducting 10 seconds for incorrect selection
+        removeIncorrectSelectionShadow(500, selectedUserCard, selectedTweetCard);
+    });
+
+    /**
+     * This function is listening for an event which is fired when a CORRECT selection is made in the table
+     */
+    $('table').on('correct-selection', function(event) {
+    });
+
+    /**
      * Function is called when time needs to be duducted from the running timer.
      * @param  {[Integer]} deduction [Amout of time in SECONDS to be deducted]
      */
@@ -240,7 +254,7 @@ $(document).ready(function() {
         tmp = Math.floor((tmp-deduction));
 
         /**
-         * At this point tmp hold the new time after deduction. 
+         * At this point tmp hold the new time after deduction.
          * eg: Incorrect selection occured at 115s
          *     tmp now holds 105
          */
@@ -249,7 +263,7 @@ $(document).ready(function() {
 
     /**
      * Initializes the countdown clock
-     * @param  {[Integer]} newTime [Time in SECONDS the countdown needs to be set to]
+     * @param  {[Integer]} newTime [Time in SECONDS which the countdown needs to be set to]
      */
     function initializeTimer(newTime) {
         $('.timer').data('timer', newTime).TimeCircles({
