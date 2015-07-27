@@ -245,6 +245,12 @@ $(document).ready(function() {
     });
 
     /**
+     * This function is listening for an event which is fired when the time has run out which implies that the game has ended
+     */
+    $('table').on('end-game', function(event) {
+    });
+
+    /**
      * Function is called when time needs to be duducted from the running timer.
      * @param  {[Integer]} deduction [Amout of time in SECONDS to be deducted]
      */
@@ -270,6 +276,7 @@ $(document).ready(function() {
             "total_duration": newTime,
             "count_past_zero": false,
             "use_background": false,
+            "animation": "ticks",
             "time": {
                 "Days": {
                     "show": false
@@ -282,10 +289,32 @@ $(document).ready(function() {
                 },
                 "Seconds": {
                     "text": "Seconds",
-                    "color": "#FF9999",
+                    "color": "#00B200",
                     "show": true
                 }
             }
-        }).start();
+        }).start().addListener(function(unit, amount, total) {
+            console.log('\n\n');
+            console.log('unit: ' + unit);
+            console.log('amount: ' + amount);
+            console.log('total: ' + total);
+            var newColor;
+
+            if(total == 0) {
+                $('table').trigger('end-game');
+            } else if(total <= 30) {
+                newColor = "#E60000";
+            } else if(total <= 75) {
+                newColor = "#FFFF5C";
+            }
+
+            $('.timer').TimeCircles({
+                "time": {
+                    "Seconds": {
+                    "color": newColor
+                    }
+                }
+            });
+        });
     }
 });
