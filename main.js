@@ -74,7 +74,8 @@ $(document).ready(function() {
     var selectedCorrectUser = '';           /** @type {String} [Set of correctly selected users] */
     var selectedCorrectTweet = '';          /** @type {String} [Set of users corresponding correctly selected tweets] */
 
-
+    var correctMatches = 0;
+    var score = 0;
 
     $('.linkOne').on('click', function(data) {
         console.log("link: ");
@@ -93,7 +94,7 @@ $(document).ready(function() {
      */
     $('body').on('click', function(event) {
         var clickedTagLocalName = event.toElement.localName;
-        console.log(event);
+        //console.log(event);
 
         if(clickedTagLocalName == 'body' || clickedTagLocalName == 'td') {
             if(selectedUserCard != undefined) {
@@ -179,13 +180,16 @@ $(document).ready(function() {
      * @param  {[Object]} userCardSelected  [User card that was selected]
      * @param  {[Object]} tweetCardSelected [Tweet Card that was selected]
      */
-    function removeIncorrectSelectionShadow(time, userCardSelected, tweetCardSelected) {
+    function removeIncorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
         var localUserCardSelected = $.extend(true, {}, userCardSelected)
         var localTweetCardSelected = $.extend(true, {}, tweetCardSelected)
 
         setTimeout(function() {
             localUserCardSelected.toggleClass('incorrectSelection');
             localTweetCardSelected.toggleClass('incorrectSelection');
+
+            localUserCardSelected.toggleClass('shake shake-horzontal');
+            localTweetCardSelected.toggleClass('shake shake-horzontal');
         }, time);
     }
 
@@ -220,6 +224,9 @@ $(document).ready(function() {
             selectedUserCard.toggleClass('incorrectSelection');
             selectedTweetCard.toggleClass('incorrectSelection');
 
+            selectedUserCard.toggleClass('shake shake-horzontal');
+            selectedTweetCard.toggleClass('shake shake-horzontal');
+
         }
 
         selectedUserCard.toggleClass('selectedCard');
@@ -235,14 +242,28 @@ $(document).ready(function() {
      */
     $('table').on('incorrect-selection', function(event) {
         deductTime(10);     //Deducting 10 seconds for incorrect selection
-        removeIncorrectSelectionShadow(500, selectedUserCard, selectedTweetCard);
+        removeIncorrectSelectionProperties(500, selectedUserCard, selectedTweetCard);
     });
 
     /**
      * This function is listening for an event which is fired when a CORRECT selection is made in the table
      */
     $('table').on('correct-selection', function(event) {
+        correctMatches = correctMatches + 1;
+        var remainingTime = $('.timer').TimeCircles().getTime();
+        console.log('Got time: ' + remainingTime);
+
+        $('.score').text(calculateScore(remainingTime));
     });
+
+    function calculateScore(time) {
+        var tempScore = Math.floor((Math.pow(1.05, time) * (correctMatches/2)));
+        var temp = score;
+        score = score + tempScore;
+        temp = score - temp;
+        console.log('***************Step for ' + correctMatches + ' : ' + temp + '   **************');
+        return score;
+    }
 
     /**
      * This function is listening for an event which is fired when the time has run out which implies that the game has ended
