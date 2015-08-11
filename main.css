@@ -140,6 +140,10 @@ td:nth-child(2) {
     display: inline;
 }
 
+.imgLink:hover {
+    color: #337AB9;
+}
+
 .tweetImg {
     width: 100%;
 }
@@ -171,4 +175,40 @@ td:nth-child(2) {
 
 .incorrectSelection {
     box-shadow: 0px 0px 10px #CC0000;
+}
+
+.row {
+    box-sizing: border-box;
+    padding: 2.55em;
+}
+
+.column-bg {
+    width: 60%;
+    padding: 3em;
+    vertical-align: middle;
+}
+
+.column-sml {
+    width: 40%;
+    vertical-align: middle;
+}
+
+.column {
+    display: table-cell;
+}
+
+.column img {
+    width: 100%;
+}
+
+.column ul {
+    display: inline-block;
+}
+
+.column h2 {
+    text-align: center;
+}
+
+.wrapper {
+    box-shadow: 1px 1px 30px -7px rgba(0,0,0,0.7);
 }

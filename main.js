@@ -12,8 +12,8 @@ $(document).ready(function() {
         html = '<table class="table">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
-        html = html + '            <th>\n' + 'Userhtml' + '</th>\n';
-        html = html + '            <th>\n' + 'tweethtml' + '</th>\n';
+        html = html + '            <th>\n' + 'User' + '</th>\n';
+        html = html + '            <th>\n' + 'Tweet' + '</th>\n';
         html = html + '        </tr>\n';
         html = html + '    </thead>\n';
 
@@ -58,7 +58,7 @@ $(document).ready(function() {
     console.log(peopleJSON);
 
     /* Creating table */
-    createTable(peopleJSON);
+    //createTable(peopleJSON);
 
 
     var correctOrder = peopleJSON['correct'];       /** @type {Object} [Holds correct JSON from complete gameObject] */
