@@ -9,7 +9,7 @@ $(document).ready(function() {
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
     function createTable(tableContentJSON) {
-        html = '<table class="table" >\n';
+        html = '<table class="table" style="display: none;">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -50,8 +50,6 @@ $(document).ready(function() {
         html = html + '</table>\n';
 
         $('body').append(html);
-        initializeTimer(120);       //Initializing timer when <table> is created
-
     }
 
     var peopleJSON = CreateUserTweetGameObject();
@@ -68,6 +66,7 @@ $(document).ready(function() {
         $('.startButton').remove();
         $('.guide').remove();
         $('table').fadeIn('slow');
+        initializeTimer(121);       //Initializing timer when <table> is created
     });
 
 

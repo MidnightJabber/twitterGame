@@ -184,6 +184,7 @@ td:nth-child(2) {
 .row {
     box-sizing: border-box;
     padding: 2.55em;
+    width: 100%;
 }
 
 .column-bg {
