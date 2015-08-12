@@ -9,7 +9,7 @@ $(document).ready(function() {
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
     function createTable(tableContentJSON) {
-        html = '<table class="table">\n';
+        html = '<table class="table" >\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -58,7 +58,18 @@ $(document).ready(function() {
     console.log(peopleJSON);
 
     /* Creating table */
-    //createTable(peopleJSON);
+    createTable(peopleJSON);
+
+    $('.startButton').on('click', function(event) {
+        $(document).trigger('startGame');
+    });
+
+    $(document).on('startGame', function(event) {
+        $('.startButton').remove();
+        $('.guide').remove();
+        $('table').fadeIn('slow');
+    });
+
 
 
     var correctOrder = peopleJSON['correct'];       /** @type {Object} [Holds correct JSON from complete gameObject] */
@@ -315,10 +326,10 @@ $(document).ready(function() {
                 }
             }
         }).start().addListener(function(unit, amount, total) {
-            console.log('\n\n');
-            console.log('unit: ' + unit);
-            console.log('amount: ' + amount);
-            console.log('total: ' + total);
+            //console.log('\n\n');
+            //console.log('unit: ' + unit);
+            //console.log('amount: ' + amount);
+            //console.log('total: ' + total);
             var newColor;
 
             if(total == 0) {

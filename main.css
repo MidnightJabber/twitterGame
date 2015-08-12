@@ -10,6 +10,10 @@ body{
     border-radius: 0px;
 }
 
+.navbar-brand img {
+    margin: auto;
+}
+
 /* Header Navbar */
 @media screen and (min-width:768px) {
     .navbar-brand-centered {
@@ -195,6 +199,7 @@ td:nth-child(2) {
 
 .column {
     display: table-cell;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .column img {
@@ -211,4 +216,22 @@ td:nth-child(2) {
 
 .wrapper {
     box-shadow: 1px 1px 30px -7px rgba(0,0,0,0.7);
+}
+
+.startButton {
+    display: table;
+    background-color: #0084B4;
+    padding: 0.5em;
+    margin: 0 auto;
+    box-sizing: content-box;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5vw;
+    vertical-align: middle;
+    opacity: 0.9;
+}
+
+.startButton:hover {
+    opacity: 1;
+    cursor: pointer;
 }
