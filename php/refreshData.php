@@ -1,9 +1,13 @@
 <?php
+/// This PHP script would run as a CRON JOB. This script would be executing every
+/// 24 hours updating the Database with recent 200 tweets for every participating 
+/// Twitter User in the game. 
+/// The CRON JOB would be logging the updating data every 24 hours.
 /// 
+/// NOTE: This is the only script that will interact with the Twitter Data (throguh API) 
+///       directy. All the players of the Tweety Twitter Game would be interacting with the 
+///       local DB for the Game Object.
 ///
-///
-///
-/// 
 /// Author: Vishrut Reddi
 /// MidnightJabber (c) 2015 - 2016 
 
@@ -14,14 +18,20 @@ require 'tmhOAuth.php';
 //Connect Connection Script
 include("connection.php");
 
+// To log data
+include("logger.php");
+
 // Use the data from http://dev.twitter.com/apps to fill out this info
 // notice the slight name difference in the last two items)
 
-// We need new recent 200 tweets for each user
-$count = 200;
 
+// Log a new session start
+logInfo('tweetylogs.txt', 'New Session Starting.');
+logInfo('info.txt', 'New Session Starting.');
+logInfo('tweetylogs.html', '<b>New Session Starting</b>');
 
 insertTweetInDB();
+//getTweet('@katyperry', 200);
 
 
 /**
@@ -37,8 +47,8 @@ function getAllTwitterUsers(){
 
   	$query = "SELECT TwitterHandle FROM TwitterUsers ORDER BY UserID;";
 
+  	// Execute the query
 	$res = mysqli_query(getConnection(),$query);
-	$return_trip = "";
 	$result = array();
 
 	if(mysqli_num_rows($res) >=1) {
@@ -50,12 +60,40 @@ function getAllTwitterUsers(){
 	}
 	else {}
 
+	// Get Info about logging data
+	$rowsFromDB = mysqli_num_rows($res);
+	
+	$usersGrabbed = "";
+
+	foreach($result as $user){
+		$usersGrabbed = $user . " | ";
+	}
+
+	// Logging Data
+	if($rowsFromDB == count($result)){
+
+		logSuccess('tweetylogs.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logSuccess('success.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logSuccess('tweetylogs.html', 'Grabbed <b>' . $rowsFromDB . '</b> Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: <br>' . $usersGrabbed);
+
+	}
+	else{
+
+		logWarning('tweetylogs.txt', 'Grabbed ' . count($result) . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logWarning('warning.txt', 'Grabbed ' . count($result) . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logWarning('tweetylogs.html', 'Grabbed <b>' . count($result) . '</b> Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: <br>' . $usersGrabbed);
+	}
+
 	return array("result" => $result);
 } 
 
 
 /**
+* This method uses the Twitter API to get specified amount of Tweet Responses
+* from Twitter for a specified Twitter User.
 *
+* @param screenName :: The Twitter Handle for which we require the tweets
+* @param count :: The number of recent tweets needed for the Twitter User
 *
 * @return response :: Array of Twitter Response Objects
 */
@@ -67,10 +105,10 @@ function getTweet($screenName, $count){
 	$parameters['count'] = $count;
 
 	$connection = new tmhOAuth(array(	
-  	'consumer_key' => 'WyntYi4cWQiqX2I8QPQUGogsE',
-	'consumer_secret' => 'lTohGkEnm2ETyaKjuEY149evHvudDNgjTDDHKZVSnYkmBHqX5X',
-	'user_token' => '64123852-0SjQ1rn5SKJWguZxuvQPm7eTafcV4KP9QdQXnt378', //access token
-	'user_secret' => 'iU2Dt3Gw8QBfQ6jMS7T11m7EUlzhDEuVaZSYQIFZ7OudI' //access token secret
+  	'consumer_key' => 'consumer_key_goes_here',
+	'consumer_secret' => 'consumer_secret_goes_here',
+	'user_token' => 'access_token_goes_here', //access token
+	'user_secret' => 'access_token_secret_goes_here' //access token secret
 	));
 
 	$twitterPath = '1.1/statuses/user_timeline.json';
@@ -82,177 +120,110 @@ function getTweet($screenName, $count){
 		
 		$response = strip_tags($connection->response['response']);
 
-		// echo $response;
+		$twitterResp = json_decode($response, true);
 
-		return json_decode($response, true);
+		// Log Success
+		if(count($twitterResp) == 200){
+
+			logSuccess('tweetylogs.txt', 'Grabbed 200 Tweets for ' . $screenName . ' from the Twitter API.');
+			logSuccess('success.txt', 'Grabbed 200 Tweets for ' . $screenName . ' from the Twitter API.');
+			logSuccess('tweetylogs.html', 'Grabbed <b>200</b> Tweets for <b>' . $screenName . '</b> from the Twitter API.');
+		}
+		// Log Warning
+		else{
+
+			logWarning('tweetylogs.txt', 'Grabbed ' . (string)count($twitterResp) . ' Tweets for' . $screenName . ' from the Twitter API.');
+			logWarning('warning.txt', 'Grabbed ' . (string)count($twitterResp) . ' Tweets for' . $screenName . ' from the Twitter API.');
+			logWarning('tweetylogs.html', 'Grabbed <b>' . (string)count($twitterResp) .'</b> Tweets for <b>' . $screenName . '</b> from the Twitter API.');
+		}
+
+		return $twitterResp;
 	} 	
 
-	// If somthing messed up
+	// If somthing messed up, Log Error
 	else {
-		echo "Error ID: ",$http_code, "<br>\n";
-		echo "Error: ",$connection->response['error'], "<br>\n";
+
+		logError('tweetylogs.txt', 'Error in the function refreshData.php/getTweet() for Twitter User: ' . $screenName . '. HTTP Code not 200. HTTP Code/Error ID: ' . $http_code . '. Error: ' . $connection->response['error']);
+		logError('error.txt', 'Error in the function refreshData.php/getTweet() for Twitter User: ' . $screenName . '. HTTP Code not 200. HTTP Code/Error ID: ' . $http_code . '. Error: ' . $connection->response['error']);
+		logError('tweetylogs.html', 'Error in the function refreshData.php/getTweet() for Twitter User: <b>' . $screenName . '</b>. HTTP Code not 200. <b>HTTP Code/Error ID:</b> ' . $http_code . '. <b>Error:</b> ' . $connection->response['error']);
 	}
 }
 
 
+/**
+* This method deletes all the tuples from the Tweets Table. This should/can be done when refreshing/updating
+* the data in the table. Old tuples will be deleted and new will be added.
+*
+* TODO --> Could be made better by just inserting the newTwitter Responses in the table and not removing all and re-inserting all. [DONE]
+* [This function is no longer needed.]
+*/
+function clearTweetsTable(){
+
+
+  	$query = "DELETE FROM Tweets;";
+
+  	// Execute the Query
+	$res = mysqli_query(getConnection(),$query);
+}
+
 
 /**
-*
-*
-*
+* This is the method that inserts 200 recent Twitter response objects with their Twitter handles in 
+* the DB (Table: Tweets). 
 */
 function insertTweetInDB(){
 
 	$users = array("result" => ["@katyperry"]);
+	//$users = getAllTwitterUsers();
 
+	$twitterApiCallCount = 0;
 	foreach ($users['result'] as $user) {
 		
-		// strip the initial character '@' and get 200 Twitter Responses for that screen-name.
-		$twitterResp = getTweet(substr($user, 1), 10);
+		if($twitterApiCallCount % 180 == 0 && $twitterApiCallCount != 0){
 
+			// Sleep for 15mins and 30 seconds
+			break;
+		}
+		
+		// strip the initial character '@' and get 200 Twitter Responses for that screen-name.
+		$twitterResp = getTweet(substr($user, 1), 200);
+
+		$twitterApiCallCount += 1;
 		$count = 1;
 
 		mysqli_query(getConnection(), "START TRANSACTION;");
 
 		foreach($twitterResp as $response){
 
-			$userObj = array(
-				'name' => $response['user']['name'],
-				'handle' => '@' . $response['user']['screen_name'],
-				'profilePicURL' => str_replace("_normal", "", $response['user']['profile_image_url']),
-				'followURL' => "https://twitter.com/intent/follow?screen_name=" . '@' . $response['user']['screen_name']
-			);
-			
-			$tweetObj = array(
-				'tweetID' => $response['id'],
-				'tweetDate' => $response['created_at'],
-				'tweetHTML' => getTweetHTML($response),
-				'tweetText' => $response['text'],
-				'numOfRetweets' => $response['retweet_count'],
-				'numOfFavorites' => $response['favorite_count']
-			);
 
-			$object = array("userObj" => $userObj, "tweetObj" => $tweetObj);
+			$object = json_encode($response);
+			// Escaping all the ' character from the Tweet Data
+			$object = str_replace("'","\'", $object);
 
-			$query = "INSERT INTO Tweets(Number, TwitterHandle, TwitterResp) VALUES('".(string)$count."', '".$user."', '".json_encode($object)."');";
+			$query = "REPLACE INTO Tweets(Number, TwitterHandle, TwitterResp) VALUES('".(string)$count."', '".$user."', '".$object."');";
 
-			// $content = json_encode($response);
-			// $fp = fopen($_SERVER['DOCUMENT_ROOT']."/TweetObjects/".substr($user,1).(string)$count.".json","w");
-			// fwrite($fp,$content);
-			// fclose($fp);
-
-			//sleep(1);
 			$count += 1;
 
 			$res = mysqli_query(getConnection(),$query);
-			echo((string)$res);
+			
+			if(false === $res) {
+
+				logWarning('tweetylogs.txt', "Insertion for Tweet #" . $count . " for Twitter User " . $user . " failed. Insertion error: " . mysqli_error($link));
+				logWarning('warning.txt', "Insertion for Tweet #" . $count . " for Twitter User " . $user . " failed. Insertion error: " . mysqli_error($link));
+				logWarning('tweetylogs.html', "Insertion for <b>Tweet #" . $count . "</b> for <b>Twitter User " . $user . "</b> failed. Insertion error: " . mysqli_error($link));
+			}
 
 		}
+
+		if($count >= 200){
+			logSuccess('tweetylogs.txt', "Insertion for 200 Tweets for Twitter User " . $user . " succeded.");
+			logSuccess('warning.txt', "Insertion for 200 Tweets for Twitter User " . $user . " succeded.");
+			logSuccess('tweetylogs.html', "Insertion for 200 Tweets for <b>Twitter User " . $user . "</b> succeded.");
+		}
+
 		mysqli_query(getConnection(), "COMMIT;");
 	}
 
 }
 
-
-/**
-*
-*
-*
-*/
-function getTweetHTML($tweet){
-
-	$intToString = array("Zero", "One", "Two", "Three", "Four", "Five");
-
-	$mediaString = "";
-
-	// HTML Tweet Text that needs to be returned
-	$tweetHTML = "";
-
-	// Text of the Tweet
-	$tweetText = $tweet['text'];
-
-	// Array of words in the Tweet
-	$tweetWords = explode(" ", $tweet['text']);
-
-	try{
-		$hashtags = null;
-		$hashtags = $tweet['entities']['hashtags'];
-	}catch(Exception $e){
-		$hashtags = null;
-	}
-
-	$symbols = $tweet['entities']['symbols'];
-	$urls = $tweet['entities']['urls'];
-	
-	try{
-		$media = null;
-		$media = $tweet['entities']['media'];
-	}catch(Exception $e){
-		$media = null;
-	}
-	
-	$userMentions = $tweet['entities']['user_mentions'];
-
-	// Replace all the Hashtags with hashtag links
-	if($hashtags != null && $hashtags['length'] > 0){
-
-		foreach($hashtags as $hastag){
-						
-			$tweetText = str_replace('#' . $hashtag['text'], '<a class="hashtagLink" target="_blank" href="https://twitter.com/hashtag/' . $hashtag['text'] . '?src=hash">#' . $hashtag['text'] . '</a>', $tweetText);
-		}
-	}
-
-	// Replace all the user-Mentions with User Links
-	if($userMentions != null && $userMentions['length'] > 0){
-
-		foreach($userMentions as $user){
-					
-			$tweetText = str_replace('@' . $user['screen_name'], '<a class="userMentionLink" target="_blank" href="https://twitter.com/' . $user['screen_name'] . '">@' . $user['screen_name'] . '</a>', $tweetText);
-		}
-	}
-
-	// Replace is all the Media Content with HTML Links
-	// Twitter Dev URL: https://dev.twitter.com/overview/api/entities-in-twitter-objects#media
-	// NOTE: The media type (media['type']) for now only supports 'photo'. If later it supports more
-	// media content such as video etc, that also needs to be taken care of in the Application.
-	if($media != null && $media['length'] > 0){
-
-		$index = 1;
-
-		foreach($media as $mediaEle){
-
-			
-			// TODO --> Ask for Width and height Properties and set them for the image
-			$tweetText = str_replace($mediaEle['url'], '<div class="imgLink link' . $intToString[$index] . '">' . $mediaEle['url'] . '</div>', $tweetText);
-			$mediaString = $mediaString . '<img class="tweetImg img' . $IntToString[$index] . '" width="450px" style="display: none;" height="auto" src="' . $mediaEle['media_url'] . '">';
-			$index += 1;
-		}
-	}
-
-	// Replace all the Url(s) with the HTML links for the Url(s)
-	if($urls != null && $urls['length'] > 0){
-
-		foreach($urls as $url){
-			
-			$tweetText = str_replace($url['url'], '<a class="webLink" target="_blank" href="' . $url['expanded_url'] . '">' . $url['url'] . '</a>', $tweetText);
-		}
-
-	}
-
-	// Replace all the Symbols with the Symbol HTML Links
-	if($symbols != null && $symbols['length'] > 0){
-
-		foreach($symbols as $symbol){
-			
-			$tweetText = str_replace('$' . $symbol['text'], '<a class="symbolLink" target="_blank" href="https://twitter.com/search?q=$' . $symbol['text'] . '&src=tyah">$' . $symbol['text'] . '</a>', $tweetText);
-		}
-	}
-
-	$tweetHTML = '<p>' . $tweetText . $mediaString . '</p>';
-	return $tweetHTML;
-}
-
-
-
-// You may have to download and copy http://curl.haxx.se/ca/cacert.pem
 ?>

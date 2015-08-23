@@ -3,7 +3,24 @@ var people = $.ajax({
         async: false
     });
 
+function GetTweetsV2(){
 
+	// AJAX request to get array of 10 Twitter Responses
+	var tweetData;
+
+	$.getJSON('http://tweety.midnightjabber.com/php/gameObject.php', function(data) {
+        $(data).each(function(key, value) {
+            // Will alert 1, 2 and 3
+            tweetData.push(value);
+            console.log(value);
+        });
+    });
+
+
+}
+
+
+/// DEPRECATED ///
 /**
 * This method provides a JSON object containing the information about a tweet given a
 * Twitter handle.
@@ -49,6 +66,7 @@ function GetTweet(twitterHandle){
 }
 
 
+/// DEPRECATED ///
 /**
 * This method selects 10 random people from the a JSON file with an array of people/users.
 *
@@ -91,6 +109,7 @@ function GetRandomGamePeople(allPeople, numPeople){
 }
 
 
+/// DEPRECATED ///
 /**
 * This method creates the "correct"  and "incorrect" objects containing array of User-Tweet objects for the game.
 * This method creates an object of a particular JSON structure (see ExampleData.json for structure).
