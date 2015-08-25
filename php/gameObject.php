@@ -13,7 +13,7 @@ include("connection.php");
 include("logger.php");
 
 
-createGameObject();
+echo createGameObject();
 
 /**
 * This method finds and provides the total number of Twitter Users in the Database.
@@ -128,7 +128,7 @@ function createGameObject(){
 		$twitterRespJson = json_decode($twitterResp,true, 200000);
 		
 		// Creating a new user variable jsut in case the last one fails
-		$newUser = "";
+		$newUser = $user;
 
 		// If it fails...
 		while($twitterRespJson == null){
@@ -193,9 +193,12 @@ function createGameObject(){
 
 	logInfo("gameSelectionLogs.html", "'Correct' part of the game object has been COMPLETED. Starting the construction of 'incorrect' part of the game object.");
 
-	$incorrect = new ArrayObject($correct);
+	$incorrect = array();
 
-	foreach($incorrect as $unit){
+	// Variable to log the final Game Layout.
+	$gameObjectLog = "";
+
+	foreach($correct as $unit){
 
 		$rand = $rand = mt_rand(0, count($userKeys) - 1);
 
@@ -208,11 +211,13 @@ function createGameObject(){
 		}
 
 		// get random tweet number
-		$randomTweetNumber = array_pop($userKeys);
+		$randomTwitterUser = array_pop($userKeys);
 
+		$gameObjectLog =  $gameObjectLog . '<b>' . substr($unit['userInfo']['handle'], 1) . '</b> has <b>' .$randomTwitterUser . '\'s</b> tweet infront of him/her in the game. <br>';
+		
 		// Select that random tweet from the correct part of game object and add in current incorrect unit
-		$unit['tweetInfo'] = $correct[$randomTweetNumber]['tweetInfo'];
-
+		$incorrect[substr($unit['userInfo']['handle'], 1)]['userInfo'] = $correct[substr($unit['userInfo']['handle'], 1)]['userInfo'];
+		$incorrect[substr($unit['userInfo']['handle'], 1)]['tweetInfo'] = $correct[$randomTwitterUser]['tweetInfo'];
 	}
 	
 	// Game object construction
@@ -221,7 +226,7 @@ function createGameObject(){
 		'incorrect' => $incorrect
 		);
 
-	logSuccess("gameSelectionLogs.html", "Game Object Creation Successful.");
+	logSuccess("gameSelectionLogs.html", "Game Object Creation Successful. <br><u>GAME INFO:</u><br>" . $gameObjectLog);
 
 	logInfo("gameSessionObjects.txt", json_encode($gameObject));
 	return json_encode($gameObject);
@@ -230,9 +235,12 @@ function createGameObject(){
 
 
 /**
+* This method takes the Twitter response object and using that object makes the desired HTML 
+* format of the Tweet (Text). This HTML is the code that is used on the website. 
 *
+* @param tweet :: Twiiter Response Object
 *
-*
+* @return tweetHTML :: HTML coded string for the tweet
 */
 function getTweetHTML($tweet){
 
