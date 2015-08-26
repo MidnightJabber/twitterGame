@@ -189,6 +189,13 @@ $(document).ready(function() {
             }
         }
     });
+    
+    /**
+     * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
+     */
+    $('td a').on('click', function(event) {
+        event.stopPropagation();
+    });
 
     /**
      * Removes red shadow from an incorrectly selected pair after time 'time'
