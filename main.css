@@ -191,12 +191,13 @@ td:nth-child(2) {
 }
 
 .userName {
-    font-size: 2vh;
+    font-size: 1em;
     font-weight: bolder;
     color: black;
 }
 
 .userHandle {
+    font-size: 0.9em;
     margin-top: 5px;
     color: rgba(0,0,0,0.6);
 }
@@ -206,12 +207,18 @@ td:nth-child(2) {
 }
 
 .imgLink {
+    color: #9C0000;
     cursor: pointer;
     display: inline;
 }
 
 .imgLink:hover {
     color: #337AB9;
+}
+
+.fa-caret-down {
+    padding-left: 0.5em;
+    color: #C5C4C4;
 }
 
 .tweetImg {

@@ -52,15 +52,362 @@ $(document).ready(function() {
         $('body').append(html);
     }
 
-    var peopleJSON;
-    $.ajax({
-        url: "php/gameObject.php",
-        type: "GET",
-        async: false,
-        success: function (response) {
-            peopleJSON = JSON.parse(response);
+    var peopleJSON = 
+{
+    "correct":
+    {
+        "kelly_clarkson":{
+            "userInfo":{
+                "name":"Kelly Clarkson",
+                "handle":"@kelly_clarkson",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/565273523564736512/Bhh8z_cE.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@kelly_clarkson"
+            },
+            "tweetInfo":{
+                "tweetID":585131724025294800,
+                "tweetDate":"Mon Apr 06 17:27:28 +0000 2015",
+                "tweetHTML":"<p>Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SoDifferent?src=hash\">#SoDifferent</a></p>",
+                "tweetText":"Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"#SoDifferent",
+                "numOfRetweets":326,
+                "numOfFavorites":1346
+            }
+        },
+
+        "ricky_martin":{
+            "userInfo":{
+                "name":"Ricky Martin",
+                "handle":"@ricky_martin",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/588872134241427457/OUVHF8MR.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ricky_martin"
+            },
+            "tweetInfo":{
+                "tweetID":583693341096808400,
+                "tweetDate":"Thu Apr 02 18:11:51 +0000 2015",
+                "tweetHTML":"<p>Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/sexysouls?src=hash\">#sexysouls</a> que me inspiran a <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/VivirLaVidaBold?src=hash\">#VivirLaVidaBold</a> <div class=\"imgLink linkOne\">http://t.co/CASVsoCXoG</div><img class=\"tweetImg imgOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CBmyADJW4AAnbeP.png\"></p>",
+                "tweetText":"Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los #sexysouls que me inspiran a #VivirLaVidaBold http://t.co/CASVsoCXoG",
+                "numOfRetweets":203,
+                "numOfFavorites":416
+            }
+        },
+
+        "NiallOfficial":{
+            "userInfo":{
+                "name":"Niall Horan",
+                "handle":"@NiallOfficial",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/552488743555567619/AhR_vBw9.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@NiallOfficial"
+            },
+            "tweetInfo":{
+                "tweetID":608331138420080600,
+                "tweetDate":"Tue Jun 09 17:53:40 +0000 2015",
+                "tweetHTML":"<p>I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  <a class=\"webLink\" target=\"_blank\" href=\"https://twitter.com/fifawwc/status/608323259998838786\">https://t.co/cUOIohVl1I</a></p>",
+                "tweetText":"I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  https://t.co/cUOIohVl1I",
+                "numOfRetweets":73299,
+                "numOfFavorites":117881
+            }
+        },
+
+        "ericstonestreet":{
+            "userInfo":{
+                "name":"Eric Stonestreet",
+                "handle":"@ericstonestreet",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000626926058/aa196b61745a1bd09d5e27c394f608fb.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ericstonestreet"
+            },
+            "tweetInfo":{
+                "tweetID":588746452735631400,
+                "tweetDate":"Thu Apr 16 16:51:07 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/JoeManganiello\">@JoeManganiello</a>: Tonight! See <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/ericstonestreet\">@ericstonestreet</a> as Charlie Donovan and Eddie Harris in the LIVE read of <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LACMA\">@LACMA</a>'s <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/MajorLeague?src=hash\">#MajorLeague</a> @filmindepe…</p>",
+                "tweetText":"RT @JoeManganiello: Tonight! See @ericstonestreet as Charlie Donovan and Eddie Harris in the LIVE read of @LACMA's #MajorLeague @filmindepe…",
+                "numOfRetweets":41,
+                "numOfFavorites":0
+            }
+        },
+
+        "SrBachchan":{
+            "userInfo":{
+                "name":"Amitabh Bachchan",
+                "handle":"@SrBachchan",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/622497417863131136/o95FrYtE.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SrBachchan"
+            },
+            "tweetInfo":{
+                "tweetID":622324101227515900,
+                "tweetDate":"Sat Jul 18 08:36:42 +0000 2015",
+                "tweetHTML":"<p>T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!</p>",
+                "tweetText":"T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!",
+                "numOfRetweets":242,
+                "numOfFavorites":686
+            }
+        },
+
+        "tyrabanks":{
+            "userInfo":{
+                "name":"Tyra Banks",
+                "handle":"@tyrabanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tyrabanks"
+            },
+            "tweetInfo":{
+                "tweetID":592361757856763900,
+                "tweetDate":"Sun Apr 26 16:17:03 +0000 2015",
+                "tweetHTML":"<p>Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/DaytimeEmmys?src=hash\">#DaytimeEmmys</a></p>",
+                "tweetText":"Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n#DaytimeEmmys",
+                "numOfRetweets":143,
+                "numOfFavorites":741
+            }
+        },
+
+        "edsheeran":{
+            "userInfo":{
+                "name":"Ed Sheeran",
+                "handle":"@edsheeran",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/454206880676851712/jVypIZpS.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@edsheeran"
+            },
+            "tweetInfo":{
+                "tweetID":622146080034168800,
+                "tweetDate":"Fri Jul 17 20:49:19 +0000 2015",
+                "tweetHTML":"<p>iArena, 11pm - latitude</p>",
+                "tweetText":"iArena, 11pm - latitude",
+                "numOfRetweets":4718,
+                "numOfFavorites":12082
+            }
+        },
+
+        "SnoopDogg":{
+            "userInfo":{
+                "name":"Snoop Dogg",
+                "handle":"@SnoopDogg",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/595448225982623744/lT2g5UVA.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SnoopDogg"
+            },
+            "tweetInfo":{
+                "tweetID":621749717094019100,
+                "tweetDate":"Thu Jul 16 18:34:18 +0000 2015",
+                "tweetHTML":"<p>Just posted a photo <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/5NQ5ooP9AX/\">https://t.co/e79Pz6ULis</a></p>",
+                "tweetText":"Just posted a photo https://t.co/e79Pz6ULis",
+                "numOfRetweets":21,
+                "numOfFavorites":57
+            }
+        },
+
+        "taylorswift13":{
+            "userInfo":{
+                "name":"Taylor Swift",
+                "handle":"@taylorswift13",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/505200807503867904/osJXmYRl.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@taylorswift13"
+            },
+            "tweetInfo":{
+                "tweetID":605841586841206800,
+                "tweetDate":"Tue Jun 02 21:01:04 +0000 2015",
+                "tweetHTML":"<p>So excited for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/1989TourLouisville?src=hash\">#1989TourLouisville</a> tonight!!!!!</p>",
+                "tweetText":"So excited for #1989TourLouisville tonight!!!!!",
+                "numOfRetweets":12249,
+                "numOfFavorites":31080
+            }
+        },
+
+        "DalaiLama":{
+            "userInfo":{
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
+            },
+            "tweetInfo":{
+                "tweetID":375913853541830660,
+                "tweetDate":"Fri Sep 06 09:30:21 +0000 2013",
+                "tweetHTML":"<p>If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.</p>",
+                "tweetText":"If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.",
+                "numOfRetweets":11395,
+                "numOfFavorites":4826
+            }
         }
-    });
+    },
+
+    "incorrect":
+    {
+        "kelly_clarkson":{
+            "userInfo":{
+                "name":"Kelly Clarkson",
+                "handle":"@kelly_clarkson",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/565273523564736512/Bhh8z_cE.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@kelly_clarkson"
+            },
+            "tweetInfo":{
+                "tweetID":588746452735631400,
+                "tweetDate":"Thu Apr 16 16:51:07 +0000 2015",
+                "tweetHTML":"<p>RT <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/JoeManganiello\">@JoeManganiello</a>: Tonight! See <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/ericstonestreet\">@ericstonestreet</a> as Charlie Donovan and Eddie Harris in the LIVE read of <a class=\"userMentionLink\" target=\"_blank\" href=\"https://twitter.com/LACMA\">@LACMA</a>'s <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/MajorLeague?src=hash\">#MajorLeague</a> @filmindepe…</p>",
+                "tweetText":"RT @JoeManganiello: Tonight! See @ericstonestreet as Charlie Donovan and Eddie Harris in the LIVE read of @LACMA's #MajorLeague @filmindepe…",
+                "numOfRetweets":41,
+                "numOfFavorites":0
+            }
+        },
+
+        "ricky_martin":{
+            "userInfo":{
+                "name":"Ricky Martin",
+                "handle":"@ricky_martin",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/588872134241427457/OUVHF8MR.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ricky_martin"
+            },
+            "tweetInfo":{
+                "tweetID":583693341096808400,
+                "tweetDate":"Thu Apr 02 18:11:51 +0000 2015",
+                "tweetHTML":"<p>Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/sexysouls?src=hash\">#sexysouls</a> que me inspiran a <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/VivirLaVidaBold?src=hash\">#VivirLaVidaBold</a> <div class=\"imgLink linkOne\">http://t.co/CASVsoCXoG</div><img class=\"tweetImg imgOne\" width=\"450px\" style=\"display: none;\" height=\"auto\" src=\"http://pbs.twimg.com/media/CBmyADJW4AAnbeP.png\"></p>",
+                "tweetText":"Mi album \"A Quien Quiera Escuchar\" está dedicado a todos los #sexysouls que me inspiran a #VivirLaVidaBold http://t.co/CASVsoCXoG",
+                "numOfRetweets":203,
+                "numOfFavorites":416
+            }
+        },
+
+        "NiallOfficial":{
+            "userInfo":{
+                "name":"Niall Horan",
+                "handle":"@NiallOfficial",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/552488743555567619/AhR_vBw9.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@NiallOfficial"
+            },
+            "tweetInfo":{
+                "tweetID":621749717094019100,
+                "tweetDate":"Thu Jul 16 18:34:18 +0000 2015",
+                "tweetHTML":"<p>Just posted a photo <a class=\"webLink\" target=\"_blank\" href=\"https://instagram.com/p/5NQ5ooP9AX/\">https://t.co/e79Pz6ULis</a></p>",
+                "tweetText":"Just posted a photo https://t.co/e79Pz6ULis",
+                "numOfRetweets":21,
+                "numOfFavorites":57
+            }
+        },
+
+        "ericstonestreet":{
+            "userInfo":{
+                "name":"Eric Stonestreet",
+                "handle":"@ericstonestreet",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/378800000626926058/aa196b61745a1bd09d5e27c394f608fb.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@ericstonestreet"
+            },
+            "tweetInfo":{
+                "tweetID":375913853541830660,
+                "tweetDate":"Fri Sep 06 09:30:21 +0000 2013",
+                "tweetHTML":"<p>If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.</p>",
+                "tweetText":"If we have peace of mind, we’ll always feel happy. Deceiving ourselves that money is the source of happiness, we won’t.",
+                "numOfRetweets":11395,
+                "numOfFavorites":4826
+            }
+        },
+
+        "SrBachchan":{
+            "userInfo":{
+                "name":"Amitabh Bachchan",
+                "handle":"@SrBachchan",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/622497417863131136/o95FrYtE.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SrBachchan"
+            },
+            "tweetInfo":{
+                "tweetID":585131724025294800,
+                "tweetDate":"Mon Apr 06 17:27:28 +0000 2015",
+                "tweetHTML":"<p>Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/SoDifferent?src=hash\">#SoDifferent</a></p>",
+                "tweetText":"Mom-\"Boyz II Men r black?\"\nMe/Sister-\"R u serious?\" Mom-\"Yes\"\nMe/Sister-(laugh hysterically)\nMom-\"Wait, I was thinking of NKOTB\"#SoDifferent",
+                "numOfRetweets":326,
+                "numOfFavorites":1346
+            }
+        },
+
+        "tyrabanks":{
+            "userInfo":{
+                "name":"Tyra Banks",
+                "handle":"@tyrabanks",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/607921435110088704/ShktIWxi.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@tyrabanks"
+            },
+            "tweetInfo":{
+                "tweetID":592361757856763900,
+                "tweetDate":"Sun Apr 26 16:17:03 +0000 2015",
+                "tweetHTML":"<p>Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n<a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/DaytimeEmmys?src=hash\">#DaytimeEmmys</a></p>",
+                "tweetText":"Damn, this thing I'm hosting is live today. \n\nIf I mess up, there ain't no re-do's!!!\n\n😁😁😁\n\n#DaytimeEmmys",
+                "numOfRetweets":143,
+                "numOfFavorites":741
+            }
+        },
+
+        "edsheeran":{
+            "userInfo":{
+                "name":"Ed Sheeran",
+                "handle":"@edsheeran",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/454206880676851712/jVypIZpS.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@edsheeran"
+            },
+            "tweetInfo":{
+                "tweetID":605841586841206800,
+                "tweetDate":"Tue Jun 02 21:01:04 +0000 2015",
+                "tweetHTML":"<p>So excited for <a class=\"hashtagLink\" target=\"_blank\" href=\"https://twitter.com/hashtag/1989TourLouisville?src=hash\">#1989TourLouisville</a> tonight!!!!!</p>",
+                "tweetText":"So excited for #1989TourLouisville tonight!!!!!",
+                "numOfRetweets":12249,
+                "numOfFavorites":31080
+            }
+        },
+
+        "SnoopDogg":{
+            "userInfo":{
+                "name":"Snoop Dogg",
+                "handle":"@SnoopDogg",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/595448225982623744/lT2g5UVA.jpg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@SnoopDogg"
+            },
+            "tweetInfo":{
+                "tweetID":622146080034168800,
+                "tweetDate":"Fri Jul 17 20:49:19 +0000 2015",
+                "tweetHTML":"<p>iArena, 11pm - latitude</p>",
+                "tweetText":"iArena, 11pm - latitude",
+                "numOfRetweets":4718,
+                "numOfFavorites":12082
+            }
+        },
+
+        "taylorswift13":{
+            "userInfo":{
+                "name":"Taylor Swift",
+                "handle":"@taylorswift13",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/505200807503867904/osJXmYRl.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@taylorswift13"
+            },
+            "tweetInfo":{
+                "tweetID":608331138420080600,
+                "tweetDate":"Tue Jun 09 17:53:40 +0000 2015",
+                "tweetHTML":"<p>I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  <a class=\"webLink\" target=\"_blank\" href=\"https://twitter.com/fifawwc/status/608323259998838786\">https://t.co/cUOIohVl1I</a></p>",
+                "tweetText":"I'm at work sadly , so won't be able t watch it, surely Japan and germany will be there or there abouts  https://t.co/cUOIohVl1I",
+                "numOfRetweets":73299,
+                "numOfFavorites":117881
+            }
+        },
+
+        "DalaiLama":{
+            "userInfo":{
+                "name":"Dalai Lama",
+                "handle":"@DalaiLama",
+                "profilePicURL":"http://pbs.twimg.com/profile_images/529214699041067008/fqPBAr5s.jpeg",
+                "followURL":"https://twitter.com/intent/follow?screen_name=@DalaiLama"
+            },
+            "tweetInfo":{
+                "tweetID":622324101227515900,
+                "tweetDate":"Sat Jul 18 08:36:42 +0000 2015",
+                "tweetHTML":"<p>T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!</p>",
+                "tweetText":"T 1934 - A moment of greatest pride and honour for me !! Singing the National Anthem LIVE at 7:50 pm Star Sorts, ProKabaddi inaugural !!",
+                "numOfRetweets":242,
+                "numOfFavorites":686
+            }
+        }
+    }
+};
+    // $.ajax({
+    //     url: "php/gameObject.php",
+    //     type: "GET",
+    //     async: false,
+    //     success: function (response) {
+    //         peopleJSON = JSON.parse(response);
+    //     }
+    // });
 
 
     /* Creating table */
