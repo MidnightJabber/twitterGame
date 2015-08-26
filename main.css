@@ -226,6 +226,24 @@ td:nth-child(2) {
     box-shadow: 0px 0px 4px #2EB82E;
 }
 
+.correctSelectionAnimation {
+    animation: growAndShrink 0.5s ease-in-out;
+}
+
+@keyframes growAndShrink{
+    0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* 
 @keyframes input-shadow {
     0% {

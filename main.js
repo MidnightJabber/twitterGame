@@ -255,11 +255,27 @@ $(document).ready(function() {
      */
     $('table').on('correct-selection', function(event) {
         correctMatches = correctMatches + 1;
+        if (correctMatches === 10) {
+            $('body').trigger('endGame');
+        }
+
+        addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
+
         var remainingTime = $('.timer').TimeCircles().getTime();
         console.log('Got time: ' + remainingTime);
 
         $('.score').text(calculateScore(remainingTime));
     });
+
+    function addCorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
+        var localUserCardSelected = $.extend(true, {}, userCardSelected);
+        var localTweetCardSelected = $.extend(true, {}, tweetCardSelected);
+
+        setTimeout(function() {
+            localUserCardSelected.toggleClass('correctSelectionAnimation');
+            localTweetCardSelected.toggleClass('correctSelectionAnimation');
+        }, time);
+    }
 
     /**
      * Removes red shadow from an incorrectly selected pair after time 'time'
@@ -270,8 +286,8 @@ $(document).ready(function() {
      * @param  {[Object]} tweetCardSelected [Tweet Card that was selected]
      */
     function removeIncorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
-        var localUserCardSelected = $.extend(true, {}, userCardSelected)
-        var localTweetCardSelected = $.extend(true, {}, tweetCardSelected)
+        var localUserCardSelected = $.extend(true, {}, userCardSelected);
+        var localTweetCardSelected = $.extend(true, {}, tweetCardSelected);
 
         setTimeout(function() {
             localUserCardSelected.toggleClass('incorrectSelection');
