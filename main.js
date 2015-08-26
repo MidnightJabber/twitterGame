@@ -111,7 +111,7 @@ $(document).ready(function() {
         Checking if clicking outside cards to deselect them
      */
     $('body').on('click', function(event) {
-        var clickedTagLocalName = event.toElement.localName;
+        var clickedTagLocalName = event.target.localName;
         //console.log(event);
 
         if(clickedTagLocalName == 'body' || clickedTagLocalName == 'td') {
@@ -132,11 +132,12 @@ $(document).ready(function() {
     //Highlighting the selected card (userCard)
     $('.userCard').on('click', function(event) {
         console.log('\n\nclick on userCard');
-        var clickedClassName = event.toElement.className;
-        var clickedTagLocalName = event.toElement.localName;
+        var clickedClassName = event.target.className;
+        var clickedTagLocalName = event.target.localName;
 
         var block = $(this);
-        var localSelectedUser = block.find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
+        console.log(block);
+        var localSelectedUser = block.find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
 
         if(!(selectedCorrectUser.indexOf(localSelectedUser) >= 0)) {
             if(!((clickedTagLocalName.indexOf('img') >= 0) || (clickedClassName.indexOf('followButton') >= 0))) {
@@ -161,10 +162,10 @@ $(document).ready(function() {
     //Highlighting the selected card (tweetCard)
     $('.tweetCard').on('click', function(event) {
         console.log('click on tweetCard');
-        var clickedClassName = event.toElement.className;
+        var clickedClassName = event.target.className;
 
         var block = $(this);
-        var localSelectedTweet = block.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
+        var localSelectedTweet = block.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
 
         if(!(selectedCorrectTweet.indexOf(localSelectedTweet) >= 0)) { // If trying to select a tweet that was already matched as a correct pair.
             if (clickedClassName.indexOf('imgLink') < 0 ) {
@@ -209,8 +210,8 @@ $(document).ready(function() {
      * @param  {[Object]} tweetBlock [Tweet block that was selected]
      */
     function parseSelectedPair(userBlock, tweetBlock) {
-        selectedUser = userBlock.find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
-        selectedTweet = tweetBlock.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerText'].replace('@', '');
+        selectedUser = userBlock.find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
+        selectedTweet = tweetBlock.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
 
         //Selected Correct
         if(correctOrder[selectedUser]['tweetInfo']['tweetID'] == incorrectOrder[selectedTweet]['tweetInfo']['tweetID']) {
