@@ -52,8 +52,16 @@ $(document).ready(function() {
         $('body').append(html);
     }
 
-    var peopleJSON = CreateUserTweetGameObject();
-    console.log(peopleJSON);
+    var peopleJSON;
+    $.ajax({
+        url: "php/gameObject.php",
+        type: "GET",
+        async: false,
+        success: function (response) {
+            peopleJSON = JSON.parse(response);
+        }
+    });
+
 
     /* Creating table */
     createTable(peopleJSON);
