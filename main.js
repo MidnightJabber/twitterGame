@@ -189,7 +189,7 @@ $(document).ready(function() {
             }
         }
     });
-    
+
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
@@ -197,26 +197,6 @@ $(document).ready(function() {
         event.stopPropagation();
     });
 
-    /**
-     * Removes red shadow from an incorrectly selected pair after time 'time'
-     * NOTE: Tried doing this inside parseSelectedPair(userBlock, tweetBlock) but timeout needed to be defined
-     *       with new object.
-     * @param  {[int]} time              [Delay in milliseconds after which the shadow should be removed]
-     * @param  {[Object]} userCardSelected  [User card that was selected]
-     * @param  {[Object]} tweetCardSelected [Tweet Card that was selected]
-     */
-    function removeIncorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
-        var localUserCardSelected = $.extend(true, {}, userCardSelected)
-        var localTweetCardSelected = $.extend(true, {}, tweetCardSelected)
-
-        setTimeout(function() {
-            localUserCardSelected.toggleClass('incorrectSelection');
-            localTweetCardSelected.toggleClass('incorrectSelection');
-
-            localUserCardSelected.toggleClass('shake shake-horzontal');
-            localTweetCardSelected.toggleClass('shake shake-horzontal');
-        }, time);
-    }
 
     /**
      * Compares a users selection to identify whether their selection was correct or not.
@@ -280,6 +260,27 @@ $(document).ready(function() {
 
         $('.score').text(calculateScore(remainingTime));
     });
+
+    /**
+     * Removes red shadow from an incorrectly selected pair after time 'time'
+     * NOTE: Tried doing this inside parseSelectedPair(userBlock, tweetBlock) but timeout needed to be defined
+     *       with new object.
+     * @param  {[int]} time              [Delay in milliseconds after which the shadow should be removed]
+     * @param  {[Object]} userCardSelected  [User card that was selected]
+     * @param  {[Object]} tweetCardSelected [Tweet Card that was selected]
+     */
+    function removeIncorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
+        var localUserCardSelected = $.extend(true, {}, userCardSelected)
+        var localTweetCardSelected = $.extend(true, {}, tweetCardSelected)
+
+        setTimeout(function() {
+            localUserCardSelected.toggleClass('incorrectSelection');
+            localTweetCardSelected.toggleClass('incorrectSelection');
+
+            localUserCardSelected.toggleClass('shake shake-horzontal');
+            localTweetCardSelected.toggleClass('shake shake-horzontal');
+        }, time);
+    }
 
     function calculateScore(time) {
         var tempScore = Math.floor((Math.pow(1.05, time) * (correctMatches/2)));
