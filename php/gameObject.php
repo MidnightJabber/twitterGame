@@ -13,7 +13,11 @@ include("connection.php");
 include("logger.php");
 
 
+// Global array of what all Twitter User ID's have been used for the game
+$alreadyUsedIDs = array();
+
 echo createGameObject();
+
 
 /**
 * This method finds and provides the total number of Twitter Users in the Database.
@@ -64,7 +68,6 @@ function getRandomTwitterUsers($count){
 	}
 
 	$totalUsers = count($allUsers);
-	$alreadyUsedIDs = array();
 
 	// Twitter Users selected for the Game Object
 	$gameUsers = array();
@@ -74,12 +77,12 @@ function getRandomTwitterUsers($count){
 
 		$rand = mt_rand(0,$totalUsers - 1);
 
-		while(in_array($rand, $alreadyUsedIDs)){
+		while(in_array($rand, $GLOBALS['alreadyUsedIDs'])){
 
 			$rand = mt_rand(0,$totalUsers - 1);
 		}
 
-		array_push($alreadyUsedIDs, $rand);
+		array_push($GLOBALS['alreadyUsedIDs'], $rand);
 		array_push($gameUsers, $allUsers[$rand]);
 	}
 
@@ -202,7 +205,7 @@ function createGameObject(){
 
 		$rand = $rand = mt_rand(0, count($userKeys) - 1);
 
-		// Swap that random number with the last numbe rin the TweetNumbers array
+		// Swap that random number with the last user in the userKeys array
 		if(count($userKeys) != 0){
 
 			$temp = $userKeys[count($userKeys) - 1];
@@ -210,7 +213,7 @@ function createGameObject(){
 			$userKeys[$rand] = $temp;
 		}
 
-		// get random tweet number
+		// get random tweet user
 		$randomTwitterUser = array_pop($userKeys);
 
 		$gameObjectLog =  $gameObjectLog . '<b>' . substr($unit['userInfo']['handle'], 1) . '</b> has <b>' .$randomTwitterUser . '\'s</b> tweet infront of him/her in the game. <br>';
