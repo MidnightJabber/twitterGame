@@ -295,7 +295,7 @@ function getTweetHTML($tweet){
 
 			
 			// TODO --> Ask for Width and height Properties and set them for the image
-			$tweetText = str_replace($mediaEle['url'], '<div class="imgLink link' . $intToString[$index] . '">' . $mediaEle['url'] . '</div>', $tweetText);
+			$tweetText = str_replace($mediaEle['url'], '<div class="imgLink link' . $intToString[$index] . '">' . $mediaEle['url'] . '<span class="fa fa-caret-down"></span></div>', $tweetText);
 			$mediaString = $mediaString . '<img class="tweetImg img' . $intToString[$index] . '" width="450px" style="display: none;" height="auto" src="' . $mediaEle['media_url'] . '">';
 			$index += 1;
 		}
