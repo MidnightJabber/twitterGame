@@ -8,7 +8,7 @@ $(document).ready(function() {
      * Function also appends this table to the <body> on the front-end
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
-    function createTable(tableContentJSON) {
+    function createTable(tableContentJSON, correctIncorrect, appendTo) {
         html = '<table class="table" style="display: none;">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
@@ -18,7 +18,7 @@ $(document).ready(function() {
         html = html + '    </thead>\n';
 
         html = html + '    <tbody>\n';
-        $.each(tableContentJSON['incorrect'], function(key, element) {
+        $.each(tableContentJSON[correctIncorrect], function(key, element) {
             html = html + '        <tr>\n';
             html = html + '            <td>\n';
             html = html + '                <div class="userCard">\n';
@@ -49,10 +49,10 @@ $(document).ready(function() {
         html = html + '    </tbody>\n';
         html = html + '</table>\n';
 
-        $('body').append(html);
+        $(appendTo).append(html);
     }
 
-    var peopleJSON = 
+    var peopleJSON =
 {
     "correct":
     {
@@ -411,7 +411,7 @@ $(document).ready(function() {
 
 
     /* Creating table */
-    createTable(peopleJSON);
+    createTable(peopleJSON, 'incorrect', 'body');
 
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
@@ -604,7 +604,9 @@ $(document).ready(function() {
     $('table').on('correct-selection', function(event) {
         correctMatches = correctMatches + 1;
         if (correctMatches === 10) {
-            $('body').trigger('endGame');
+            var endEvent = $.Event('endGame');
+            endEvent._all = true;
+            $('body').trigger(endEvent);
         }
 
         addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
@@ -658,7 +660,41 @@ $(document).ready(function() {
     /**
      * This function is listening for an event which is fired when the time has run out which implies that the game has ended
      */
-    $('table').on('end-game', function(event) {
+    $('body').on('endGame', function(event) {
+        console.log(event);
+        $('table').remove();
+        $('.timer').TimeCircles().destroy();
+        $('.timer').remove();
+        $('.score').remove();
+        addEndInformation();
+
+    });
+
+    function addEndInformation () {
+        var tempHTML = '';
+        tempHTML = tempHTML + '<div class="endInfo">';
+        tempHTML = tempHTML + '    <div class="finalScore">';
+        tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p></div>';
+        tempHTML = tempHTML + '    <div class="survey">';
+        tempHTML = tempHTML + '        <p>Please take our survey to make this game better: <span></span></p>';
+        tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '    <div>';
+        tempHTML = tempHTML + '        <button class="answers">Answers</button>';
+        tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '    <div class="correct">';
+        tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '</div>';
+        $('body').append(tempHTML);
+    }
+
+    $('body').on('click', '.answers', function(event) {
+        createTable(peopleJSON, 'correct', 'body');
+        $('.answers').remove();
+        $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
+        $('table').fadeIn('slow');
+        $('table thead th').empty();
+
+
     });
 
     /**
@@ -705,14 +741,16 @@ $(document).ready(function() {
                 }
             }
         }).start().addListener(function(unit, amount, total) {
-            //console.log('\n\n');
-            //console.log('unit: ' + unit);
-            //console.log('amount: ' + amount);
-            //console.log('total: ' + total);
+            // console.log('\n\n');
+            // console.log('unit: ' + unit);
+            // console.log('amount: ' + amount);
+            // console.log('total: ' + total);
             var newColor;
 
             if(total == 0) {
-                $('table').trigger('end-game');
+                var endEvent = $.Event('endGame');
+                endEvent._all = false;
+                $('body').trigger(endEvent);
             } else if(total <= 30) {
                 newColor = "#E60000";
             } else if(total <= 75) {
