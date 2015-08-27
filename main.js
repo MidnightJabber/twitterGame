@@ -595,6 +595,7 @@ $(document).ready(function() {
      */
     $('table').on('incorrect-selection', function(event) {
         deductTime(10);     //Deducting 10 seconds for incorrect selection
+        $('.incorrectSound').trigger('play');
         removeIncorrectSelectionProperties(500, selectedUserCard, selectedTweetCard);
     });
 
@@ -608,7 +609,7 @@ $(document).ready(function() {
             endEvent._all = true;
             $('body').trigger(endEvent);
         }
-
+        $('.correctSound').trigger('play');
         addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
 
         var remainingTime = $('.timer').TimeCircles().getTime();
