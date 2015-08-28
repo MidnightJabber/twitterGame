@@ -26,7 +26,7 @@ error_reporting(E_ALL | E_STRICT);
            
         /* Getting Connection Link */
         /* Implementation: mysql_connect( __HOSTNAME__, __USERNAME__, __PASSWORD__, _Database_) */ 
-        $link = mysqli_connect( 'localhost', 'midnight_admin', '7Beesburger', 'midnight_tweety') or die('Could not connect to server.' );
+        $link = mysqli_connect( '_HOSTNAME_', '_USERNAME_', '_PASSWORD_', '_Database_') or die('Could not connect to server.' );
         
         /* SELECT the Databse to Use */
         //mysqli_select_db('splitrid_db', $link) or die('Could not select database.');
