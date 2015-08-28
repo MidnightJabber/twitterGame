@@ -365,13 +365,20 @@ $(document).ready(function() {
         var tmp = $('.timer').TimeCircles().getTime();
         console.log(tmp);
         tmp = Math.floor((tmp-deduction));
+        console.log(tmp);
 
-        /**
-         * At this point tmp hold the new time after deduction.
-         * eg: Incorrect selection occured at 115s
-         *     tmp now holds 105
-         */
-        $(".timer").data('timer', tmp).TimeCircles().restart();
+        if (tmp <= 0) {
+            var endEvent = $.Event('endGame');
+            endEvent._all = false;
+            $('body').trigger(endEvent);
+        } else {
+            /**
+             * At this point tmp hold the new time after deduction.
+             * eg: Incorrect selection occured at 115s
+             *     tmp now holds 105
+             */
+            $(".timer").data('timer', tmp).TimeCircles().restart();
+        }
     }
 
     /**
