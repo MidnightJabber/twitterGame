@@ -136,7 +136,6 @@ $(document).ready(function() {
         var clickedTagLocalName = event.target.localName;
 
         var block = $(this);
-        console.log(block);
         var localSelectedUser = block.find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
 
         if(!(selectedCorrectUser.indexOf(localSelectedUser) >= 0)) {
@@ -144,10 +143,14 @@ $(document).ready(function() {
                 if(selectedUserCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
                     selectedUserCard = $(this);                     // This is now the selectedUserCard
                     selectedUserCard.toggleClass('selectedCard');   // because this was selected, highlight it
-                } else {                                            // If something was selected, before this
-                    selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
-                    selectedUserCard = $(this);                     // Change selection to block that was clicked right now
-                    selectedUserCard.toggleClass('selectedCard');   // Highlight this new block
+                } else {
+                    if (block[0] === selectedUserCard[0]) {
+                        selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
+                        selectedUserCard = undefined;
+                    } else {
+                        selectedUserCard = $(this);                     // Change selection to block that was clicked right now
+                        selectedUserCard.toggleClass('selectedCard');   // Highlight this new block
+                    }                                           // If something was selected, before this
                 }
 
                 hasSelectedUser = true;
@@ -175,11 +178,14 @@ $(document).ready(function() {
                 if(selectedTweetCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
                     selectedTweetCard = $(this);                     // This is now the selectedTweetCard
                     selectedTweetCard.toggleClass('selectedCard');   // because this was selected, highlight it
-                } else {                                             // If something was selected, before this
-                    console.log('entered IF');
-                    selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
-                    selectedTweetCard = $(this);                     // Change selection to block that was clicked right now
-                    selectedTweetCard.toggleClass('selectedCard');   // Highlight this new block
+                } else {
+                    if (block[0] === selectedTweetCard[0]) {
+                        selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
+                        selectedTweetCard = undefined;
+                    } else {
+                        selectedTweetCard = $(this);                     // Change selection to block that was clicked right now
+                        selectedTweetCard.toggleClass('selectedCard');   // Highlight this new block
+                    }                                           // If something was selected, before this
                 }
 
                 hasSelectedTweet = true;
