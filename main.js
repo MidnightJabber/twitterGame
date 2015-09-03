@@ -19,6 +19,10 @@ $(document).ready(function() {
 
         html = html + '    <tbody>\n';
         $.each(tableContentJSON[correctIncorrect], function(key, element) {
+
+            tweetHTML = twemoji.parse(element['tweetInfo']['tweetHTML']);
+
+
             html = html + '        <tr>\n';
             html = html + '            <td>\n';
             html = html + '                <div class="userCard">\n';
@@ -40,7 +44,7 @@ $(document).ready(function() {
 
             html = html + '            <td>\n';
             html = html + '                <div class="tweetCard">\n';
-            html = html +                       element['tweetInfo']['tweetHTML'];
+            html = html +                      tweetHTML;
             html = html + '                </div>\n';
             html = html + '            </td>\n';
             html = html + '        </tr>\n';
