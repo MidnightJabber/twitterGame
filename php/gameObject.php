@@ -325,7 +325,30 @@ function getTweetHTML($tweet){
 	}
 
 	$tweetHTML = '<p>' . $tweetText . $mediaString . '</p>';
+
+	// Find all Emoji JS escaped code
+	preg_match_all('/(u[0-9a-fA-F]{4})/', $tweetHTML, $matches);
+	
+	$uniqueMatches = array_unique($matches[0]);
+	
+	// If some Unique Emojis Exist
+	if(count($uniqueMatches) != 0)	{
+		
+		foreach($uniqueMatches as $partition){
+			
+			$tweetHTML = str_replace($partition, "\\" . $partition, $tweetHTML);			
+		}
+	}
+		
+	// Convert Emoji code to HTML escaped code to be interpreted by the browser
+	$replaced = preg_replace("/\\\\u([0-9A-F]{1,4})/i", "&#x$1;", $tweetHTML);
+
+	$result = mb_convert_encoding($replaced, "UTF-16", "HTML-ENTITIES");
+
+	$result = mb_convert_encoding($result, 'utf-8', 'utf-16');
+	
+	$tweetHTML = $result;
+
 	return $tweetHTML;
 }
-
 ?>
