@@ -97,6 +97,7 @@ $(document).ready(function() {
     var selectedCorrectTweet = '';          /** @type {String} [Set of users corresponding correctly selected tweets] */
 
     var correctMatches = 0;
+    var incorrectMatches = 0;
     var score = 0;
 
     $('.linkOne').on('click', function(data) {
@@ -147,17 +148,19 @@ $(document).ready(function() {
                 if(selectedUserCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
                     selectedUserCard = $(this);                     // This is now the selectedUserCard
                     selectedUserCard.toggleClass('selectedCard');   // because this was selected, highlight it
+                    hasSelectedUser = true;
                 } else {
                     if (block[0] === selectedUserCard[0]) {
                         selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
                         selectedUserCard = undefined;
+                        hasSelectedUser = false;
                     } else {
+                        selectedUserCard.toggleClass('selectedCard');   // First remove highlight from previous block
                         selectedUserCard = $(this);                     // Change selection to block that was clicked right now
                         selectedUserCard.toggleClass('selectedCard');   // Highlight this new block
+                        hasSelectedUser = true;
                     }                                           // If something was selected, before this
                 }
-
-                hasSelectedUser = true;
 
                 if(hasSelectedTweet) {
                     parseSelectedPair(selectedUserCard, selectedTweetCard);
@@ -182,17 +185,19 @@ $(document).ready(function() {
                 if(selectedTweetCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
                     selectedTweetCard = $(this);                     // This is now the selectedTweetCard
                     selectedTweetCard.toggleClass('selectedCard');   // because this was selected, highlight it
+                    hasSelectedTweet = true;
                 } else {
                     if (block[0] === selectedTweetCard[0]) {
                         selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
                         selectedTweetCard = undefined;
+                        hasSelectedTweet = false;
                     } else {
+                        selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
                         selectedTweetCard = $(this);                     // Change selection to block that was clicked right now
                         selectedTweetCard.toggleClass('selectedCard');   // Highlight this new block
+                        hasSelectedTweet = true;
                     }                                           // If something was selected, before this
                 }
-
-                hasSelectedTweet = true;
 
                 if(hasSelectedUser) {
                     parseSelectedPair(selectedUserCard, selectedTweetCard);
@@ -259,6 +264,7 @@ $(document).ready(function() {
     $('table').on('incorrect-selection', function(event) {
         deductTime(10);     //Deducting 10 seconds for incorrect selection
         $('.incorrectSound').trigger('play');
+        incorrectMatches = incorrectMatches + 1;
         removeIncorrectSelectionProperties(500, selectedUserCard, selectedTweetCard);
     });
 
@@ -270,6 +276,8 @@ $(document).ready(function() {
         if (correctMatches === 10) {
             var endEvent = $.Event('endGame');
             endEvent._all = true;
+            endEvent.timeLeft = $('.timer').TimeCircles().getTime();
+            console.log(endEvent);
             $('body').trigger(endEvent);
         }
         $('.correctSound').trigger('play');
@@ -326,6 +334,8 @@ $(document).ready(function() {
      */
     $('body').on('endGame', function(event) {
         console.log(event);
+
+        score = score + ((event.timeLeft)*20);
         $('table').remove();
         $('.timer').TimeCircles().destroy();
         $('.timer').remove();
@@ -339,13 +349,17 @@ $(document).ready(function() {
         tempHTML = tempHTML + '<div class="endInfo">';
         tempHTML = tempHTML + '    <div class="finalScore">';
         tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p></div>';
+        tempHTML = tempHTML + '    <div class="attempts correct">';
+        tempHTML = tempHTML + '        <p>Correct Attempts: ' + correctMatches + '</p>';
+        tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '    <div class="attempts incorrect">';
+        tempHTML = tempHTML + '        <p>Incorrect Attempts: ' + incorrectMatches + '</p>';
+        tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '    <div class="survey">';
         tempHTML = tempHTML + '        <p>Please take our survey to make this game better: <span></span></p>';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '    <div>';
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
-        tempHTML = tempHTML + '    </div>';
-        tempHTML = tempHTML + '    <div class="correct">';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
@@ -421,6 +435,8 @@ $(document).ready(function() {
             if(total == 0) {
                 var endEvent = $.Event('endGame');
                 endEvent._all = false;
+                endEvent.timeLeft = total;
+                console.log(endEvent);
                 $('body').trigger(endEvent);
             } else if(total <= 30) {
                 newColor = "#E60000";
