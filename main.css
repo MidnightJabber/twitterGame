@@ -207,6 +207,10 @@ td:nth-child(2) {
     word-break: break-word;
 }
 
+.emoji {
+    width: 1.3em;
+}
+
 .imgLink {
     color: #9C0000;
     cursor: pointer;
