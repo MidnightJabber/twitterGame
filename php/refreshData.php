@@ -105,10 +105,10 @@ function getTweet($screenName, $count){
 	$parameters['count'] = $count;
 
 	$connection = new tmhOAuth(array(	
-  	'consumer_key' => 'consumer_key_goes_here',
-	'consumer_secret' => 'consumer_secret_goes_here',
-	'user_token' => 'access_token_goes_here', //access token
-	'user_secret' => 'access_token_secret_goes_here' //access token secret
+  	'consumer_key' => 'C8U6aOYWFkfuPxOiFBxoF87jF',
+	'consumer_secret' => 'cODzOUcJSqd3ATG15J25GXZlz7AyhK6gHbRCmsCiMIn0rfMKIu',
+	'user_token' => '2261472366-CPKf4pZ9fosiZ2zCQfXi7tiexIzbiNfzJ8lEcoC', //access token
+	'user_secret' => 'gH6qWAAOCrmS38sf5ipaXIxHZHLHNGtYOmCZcJrFli0M9' //access token secret
 	));
 
 	$twitterPath = '1.1/statuses/user_timeline.json';
@@ -173,8 +173,8 @@ function clearTweetsTable(){
 */
 function insertTweetInDB(){
 
-	$users = array("result" => ["@katyperry"]);
-	//$users = getAllTwitterUsers();
+	//$users = array("result" => ["@katyperry"]);
+	$users = getAllTwitterUsers();
 
 	$twitterApiCallCount = 0;
 	foreach ($users['result'] as $user) {
@@ -195,7 +195,8 @@ function insertTweetInDB(){
 
 		foreach($twitterResp as $response){
 
-
+			$response["source"] = str_replace('"', '\"', $response["source"]);
+			$response["text"] = str_replace('"', '\"', $response["text"]);
 			$object = json_encode($response);
 			// Escaping all the ' character from the Tweet Data
 			$object = str_replace("'","\'", $object);
