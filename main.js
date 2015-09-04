@@ -178,32 +178,31 @@ $(document).ready(function() {
         var localSelectedTweet = block.parent('td').siblings('td').find('.userCard').find('.userInfo').find('.userHandle')['0']['innerHTML'].replace('@', '');
 
         if(!(selectedCorrectTweet.indexOf(localSelectedTweet) >= 0)) { // If trying to select a tweet that was already matched as a correct pair.
-            if (clickedClassName.indexOf('imgLink') < 0 ) {
-                //click happened in tweetCard but not on image links
-                console.log('click happened in tweetCard but not on image links');
-
-                if(selectedTweetCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
-                    selectedTweetCard = $(this);                     // This is now the selectedTweetCard
-                    selectedTweetCard.toggleClass('selectedCard');   // because this was selected, highlight it
-                    hasSelectedTweet = true;
+            if(selectedTweetCard == undefined) {                 // If no user was selected before, i.e., this is the first selection
+                selectedTweetCard = $(this);                     // This is now the selectedTweetCard
+                selectedTweetCard.toggleClass('selectedCard');   // because this was selected, highlight it
+                hasSelectedTweet = true;
+            } else {
+                if (block[0] === selectedTweetCard[0]) {
+                    selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
+                    selectedTweetCard = undefined;
+                    hasSelectedTweet = false;
                 } else {
-                    if (block[0] === selectedTweetCard[0]) {
-                        selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
-                        selectedTweetCard = undefined;
-                        hasSelectedTweet = false;
-                    } else {
-                        selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
-                        selectedTweetCard = $(this);                     // Change selection to block that was clicked right now
-                        selectedTweetCard.toggleClass('selectedCard');   // Highlight this new block
-                        hasSelectedTweet = true;
-                    }                                           // If something was selected, before this
-                }
+                    selectedTweetCard.toggleClass('selectedCard');   // First remove highlight from previous block
+                    selectedTweetCard = $(this);                     // Change selection to block that was clicked right now
+                    selectedTweetCard.toggleClass('selectedCard');   // Highlight this new block
+                    hasSelectedTweet = true;
+                }                                           // If something was selected, before this
+            }
 
-                if(hasSelectedUser) {
-                    parseSelectedPair(selectedUserCard, selectedTweetCard);
-                }
+            if(hasSelectedUser) {
+                parseSelectedPair(selectedUserCard, selectedTweetCard);
             }
         }
+    });
+
+    $('.imgLink').on('click', function(event) {
+        event.stopPropagation();
     });
 
     /**
