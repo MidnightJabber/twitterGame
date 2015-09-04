@@ -126,7 +126,7 @@ function createGameObject(){
 
 		// Get the textual tweet response form the DB
 		$twitterResp = $row[0];
-
+        	
 		// Convert that text to associative array
 		$twitterRespJson = json_decode($twitterResp,true, 200000);
 		
@@ -155,8 +155,9 @@ function createGameObject(){
 
 			// Grab the Twitter Response as text from the DB
 			$twitterResp = $row[0];
+
+			$twitterRespJson = json_decode($twitterResp,true, 20000);	
 		
-			$twitterRespJson = json_decode($twitterResp,true, 20000);						
 		}
 
 		logSuccess("gameSelectionLogs.html", "User: " . $newUser . " with Tweet Number: " . $rand . " has been selected for the game.");
@@ -351,4 +352,5 @@ function getTweetHTML($tweet){
 
 	return $tweetHTML;
 }
+
 ?>
