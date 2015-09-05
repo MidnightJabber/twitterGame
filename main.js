@@ -380,6 +380,7 @@ $(document).ready(function() {
      */
     function deductTime(deduction) {
         var tmp = $('.timer').TimeCircles().getTime();
+        var total = tmp;
         console.log(tmp);
         tmp = Math.floor((tmp-deduction));
         console.log(tmp);
@@ -387,6 +388,7 @@ $(document).ready(function() {
         if (tmp <= 0) {
             var endEvent = $.Event('endGame');
             endEvent._all = false;
+            endEvent.timeLeft = total;
             $('body').trigger(endEvent);
         } else {
             /**
