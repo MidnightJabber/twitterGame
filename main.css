@@ -261,12 +261,22 @@ td:nth-child(2) {
 }
 
 /* End Review */
+.endInfo {
+    padding-top: 5em;
+}
+
 .endInfo>div {
     text-align: center;
     font-family: 'PT Sans', sans-serif;
 }
 
 .attempts {
+    margin: 0 auto;
+}
+
+.attempts div {
+    margin-right: 2em;
+    display: inline-block;
     font-size: 2em;
 }
 
@@ -276,6 +286,10 @@ td:nth-child(2) {
 
 .finalScore span {
     padding-left: 0.5em;
+}
+
+.survey {
+    padding-top: 2em;
 }
 
 .answers {

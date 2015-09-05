@@ -100,14 +100,14 @@ $(document).ready(function() {
     var incorrectMatches = 0;
     var score = 0;
 
-    $('.linkOne').on('click', function(data) {
+    $('body').on('click', '.linkOne', function(data) {
         console.log("link: ");
         console.log(data);
         $(this).siblings('.imgOne').slideToggle('fast');
         $(this).siblings('.imgTwo').hide();
     });
 
-    $('.linkTwo').on('click', function() {
+    $('body').on('click', '.linkTwo', function() {
         $(this).siblings('.imgTwo').slideToggle('fast');
         $(this).siblings('.imgOne').hide();
     });
@@ -201,14 +201,14 @@ $(document).ready(function() {
         }
     });
 
-    $('.imgLink').on('click', function(event) {
+    $('body').on('click', '.imgLink', function(event) {
         event.stopPropagation();
     });
 
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
-    $('td a').on('click', function(event) {
+    $('body').on('click', 'td a', function(event) {
         event.stopPropagation();
     });
 
@@ -347,15 +347,18 @@ $(document).ready(function() {
         var tempHTML = '';
         tempHTML = tempHTML + '<div class="endInfo">';
         tempHTML = tempHTML + '    <div class="finalScore">';
-        tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p></div>';
-        tempHTML = tempHTML + '    <div class="attempts correct">';
-        tempHTML = tempHTML + '        <p>Correct Attempts: ' + correctMatches + '</p>';
+        tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p>';
         tempHTML = tempHTML + '    </div>';
-        tempHTML = tempHTML + '    <div class="attempts incorrect">';
-        tempHTML = tempHTML + '        <p>Incorrect Attempts: ' + incorrectMatches + '</p>';
+        tempHTML = tempHTML + '    <div class="attempts">';
+        tempHTML = tempHTML + '        <div class="correct">';
+        tempHTML = tempHTML + '            <p>Correct Attempts: ' + correctMatches + '</p>';
+        tempHTML = tempHTML + '        </div>';
+        tempHTML = tempHTML + '        <div class="incorrect">';
+        tempHTML = tempHTML + '            <p>Incorrect Attempts: ' + incorrectMatches + '</p>';
+        tempHTML = tempHTML + '        </div>';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '    <div class="survey">';
-        tempHTML = tempHTML + '        <p>Please take our survey to make this game better: <span></span></p>';
+        tempHTML = tempHTML + '        <a href="https://tweetysurvey.typeform.com/to/m1GIH1" target="_blank"><p>Please take our survey to make this game better</p></a>';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '    <div>';
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
@@ -370,8 +373,6 @@ $(document).ready(function() {
         $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
         $('table').fadeIn('slow');
         $('table thead th').empty();
-
-
     });
 
     /**
