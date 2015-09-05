@@ -334,7 +334,7 @@ $(document).ready(function() {
     $('body').on('endGame', function(event) {
         console.log(event);
 
-        score = score + ((event.timeLeft)*20);
+        score = score + Math.floor((event.timeLeft)*20);
         $('table').remove();
         $('.timer').TimeCircles().destroy();
         $('.timer').remove();
