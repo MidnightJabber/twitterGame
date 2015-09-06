@@ -16,10 +16,6 @@
 /// Author: Vishrut Reddi
 /// MidnightJabber (c) 2015 - 2016 
 
-
-// Path for all the log files
-$filepath = 'www.tweety.midnightjabber.com/logs/';
-
 /**
 * This method is used for logging information. The new log messages will be added to the live
 * online logs and a local text copy.
@@ -28,6 +24,9 @@ $filepath = 'www.tweety.midnightjabber.com/logs/';
 * @param mssg :: Info message to log
 */
 function logInfo($filename, $mssg){
+
+	// Path for all the log files
+	$filepath = '../logs/';
 
 	$time = new DateTime(null, new DateTimeZone('America/Chicago')); //Central
 	$time = $time->format('Y-m-d H:i:s');    // MySQL datetime format
@@ -59,6 +58,9 @@ function logInfo($filename, $mssg){
 */
 function logError($filename, $mssg){
 
+	// Path for all the log files
+	$filepath = '../logs/';
+
 	$time = new DateTime(null, new DateTimeZone('America/Chicago')); //Central
 	$time = $time->format('Y-m-d H:i:s');    // MySQL datetime format
 
@@ -88,6 +90,9 @@ function logError($filename, $mssg){
 * @param mssg :: success message to log
 */
 function logSuccess($filename, $mssg){
+
+	// Path for all the log files
+	$filepath = '../logs/';
 
 	$time = new DateTime(null, new DateTimeZone('America/Chicago')); //Central
 	$time = $time->format('Y-m-d H:i:s');    // MySQL datetime format
@@ -119,6 +124,9 @@ function logSuccess($filename, $mssg){
 */
 function logWarning($filename, $mssg){
 
+	// Path for all the log files
+	$filepath = '../logs/';
+
 	$time = new DateTime(null, new DateTimeZone('America/Chicago')); //Central
 	$time = $time->format('Y-m-d H:i:s');    // MySQL datetime format
 
@@ -146,6 +154,9 @@ function logWarning($filename, $mssg){
 * @param filename :: Name of the file
 */
 function clearLogs($filename){
+	
+	// Path for all the log files
+	$filepath = '../logs/';
 
 	unlink($filepath . $filename);
 }
