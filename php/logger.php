@@ -17,6 +17,9 @@
 /// MidnightJabber (c) 2015 - 2016 
 
 
+// Path for all the log files
+$filepath = 'www.tweety.midnightjabber.com/logs/';
+
 /**
 * This method is used for logging information. The new log messages will be added to the live
 * online logs and a local text copy.
@@ -38,11 +41,11 @@ function logInfo($filename, $mssg){
 		$htmlInput = "<p class=\"info\"><b>" . $time . "<font color=\"blue\"> [INFO]</font></b><br>" . $mssg . "</p>";
 		
 		// append in html file
-		file_put_contents($filename, $htmlInput, FILE_APPEND);
+		file_put_contents($filepath . $filename, $htmlInput, FILE_APPEND);
 	}
 	else{
 		// append in text file
-		file_put_contents($filename, $input, FILE_APPEND);
+		file_put_contents($filepath . $filename, $input, FILE_APPEND);
 	}
 }
 
@@ -68,11 +71,11 @@ function logError($filename, $mssg){
 		$htmlInput = "<p class=\"error\"><b>" . $time . "<font color=\"red\"> [ERROR]</font></b><br>" . $mssg . "</p>";
 		
 		// append in html file
-		file_put_contents($filename, $htmlInput, FILE_APPEND);
+		file_put_contents($filepath . $filename, $htmlInput, FILE_APPEND);
 	}
 	else{
 		// append in text file
-		file_put_contents($filename, $input, FILE_APPEND);
+		file_put_contents($filepath . $filename, $input, FILE_APPEND);
 	}
 }
 
@@ -98,11 +101,11 @@ function logSuccess($filename, $mssg){
 		$htmlInput = "<p class=\"success\"><b>" . $time . "<font color=\"green\"> [SUCCESS]</font></b><br>" . $mssg . "</p>";
 		
 		// append in html file
-		file_put_contents($filename, $htmlInput, FILE_APPEND);
+		file_put_contents($filepath . $filename, $htmlInput, FILE_APPEND);
 	}
 	else{
 		// append in text file
-		file_put_contents($filename, $input, FILE_APPEND);
+		file_put_contents($filepath . $filename, $input, FILE_APPEND);
 	}
 }
 
@@ -128,11 +131,11 @@ function logWarning($filename, $mssg){
 		$htmlInput = "<p class=\"warning\"><b>" . $time . "<font color=\"orange\"> [WARNING]</font></b><br>" . $mssg . "</p>";
 		
 		// append in html file
-		file_put_contents($filename, $htmlInput, FILE_APPEND);
+		file_put_contents($filepath . $filename, $htmlInput, FILE_APPEND);
 	}
 	else{
 		// append in text file
-		file_put_contents($filename, $input, FILE_APPEND);
+		file_put_contents($filepath . $filename, $input, FILE_APPEND);
 	}
 }
 
@@ -144,7 +147,7 @@ function logWarning($filename, $mssg){
 */
 function clearLogs($filename){
 
-	unlink($filename);
+	unlink($filepath . $filename);
 }
 
 ?>
