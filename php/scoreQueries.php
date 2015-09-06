@@ -16,20 +16,12 @@ include('logger.php');
 // Get the query/function that needs to be performed
 $query = $_REQUEST['query'];
 
-logInfo('gameSelectionLogs.html', $query);
 switch((string)$query){
 
 	case "record_score":
 
 		// Giving every player details 'NULL' for default values
 		$player_name = $score = $time_remaining = $num_correct = $num_incorrect = $profile_pic = NULL;
-
-		logInfo('gameSelectionLogs.html', $player_name);
-		logInfo('gameSelectionLogs.html', $time_remaining);
-		logInfo('gameSelectionLogs.html', $score);
-		logInfo('gameSelectionLogs.html', $num_correct);
-		logInfo('gameSelectionLogs.html', $num_incorrect);
-		logInfo('gameSelectionLogs.html', $profile_pic);
 
 		$player_name = $_REQUEST['name'];
 		$time_remaining = $_REQUEST['timeRemaining'];
