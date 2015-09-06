@@ -102,8 +102,8 @@ $(document).ready(function() {
     var finalTimeLeft = 0;
 
     $('.linkOne').on('click', function(data) {
-        console.log("link: ");
-        console.log(data);
+        // console.log("link: ");
+        // console.log(data);
         $(this).siblings('.imgOne').slideToggle('fast');
         $(this).siblings('.imgTwo').hide();
     });
@@ -114,8 +114,8 @@ $(document).ready(function() {
     });
 
     $('body').on('click', '.linkOne', function(data) {
-        console.log("link: ");
-        console.log(data);
+        // console.log("link: ");
+        // console.log(data);
         $(this).siblings('.imgOne').slideToggle('fast');
         $(this).siblings('.imgTwo').hide();
     });
@@ -149,7 +149,7 @@ $(document).ready(function() {
 
     //Highlighting the selected card (userCard)
     $('.userCard').on('click', function(event) {
-        console.log('\n\nclick on userCard');
+        // console.log('\n\nclick on userCard');
         var clickedClassName = event.target.className;
         var clickedTagLocalName = event.target.localName;
 
@@ -184,7 +184,7 @@ $(document).ready(function() {
 
     //Highlighting the selected card (tweetCard)
     $('.tweetCard').on('click', function(event) {
-        console.log('click on tweetCard');
+        // console.log('click on tweetCard');
         var clickedClassName = event.target.className;
 
         var block = $(this);
@@ -242,7 +242,7 @@ $(document).ready(function() {
 
         //Selected Correct
         if(correctOrder[selectedUser]['tweetInfo']['tweetID'] == incorrectOrder[selectedTweet]['tweetInfo']['tweetID']) {
-            console.log('selected correct');
+            // console.log('selected correct');
             $('table').trigger('correct-selection');        //Triggering correct selection event
 
             selectedUserCard.toggleClass('correctSelection');
@@ -251,7 +251,7 @@ $(document).ready(function() {
             selectedCorrectUser = selectedCorrectUser + selectedUser;       //Adding user to list of correctly selected users
             selectedCorrectTweet = selectedCorrectTweet + selectedTweet;    //Adding tweet to list of correctly selected tweets
         } else {    //Selected Incorrect
-            console.log('selected incorrect');
+            // console.log('selected incorrect');
             $('table').trigger('incorrect-selection');      //Triggering incorrect selection event
 
             selectedUserCard.toggleClass('incorrectSelection');
@@ -289,14 +289,14 @@ $(document).ready(function() {
             var endEvent = $.Event('endGame');
             endEvent._all = true;
             endEvent.timeLeft = $('.timer').TimeCircles().getTime();
-            console.log(endEvent);
+            // console.log(endEvent);
             $('body').trigger(endEvent);
         }
         $('.correctSound').trigger('play');
         addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
 
         var remainingTime = $('.timer').TimeCircles().getTime();
-        console.log('Got time: ' + remainingTime);
+        // console.log('Got time: ' + remainingTime);
 
         $('.score').text(calculateScore(remainingTime));
     });
@@ -337,7 +337,7 @@ $(document).ready(function() {
         var temp = score;
         score = score + tempScore;
         temp = score - temp;
-        console.log('***************Step for ' + correctMatches + ' : ' + temp + '   **************');
+        // console.log('***************Step for ' + correctMatches + ' : ' + temp + '   **************');
         return score;
     }
 
@@ -345,7 +345,7 @@ $(document).ready(function() {
      * This function is listening for an event which is fired when the time has run out which implies that the game has ended
      */
     $('body').on('endGame', function(event) {
-        console.log(event);
+        // console.log(event);
         finalTimeLeft = Math.floor(event.timeLeft);
         score = score + Math.floor((event.timeLeft)*20);
         $('table').remove();
@@ -363,7 +363,7 @@ $(document).ready(function() {
             url: "php/scoreQueries.php?query='record_score'&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
             type: "POST",
             success: function (response) {
-                console.log("DATA POSTED TO DATABASE");
+                // console.log("DATA POSTED TO DATABASE");
             }
         });
 
@@ -412,9 +412,9 @@ $(document).ready(function() {
      */
     function deductTime(deduction) {
         var tmp = $('.timer').TimeCircles().getTime();
-        console.log(tmp);
+        // console.log(tmp);
         tmp = Math.floor((tmp-deduction));
-        console.log(tmp);
+        // console.log(tmp);
 
         if (tmp <= 0) {
             var endEvent = $.Event('endGame');
@@ -468,7 +468,7 @@ $(document).ready(function() {
                 var endEvent = $.Event('endGame');
                 endEvent._all = false;
                 endEvent.timeLeft = total;
-                console.log(endEvent);
+                // console.log(endEvent);
                 $('body').trigger(endEvent);
             } else if(total <= 30) {
                 newColor = "#E60000";
