@@ -99,6 +99,7 @@ $(document).ready(function() {
     var correctMatches = 0;
     var incorrectMatches = 0;
     var score = 0;
+    var finalTimeLeft = 0;
 
     $('.linkOne').on('click', function(data) {
         console.log("link: ");
@@ -345,7 +346,7 @@ $(document).ready(function() {
      */
     $('body').on('endGame', function(event) {
         console.log(event);
-
+        finalTimeLeft = Math.floor(event.timeLeft);
         score = score + Math.floor((event.timeLeft)*20);
         $('table').remove();
         $('.timer').TimeCircles().destroy();
@@ -357,6 +358,15 @@ $(document).ready(function() {
 
     function addEndInformation () {
         var tempHTML = '';
+
+        $.ajax({
+            url: "php/scoreQueries.php?query='record_score'&name=''&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
+            type: "POST",
+            success: function (response) {
+                console.log("DATA POSTED TO DATABASE");
+            }
+        });
+
         tempHTML = tempHTML + '<div class="endInfo">';
         tempHTML = tempHTML + '    <div class="finalScore">';
         tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p>';
