@@ -359,8 +359,10 @@ $(document).ready(function() {
     function addEndInformation () {
         var tempHTML = '';
 
+        var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
+
         $.ajax({
-            url: "php/scoreQueries.php?query='record_score'&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
+            url: "php/scoreQueries.php?query=record_score&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'",
             type: "POST",
             success: function (response) {
                 // console.log("DATA POSTED TO DATABASE");
