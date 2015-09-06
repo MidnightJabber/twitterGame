@@ -360,7 +360,7 @@ $(document).ready(function() {
         var tempHTML = '';
 
         $.ajax({
-            url: "php/scoreQueries.php?query='record_score'&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
+            url: "php/scoreQueries.php?query='record_score'&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic='https://d13yacurqjgara.cloudfront.net/users/428659/avatars/normal/default_profile_avatar-2e9f3c667fe06c32693dc680cfa381c7.png?1392882729'",
             type: "POST",
             success: function (response) {
                 console.log("DATA POSTED TO DATABASE");
