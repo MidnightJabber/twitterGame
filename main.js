@@ -320,7 +320,7 @@ $(document).ready(function() {
     }
 
     function calculateScore(time) {
-        var tempScore = Math.floor((Math.pow(1.05, time) * (correctMatches/2)));
+        var tempScore = Math.floor((Math.pow(1.05, time) * (correctMatches)));
         var temp = score;
         score = score + tempScore;
         temp = score - temp;
@@ -362,6 +362,7 @@ $(document).ready(function() {
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '    <div>';
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
+        tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
@@ -373,6 +374,14 @@ $(document).ready(function() {
         $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
         $('table').fadeIn('slow');
         $('table thead th').empty();
+    });
+
+    $('body').on('click', '.playAgain', function(event) {
+        location.reload();
+    });
+
+    $('body').on('click', '.logoImg', function(event) {
+        location.reload();
     });
 
     /**

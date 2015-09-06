@@ -6,12 +6,12 @@ body{
 .navbar-default {
     background-color: #0084b4;
     border : 0px;
-
     border-radius: 0px;
 }
 
 .navbar-brand img {
     margin: auto;
+    cursor: pointer;
 }
 
 /* Header Navbar */
@@ -293,6 +293,11 @@ td:nth-child(2) {
 }
 
 .answers {
+    margin-right: 1em;
+}
+
+.answers,
+.playAgain {
     border: none;
     border-radius: 5px;
     opacity: 0.8;
@@ -301,6 +306,7 @@ td:nth-child(2) {
     background-color: #0084B4;
 }
 
-.answers:hover {
+.answers:hover,
+.playAgain:hover {
     opacity: 1;
 }
