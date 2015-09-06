@@ -333,7 +333,7 @@ $(document).ready(function() {
     }
 
     function calculateScore(time) {
-        var tempScore = Math.floor((Math.pow(1.05, time) * (correctMatches)));
+        var tempScore = 50 + Math.floor((Math.pow(1.05, time) * (correctMatches)));
         var temp = score;
         score = score + tempScore;
         temp = score - temp;
