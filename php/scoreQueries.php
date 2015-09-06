@@ -16,12 +16,20 @@ include('logger.php');
 // Get the query/function that needs to be performed
 $query = $_REQUEST['query'];
 
-switch($query){
+logInfo('gameSelectionLogs.html', $query);
+switch((string)$query){
 
-	case 'record_score':
+	case "record_score":
 
 		// Giving every player details 'NULL' for default values
 		$player_name = $score = $time_remaining = $num_correct = $num_incorrect = $profile_pic = NULL;
+
+		logInfo('gameSelectionLogs.html', $player_name);
+		logInfo('gameSelectionLogs.html', $time_remaining);
+		logInfo('gameSelectionLogs.html', $score);
+		logInfo('gameSelectionLogs.html', $num_correct);
+		logInfo('gameSelectionLogs.html', $num_incorrect);
+		logInfo('gameSelectionLogs.html', $profile_pic);
 
 		$player_name = $_REQUEST['name'];
 		$time_remaining = $_REQUEST['timeRemaining'];
@@ -34,8 +42,8 @@ switch($query){
 		break;
 
 	// If $query is not set
-	default:
-		break;
+	//default:
+		//break;
 }
 
 /**
@@ -80,10 +88,11 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 	$link = getConnection();
 
 	// Generate global unique Game ID 
-	$guid = com_create_guid();
+	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic) VALUES('".$guid."','".$player_name."', ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", '".$profile_pic."');";
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.");";
+	
 	$res = mysqli_query($link,$query);
 
 	$affectedRows = mysqli_affected_rows($link);
@@ -101,7 +110,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 		if($player_name == NULL)
 			$player_name = 'NOT_SPECIFIED';
 
-		logError('gameSelectionLogs.html', 'Unable to store game data for Player <b>' . $player_name . '</b>.');
+		logError('gameSelectionLogs.html', 'Unable to store game data for Player <b>' . $player_name . '</b>. <b> ERROR: </b>' . (string)mysqli_error($link));
 	}
 	
 }
@@ -120,5 +129,23 @@ function getTopScorers($numOfResults){
 
 }
 
+
+function getGUID(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }else{
+        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+        $charid = strtoupper(md5(uniqid(rand(), true)));
+        $hyphen = chr(45);// "-"
+        $uuid = chr(123)// "{"
+            .substr($charid, 0, 8).$hyphen
+            .substr($charid, 8, 4).$hyphen
+            .substr($charid,12, 4).$hyphen
+            .substr($charid,16, 4).$hyphen
+            .substr($charid,20,12)
+            .chr(125);// "}"
+        return $uuid;
+    }
+}
 
 ?>
