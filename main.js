@@ -360,7 +360,7 @@ $(document).ready(function() {
         var tempHTML = '';
 
         $.ajax({
-            url: "php/scoreQueries.php?query='record_score'&name=''&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
+            url: "php/scoreQueries.php?query='record_score'&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic=''",
             type: "POST",
             success: function (response) {
                 console.log("DATA POSTED TO DATABASE");
@@ -412,7 +412,6 @@ $(document).ready(function() {
      */
     function deductTime(deduction) {
         var tmp = $('.timer').TimeCircles().getTime();
-        var total = tmp;
         console.log(tmp);
         tmp = Math.floor((tmp-deduction));
         console.log(tmp);
@@ -420,7 +419,7 @@ $(document).ready(function() {
         if (tmp <= 0) {
             var endEvent = $.Event('endGame');
             endEvent._all = false;
-            endEvent.timeLeft = total;
+            endEvent.timeLeft = 0;
             $('body').trigger(endEvent);
         } else {
             /**
