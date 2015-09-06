@@ -100,6 +100,18 @@ $(document).ready(function() {
     var incorrectMatches = 0;
     var score = 0;
 
+    $('.linkOne').on('click', function(data) {
+        console.log("link: ");
+        console.log(data);
+        $(this).siblings('.imgOne').slideToggle('fast');
+        $(this).siblings('.imgTwo').hide();
+    });
+
+    $('.linkTwo').on('click', function() {
+        $(this).siblings('.imgTwo').slideToggle('fast');
+        $(this).siblings('.imgOne').hide();
+    });
+
     $('body').on('click', '.linkOne', function(data) {
         console.log("link: ");
         console.log(data);
@@ -201,14 +213,14 @@ $(document).ready(function() {
         }
     });
 
-    $('body').on('click', '.imgLink', function(event) {
+    $('.imgLink').on('click', function(event) {
         event.stopPropagation();
     });
 
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
-    $('body').on('click', 'td a', function(event) {
+    $('td a').on('click', function(event) {
         event.stopPropagation();
     });
 
