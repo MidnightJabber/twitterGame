@@ -140,6 +140,9 @@ th:first-child {
 }
 
 td:first-child {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -242,25 +245,46 @@ td:nth-child(2) {
     box-shadow: 0px 0px 10px #66CCFF;
 }
 
- .correctSelection {
+.correctSelection {
     box-shadow: 0px 0px 4px #2EB82E;
 }
 
 .correctSelectionAnimation {
-    animation: growAndShrink 0.5s ease-in-out;
+    -webkit-animation: growAndShrink 0.5s ease-in-out;
+            animation: growAndShrink 0.5s ease-in-out;
+}
+
+@-webkit-keyframes growAndShrink{
+    0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 @keyframes growAndShrink{
     0% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 
   50% {
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 
   100% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
