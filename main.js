@@ -382,7 +382,7 @@ $(document).ready(function() {
         tempHTML = tempHTML + '    <div class="survey">';
         tempHTML = tempHTML + '        <a href="https://tweetysurvey.typeform.com/to/m1GIH1" target="_blank"><p>Please take our survey to make this game better</p></a>';
         tempHTML = tempHTML + '    </div>';
-        tempHTML = tempHTML + '    <div>';
+        tempHTML = tempHTML + '    <div class="buttons">';
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
         tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';

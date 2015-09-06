@@ -14,6 +14,14 @@ body{
     cursor: pointer;
 }
 
+.version {
+    position: absolute;
+    right: 2em;
+    top: 1.6em;
+    color: white;
+    font-size: 0.7em;
+}
+
 /* Header Navbar */
 @media screen and (min-width:768px) {
     .navbar-brand-centered {
@@ -290,6 +298,10 @@ td:nth-child(2) {
 
 .survey {
     padding-top: 2em;
+}
+
+.buttons {
+    padding-bottom: 1em;
 }
 
 .answers {
