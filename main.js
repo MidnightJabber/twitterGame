@@ -9,7 +9,7 @@ $(document).ready(function() {
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
     function createTable(tableContentJSON, correctIncorrect, appendTo) {
-        html = '<table class="table" style="display: none;">\n';
+        html = '<table class="table">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -67,11 +67,11 @@ $(document).ready(function() {
     });
 
 
-    /* Creating table */
-    createTable(peopleJSON, 'incorrect', 'body');
 
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
+        /* Creating table */
+        createTable(peopleJSON, 'incorrect', 'body');
     });
 
     $(document).on('startGame', function(event) {
@@ -148,7 +148,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (userCard)
-    $('.userCard').on('click', function(event) {
+    $('body').on('click', '.userCard', function(event) {
         // console.log('\n\nclick on userCard');
         var clickedClassName = event.target.className;
         var clickedTagLocalName = event.target.localName;
@@ -183,7 +183,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (tweetCard)
-    $('.tweetCard').on('click', function(event) {
+    $('body').on('click', '.tweetCard', function(event) {
         // console.log('click on tweetCard');
         var clickedClassName = event.target.className;
 
@@ -214,14 +214,14 @@ $(document).ready(function() {
         }
     });
 
-    $('.imgLink').on('click', function(event) {
+    $('body').on('click', '.imgLink', function(event) {
         event.stopPropagation();
     });
 
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
-    $('td a').on('click', function(event) {
+    $('body').on('click', 'td a', function(event) {
         event.stopPropagation();
     });
 
@@ -273,7 +273,7 @@ $(document).ready(function() {
     /**
      * This function is listening for an event which is fired when an INCORRECT selection is made in the table
      */
-    $('table').on('incorrect-selection', function(event) {
+    $('body').on('incorrect-selection', 'table', function(event) {
         deductTime(10);     //Deducting 10 seconds for incorrect selection
         $('.incorrectSound').trigger('play');
         incorrectMatches = incorrectMatches + 1;
@@ -283,7 +283,7 @@ $(document).ready(function() {
     /**
      * This function is listening for an event which is fired when a CORRECT selection is made in the table
      */
-    $('table').on('correct-selection', function(event) {
+    $('body').on('correct-selection', 'table', function(event) {
         correctMatches = correctMatches + 1;
         if (correctMatches === 10) {
             var endEvent = $.Event('endGame');
