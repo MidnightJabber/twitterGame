@@ -3,6 +3,10 @@
 /*global $, jQuery, alert*/
 
 $(document).ready(function() {
+    var startTime = 0;
+    var endTime = 0;
+    var cheated = false;
+
     /**
      * Function generates a table containing Twitter Users and their randomized tweets.
      * Function also appends this table to the <body> on the front-end
@@ -72,6 +76,7 @@ $(document).ready(function() {
         $(document).trigger('startGame');
         /* Creating table */
         createTable(peopleJSON, 'incorrect', '.addTableHere');
+        startTime = $.now();
     });
 
     $(document).on('startGame', function(event) {
@@ -347,6 +352,10 @@ $(document).ready(function() {
      * This function is listening for an event which is fired when the time has run out which implies that the game has ended
      */
     $('body').on('endGame', function(event) {
+        endTime = $.now();
+        if ((endTime - startTime) > 130000) {
+            cheated = true;
+        }
         // console.log(event);
         finalTimeLeft = Math.floor(event.timeLeft);
         score = score + Math.floor((event.timeLeft)*20);
@@ -370,7 +379,7 @@ $(document).ready(function() {
             url: globalURL,
             type: "POST",
             beforeSend: function (controller, options) {
-                if ((options.url != tempURL) || score > 18000) {
+                if ((options.url != tempURL) || score > 18000 || cheated) {
                     controller.abort();
                 }
             },
