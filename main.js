@@ -370,7 +370,7 @@ $(document).ready(function() {
             url: globalURL,
             type: "POST",
             beforeSend: function (controller, options) {
-                if (options.url != tempURL) {
+                if ((options.url != tempURL) || score > 18000) {
                     controller.abort();
                 }
             },
