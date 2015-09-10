@@ -71,7 +71,7 @@ $(document).ready(function() {
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
         /* Creating table */
-        createTable(peopleJSON, 'incorrect', 'body');
+        createTable(peopleJSON, 'incorrect', '.addTableHere');
     });
 
     $(document).on('startGame', function(event) {
@@ -113,14 +113,14 @@ $(document).ready(function() {
         $(this).siblings('.imgOne').hide();
     });
 
-    $('body').on('click', '.linkOne', function(data) {
+    $('.addTableHere, body').on('click', '.linkOne', function(data) {
         // console.log("link: ");
         // console.log(data);
         $(this).siblings('.imgOne').slideToggle('fast');
         $(this).siblings('.imgTwo').hide();
     });
 
-    $('body').on('click', '.linkTwo', function() {
+    $('.addTableHere, body').on('click', '.linkTwo', function() {
         $(this).siblings('.imgTwo').slideToggle('fast');
         $(this).siblings('.imgOne').hide();
     });
@@ -148,7 +148,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (userCard)
-    $('body').on('click', '.userCard', function(event) {
+    $('.addTableHere').on('click', '.userCard', function(event) {
         // console.log('\n\nclick on userCard');
         var clickedClassName = event.target.className;
         var clickedTagLocalName = event.target.localName;
@@ -183,7 +183,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (tweetCard)
-    $('body').on('click', '.tweetCard', function(event) {
+    $('.addTableHere').on('click', '.tweetCard', function(event) {
         // console.log('click on tweetCard');
         var clickedClassName = event.target.className;
 
@@ -214,14 +214,14 @@ $(document).ready(function() {
         }
     });
 
-    $('body').on('click', '.imgLink', function(event) {
+    $('.addTableHere, .answerTable').on('click', '.imgLink', function(event) {
         event.stopPropagation();
     });
 
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
-    $('body').on('click', 'td a', function(event) {
+    $('.addTableHere, .answerTable').on('click', 'td a', function(event) {
         event.stopPropagation();
     });
 
@@ -353,7 +353,6 @@ $(document).ready(function() {
         $('.timer').remove();
         $('.score').remove();
         addEndInformation();
-
     });
 
     function addEndInformation () {
@@ -388,12 +387,14 @@ $(document).ready(function() {
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
         tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '    <div class="answerTable">';
+        tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
     }
 
     $('body').on('click', '.answers', function(event) {
-        createTable(peopleJSON, 'correct', 'body');
+        createTable(peopleJSON, 'correct', '.answerTable');
         $('.answers').remove();
         $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
         $('table').fadeIn('slow');

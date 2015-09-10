@@ -1,4 +1,4 @@
-body{
+body {
     background: #F3F3F3;
 }
 
@@ -344,4 +344,14 @@ td:nth-child(2) {
 .answers:hover,
 .playAgain:hover {
     opacity: 1;
+}
+
+.answerTable {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    width: 100%;
+    height: 100%;
+}
+
+.answerTable .tweetCard {
+    text-align: left;
 }
