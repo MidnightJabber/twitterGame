@@ -100,6 +100,8 @@ $(document).ready(function() {
     var incorrectMatches = 0;
     var score = 0;
     var finalTimeLeft = 0;
+    var globalURL = 'php/scoreQueries.php?query=record_score';
+    var tempURL = '';
 
     $('.linkOne').on('click', function(data) {
         // console.log("link: ");
@@ -352,17 +354,26 @@ $(document).ready(function() {
         $('.timer').TimeCircles().destroy();
         $('.timer').remove();
         $('.score').remove();
+        addNameToURL();
+        addTimeToURL();
+        addScoreToURL();
+        addCorrectMatchesToURL();
+        addIncorrectMatchesToURL();
+        addImageToURL();
         addEndInformation();
     });
 
     function addEndInformation () {
         var tempHTML = '';
 
-        var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
-
         $.ajax({
-            url: "php/scoreQueries.php?query=record_score&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'",
+            url: globalURL,
             type: "POST",
+            beforeSend: function (controller, options) {
+                if (options.url != tempURL) {
+                    controller.abort();
+                }
+            },
             success: function (response) {
                 // console.log("DATA POSTED TO DATABASE");
             }
@@ -487,5 +498,31 @@ $(document).ready(function() {
                 }
             });
         });
+    }
+
+    var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
+    function addNameToURL () {
+        globalURL = globalURL + "&name='" + 'anonymous' + "'";
+    }
+
+    function addTimeToURL () {
+        globalURL = globalURL + '&timeRemaining=' + finalTimeLeft;
+    }
+
+    function addScoreToURL () {
+        globalURL = globalURL + '&score=' + score;
+    }
+
+    function addCorrectMatchesToURL () {
+        globalURL = globalURL + '&correct=' + correctMatches;
+    }
+
+    function addIncorrectMatchesToURL () {
+        globalURL = globalURL + '&incorrect=' + incorrectMatches;
+    }
+
+    function addImageToURL () {
+        globalURL = globalURL + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'";
+        tempURL = globalURL;
     }
 });
