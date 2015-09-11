@@ -31,12 +31,34 @@ switch((string)$query){
 		$profile_pic = $_REQUEST['profile_pic'];
 		$ip_address = $_REQUEST['ipAddress'];
 
+		// Checking if the parameters received from AJAX call have been set or not
+		if(isset($player_name) == false){
+			logWarning('gameSelectionLogs.html', 'Player\'s Name was not set from the AJAX Call.');
+			$player_name = 'anonymous';
+		}
+		
+		if(isset($ip_address) == false){
+			logWarning('gameSelectionLogs.html', 'The IP Address for the recent Game was not set from the AJAX Call.');
+			$ip_address = 'X_X';
+		}
+		
+		if(isset($profile_pic) == false){
+			logWarning('gameSelectionLogs.html', 'The Profile Pic for the Player in the Recent Game was not set by the AJAX call.');
+			$profile_pic = 'www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png';
+		}
+			
+		if(!isset($score) || !isset($num_correct) || !isset($num_incorrect) || !isset($time_remaining)){
+			$error_mssg = 'Some crucial data was <b>not set</b> in the AJAX call, therefore the score storage for the recent game did not take place. The following showing TRUE values were not set in the AJAX Call:<br>Score : ' . !isset($score) . '<br> Num_Correct : ' . !isset($num_correct)  . '<br> Num_Incorrect : ' . !isset($num_incorrect) . '<br> Time-Remaining : ' . !isset($time_remaining);
+			logError('gameSelectionLogs.html', $error_mssg);
+			break;		
+		}
+
 		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address);
 		break;
 
 	// If $query is not set
-	//default:
-		//break;
+	default:
+		break;
 }
 
 /**
@@ -85,7 +107,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", ".$ip_address.");";
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", '".$ip_address."'');";
 	
 	$res = mysqli_query($link,$query);
 
