@@ -21,7 +21,7 @@ switch((string)$query){
 	case "record_score":
 
 		// Giving every player details 'NULL' for default values
-		$player_name = $score = $time_remaining = $num_correct = $num_incorrect = $profile_pic = NULL;
+		$player_name = $score = $time_remaining = $num_correct = $num_incorrect = $profile_pic = $ip_address =  NULL;
 
 		$player_name = $_REQUEST['name'];
 		$time_remaining = $_REQUEST['timeRemaining'];
@@ -29,8 +29,9 @@ switch((string)$query){
 		$num_correct = $_REQUEST['correct'];
 		$num_incorrect = $_REQUEST['incorrect'];
 		$profile_pic = $_REQUEST['profile_pic'];
+		$ip_address = $_REQUEST['ipAddress'];
 
-		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic);
+		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address);
 		break;
 
 	// If $query is not set
@@ -73,8 +74,9 @@ function getTotalGamesPlayed(){
 * @param num_correct :: Number of correct pairs selected
 * @param num_incorrect :: Number of incorrect pairs selected
 * @param profile_pic :: Profile Picture link of the player
+* @param ip_address :: IP Address of the player
 */
-function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic){
+function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address){
 
 	// Get connection to the DB
 	$link = getConnection();
@@ -83,7 +85,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.");";
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", ".$ip_address.");";
 	
 	$res = mysqli_query($link,$query);
 
