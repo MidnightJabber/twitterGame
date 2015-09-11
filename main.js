@@ -3,13 +3,17 @@
 /*global $, jQuery, alert*/
 
 $(document).ready(function() {
+    var startTime = 0;
+    var endTime = 0;
+    var cheated = false;
+
     /**
      * Function generates a table containing Twitter Users and their randomized tweets.
      * Function also appends this table to the <body> on the front-end
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
     function createTable(tableContentJSON, correctIncorrect, appendTo) {
-        html = '<table class="table" style="display: none;">\n';
+        html = '<table class="table">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -67,11 +71,12 @@ $(document).ready(function() {
     });
 
 
-    /* Creating table */
-    createTable(peopleJSON, 'incorrect', 'body');
 
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
+        /* Creating table */
+        createTable(peopleJSON, 'incorrect', '.addTableHere');
+        startTime = $.now();
     });
 
     $(document).on('startGame', function(event) {
@@ -100,6 +105,8 @@ $(document).ready(function() {
     var incorrectMatches = 0;
     var score = 0;
     var finalTimeLeft = 0;
+    var globalURL = 'php/scoreQueries.php?query=record_score';
+    var tempURL = '';
 
     $('.linkOne').on('click', function(data) {
         // console.log("link: ");
@@ -113,14 +120,14 @@ $(document).ready(function() {
         $(this).siblings('.imgOne').hide();
     });
 
-    $('body').on('click', '.linkOne', function(data) {
+    $('.addTableHere, body').on('click', '.linkOne', function(data) {
         // console.log("link: ");
         // console.log(data);
         $(this).siblings('.imgOne').slideToggle('fast');
         $(this).siblings('.imgTwo').hide();
     });
 
-    $('body').on('click', '.linkTwo', function() {
+    $('.addTableHere, body').on('click', '.linkTwo', function() {
         $(this).siblings('.imgTwo').slideToggle('fast');
         $(this).siblings('.imgOne').hide();
     });
@@ -148,7 +155,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (userCard)
-    $('.userCard').on('click', function(event) {
+    $('.addTableHere').on('click', '.userCard', function(event) {
         // console.log('\n\nclick on userCard');
         var clickedClassName = event.target.className;
         var clickedTagLocalName = event.target.localName;
@@ -183,7 +190,7 @@ $(document).ready(function() {
     });
 
     //Highlighting the selected card (tweetCard)
-    $('.tweetCard').on('click', function(event) {
+    $('.addTableHere').on('click', '.tweetCard', function(event) {
         // console.log('click on tweetCard');
         var clickedClassName = event.target.className;
 
@@ -214,14 +221,14 @@ $(document).ready(function() {
         }
     });
 
-    $('.imgLink').on('click', function(event) {
+    $('.addTableHere, .answerTable').on('click', '.imgLink', function(event) {
         event.stopPropagation();
     });
 
     /**
      * [If click happens on any link in a card, stops traversing up the DOM tree and doesn't select the card]
      */
-    $('td a').on('click', function(event) {
+    $('.addTableHere, .answerTable').on('click', 'td a', function(event) {
         event.stopPropagation();
     });
 
@@ -273,7 +280,7 @@ $(document).ready(function() {
     /**
      * This function is listening for an event which is fired when an INCORRECT selection is made in the table
      */
-    $('table').on('incorrect-selection', function(event) {
+    $('body').on('incorrect-selection', 'table', function(event) {
         deductTime(10);     //Deducting 10 seconds for incorrect selection
         $('.incorrectSound').trigger('play');
         incorrectMatches = incorrectMatches + 1;
@@ -283,7 +290,7 @@ $(document).ready(function() {
     /**
      * This function is listening for an event which is fired when a CORRECT selection is made in the table
      */
-    $('table').on('correct-selection', function(event) {
+    $('body').on('correct-selection', 'table', function(event) {
         correctMatches = correctMatches + 1;
         if (correctMatches === 10) {
             var endEvent = $.Event('endGame');
@@ -345,6 +352,10 @@ $(document).ready(function() {
      * This function is listening for an event which is fired when the time has run out which implies that the game has ended
      */
     $('body').on('endGame', function(event) {
+        endTime = $.now();
+        if ((endTime - startTime) > 130000) {
+            cheated = true;
+        }
         // console.log(event);
         finalTimeLeft = Math.floor(event.timeLeft);
         score = score + Math.floor((event.timeLeft)*20);
@@ -352,18 +363,26 @@ $(document).ready(function() {
         $('.timer').TimeCircles().destroy();
         $('.timer').remove();
         $('.score').remove();
+        addNameToURL();
+        addTimeToURL();
+        addScoreToURL();
+        addCorrectMatchesToURL();
+        addIncorrectMatchesToURL();
+        addImageToURL();
         addEndInformation();
-
     });
 
     function addEndInformation () {
         var tempHTML = '';
 
-        var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
-
         $.ajax({
-            url: "php/scoreQueries.php?query=record_score&name='anonymous'&timeRemaining=" + finalTimeLeft + "&score=" + score + "&correct=" + correctMatches + "&incorrect=" + incorrectMatches + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'",
+            url: globalURL,
             type: "POST",
+            beforeSend: function (controller, options) {
+                if ((options.url != tempURL) || score > 18000 || cheated) {
+                    controller.abort();
+                }
+            },
             success: function (response) {
                 // console.log("DATA POSTED TO DATABASE");
             }
@@ -388,12 +407,14 @@ $(document).ready(function() {
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
         tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';
+        tempHTML = tempHTML + '    <div class="answerTable">';
+        tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
     }
 
     $('body').on('click', '.answers', function(event) {
-        createTable(peopleJSON, 'correct', 'body');
+        createTable(peopleJSON, 'correct', '.answerTable');
         $('.answers').remove();
         $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
         $('table').fadeIn('slow');
@@ -486,5 +507,45 @@ $(document).ready(function() {
                 }
             });
         });
+    }
+
+    var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
+    function addNameToURL () {
+        globalURL = globalURL + "&name='" + 'anonymous' + "'";
+        tempURL = globalURL;
+    }
+
+    function addTimeToURL () {
+        globalURL = globalURL + '&timeRemaining=' + finalTimeLeft;
+        tempURL = globalURL;
+    }
+
+    function addScoreToURL () {
+        globalURL = globalURL + '&score=' + score;
+        tempURL = globalURL;
+    }
+
+    function addCorrectMatchesToURL () {
+        globalURL = globalURL + '&correct=' + correctMatches;
+        tempURL = globalURL;
+    }
+
+    function addIncorrectMatchesToURL () {
+        globalURL = globalURL + '&incorrect=' + incorrectMatches;
+        tempURL = globalURL;
+    }
+
+    function addImageToURL () {
+        globalURL = globalURL + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'";
+        tempURL = globalURL;
+    }
+
+    function addIPToURL () {
+        var ip = '';
+        $.getJSON("http://jsonip.com?callback=?", function (data) {
+            ip ='' + data.ip;
+        });
+        globalURL = globalURL + "&ipAddress='" + ip + "'";
+        tempURL = globalURL;
     }
 });
