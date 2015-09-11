@@ -512,26 +512,40 @@ $(document).ready(function() {
     var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
     function addNameToURL () {
         globalURL = globalURL + "&name='" + 'anonymous' + "'";
+        tempURL = globalURL;
     }
 
     function addTimeToURL () {
         globalURL = globalURL + '&timeRemaining=' + finalTimeLeft;
+        tempURL = globalURL;
     }
 
     function addScoreToURL () {
         globalURL = globalURL + '&score=' + score;
+        tempURL = globalURL;
     }
 
     function addCorrectMatchesToURL () {
         globalURL = globalURL + '&correct=' + correctMatches;
+        tempURL = globalURL;
     }
 
     function addIncorrectMatchesToURL () {
         globalURL = globalURL + '&incorrect=' + incorrectMatches;
+        tempURL = globalURL;
     }
 
     function addImageToURL () {
         globalURL = globalURL + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'";
+        tempURL = globalURL;
+    }
+
+    function addIPToURL () {
+        var ip = '';
+        $.getJSON("http://jsonip.com?callback=?", function (data) {
+            ip ='' + data.ip;
+        });
+        globalURL = globalURL + "&ipAddress='" + ip + "'";
         tempURL = globalURL;
     }
 });
