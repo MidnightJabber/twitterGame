@@ -126,7 +126,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", '".$ip_address."'');";
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", ".$ip_address.");";
 
 	$res = mysqli_query($link,$query);
 
