@@ -1,11 +1,11 @@
 <?php
 /// This file is related to all the functionality regarding accessing and storing scores
-/// for the Tweety games. This file is responsible of storing game data into the DB after every game 
+/// for the Tweety games. This file is responsible of storing game data into the DB after every game
 /// (an AJAX request must bne made). This file is also responsible for providing usage data and some
 /// other analytical data. This file also logs some data about scoring upon command.
 ///
 /// Author: Vishrut Reddi
-/// MidnightJabber (c) 2015 - 2016 
+/// MidnightJabber (c) 2015 - 2016
 
 //To connect to the Database
 include('connection.php');
@@ -18,10 +18,8 @@ $query = $_REQUEST['query'];
 
 switch((string)$query){
 
+	// Record the score an dother game details for a single tweety game in the DB
 	case "record_score":
-
-		// Giving every player details 'NULL' for default values
-		$player_name = $score = $time_remaining = $num_correct = $num_incorrect = $profile_pic = NULL;
 
 		$player_name = $_REQUEST['name'];
 		$time_remaining = $_REQUEST['timeRemaining'];
@@ -29,13 +27,57 @@ switch((string)$query){
 		$num_correct = $_REQUEST['correct'];
 		$num_incorrect = $_REQUEST['incorrect'];
 		$profile_pic = $_REQUEST['profile_pic'];
+		$ip_address = $_REQUEST['ipAddress'];
 
-		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic);
+		// Checking if the parameters received from AJAX call have been set or not
+		if(isset($player_name) == false){
+			logWarning('gameSelectionLogs.html', 'Player\'s Name was not set from the AJAX Call.');
+			$player_name = 'anonymous';
+		}
+
+		if(isset($ip_address) == false){
+			logWarning('gameSelectionLogs.html', 'The IP Address for the recent Game was not set from the AJAX Call.');
+			$ip_address = 'X_X';
+		}
+
+		if(isset($profile_pic) == false){
+			logWarning('gameSelectionLogs.html', 'The Profile Pic for the Player in the Recent Game was not set by the AJAX call.');
+			$profile_pic = 'www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png';
+		}
+
+		if(!isset($score) || !isset($num_correct) || !isset($num_incorrect) || !isset($time_remaining)){
+			$error_mssg = 'Some crucial data was <b>not set</b> in the AJAX call, therefore the score storage for the recent game did not take place. The following showing TRUE values were not set in the AJAX Call:<br>Score : ' . !isset($score) . '<br> Num_Correct : ' . !isset($num_correct)	. '<br> Num_Incorrect : ' . !isset($num_incorrect) . '<br> Time-Remaining : ' . !isset($time_remaining);
+			logError('gameSelectionLogs.html', $error_mssg);
+			break;
+		}
+
+		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address);
 		break;
 
-	// If $query is not set
-	//default:
-		//break;
+	// Retrieve the number of complete Tweety games played
+	case "get_game_count":
+
+		$totalGames = getTotalGamesPlayed();
+		echo $totalGames;
+		break;
+
+		// If $query is not set
+
+	// Retreive the high scoring players of Tweety
+	case "get_top_players":
+
+		$numOfPlayers = $_REQUEST['count'];
+
+		// Checking if the parameters received from AJAX call have been set or not
+		if(isset($numOfPlayers) == false || $numOfPlayers > 20){
+			logWarning('gameSelectionLogs.html', '<b>Count Parameter</p> was not set for retreiver top scoring players or the count was higher than the allowed value (i.e 20). Defaulted to: 10.');
+			$numOfPlayers = 10;
+		}
+
+		echo getTopScorers($numOfPlayers);
+
+	default:
+		break;
 }
 
 /**
@@ -45,7 +87,7 @@ switch((string)$query){
 * @return noOfGamesPlayed : Number of Tweety Games Played
 */
 function getTotalGamesPlayed(){
-	
+
 	// Get connection to the DB
 	$link = getConnection();
 
@@ -73,22 +115,23 @@ function getTotalGamesPlayed(){
 * @param num_correct :: Number of correct pairs selected
 * @param num_incorrect :: Number of incorrect pairs selected
 * @param profile_pic :: Profile Picture link of the player
+* @param ip_address :: IP Address of the player
 */
-function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic){
+function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address){
 
 	// Get connection to the DB
 	$link = getConnection();
 
-	// Generate global unique Game ID 
+	// Generate global unique Game ID
 	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.");";
-	
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", ".$ip_address.");";
+
 	$res = mysqli_query($link,$query);
 
 	$affectedRows = mysqli_affected_rows($link);
-	
+
 	// log information based on result
 	if($affectedRows == 1){
 
@@ -104,7 +147,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 
 		logError('gameSelectionLogs.html', 'Unable to store game data for Player <b>' . $player_name . '</b>. <b> ERROR: </b>' . (string)mysqli_error($link));
 	}
-	
+
 }
 
 
@@ -113,31 +156,65 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 * The top scorers are the All-Time top scorers.
 *
 * @param numOfResults :: The number of top scorers needed.
-* 
+*
 * @return topScorers :: JSON Object with ranks and other info of the top scorers
 */
-//TODO --> Implement Later
 function getTopScorers($numOfResults){
 
+	// Get connection to the DB
+	$link = getConnection();
+
+	$query = "SELECT * FROM Scores ORDER BY Score DESC LIMIT " . (string)$numOfResults . ";";
+
+	$res = mysqli_query($link,$query);
+
+	// Associative Array to store the top players info
+	$topPlayers = array();
+
+	$rank = 1;
+
+	while($row = $res->fetch_array()){
+
+		// Add Players Details to the Associative Array
+		$topPlayers[$rank]['playerName']= $row['Player'];
+		$topPlayers[$rank]['playerID'] = $row['Player_ID'];
+		$topPlayers[$rank]['profilePic'] = $row['Profile_Pic'];
+		$topPlayers[$rank]['score'] = $row['Score'];
+		$topPlayers[$rank]['numCorrect'] = $row['Num_Correct'];
+		$topPlayers[$rank]['numIncorrect'] = $row['Num_Incorrect'];
+		$topPlayers[$rank]['timeRemaining'] = $row['Time_Remaining'];
+
+		// Increase the rank
+		$rank = $rank + 1;
+	}
+
+	return json_encode($topPlayers);
 }
 
 
+/**
+* This function based on the current time and date creates a unique GUID. This GUID is used to represent
+* a single complete Tweety game. This method first checks for the inbuild php GUID generation method
+* called com_create_guid(). If that function does not exist then this function creates the GUID.
+*
+* @return uuid :: GUID for the game
+*/
 function getGUID(){
-    if (function_exists('com_create_guid')){
-        return com_create_guid();
-    }else{
-        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
-        $charid = strtoupper(md5(uniqid(rand(), true)));
-        $hyphen = chr(45);// "-"
-        $uuid = chr(123)// "{"
-            .substr($charid, 0, 8).$hyphen
-            .substr($charid, 8, 4).$hyphen
-            .substr($charid,12, 4).$hyphen
-            .substr($charid,16, 4).$hyphen
-            .substr($charid,20,12)
-            .chr(125);// "}"
-        return $uuid;
-    }
+		if (function_exists('com_create_guid')){
+				return com_create_guid();
+		}else{
+				mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+				$charid = strtoupper(md5(uniqid(rand(), true)));
+				$hyphen = chr(45);// "-"
+				$uuid = chr(123)// "{"
+						.substr($charid, 0, 8).$hyphen
+						.substr($charid, 8, 4).$hyphen
+						.substr($charid,12, 4).$hyphen
+						.substr($charid,16, 4).$hyphen
+						.substr($charid,20,12)
+						.chr(125);// "}"
+				return $uuid;
+		}
 }
 
 ?>
