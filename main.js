@@ -13,7 +13,8 @@ $(document).ready(function() {
      * @param  {[JSON]} tableContentJSON: JSON object containing the userInfo and tweetInfo (correct and incorrect)
      */
     function createTable(tableContentJSON, correctIncorrect, appendTo) {
-        html = '<table class="table">\n';
+        var html = '';
+        html = '<table class="gameTable">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -393,6 +394,7 @@ $(document).ready(function() {
         tempHTML = tempHTML + '    <div class="finalScore">';
         tempHTML = tempHTML + '        <p>Your Score:<span>' + score + '</span></p>';
         tempHTML = tempHTML + '    </div>';
+
         tempHTML = tempHTML + '    <div class="attempts">';
         tempHTML = tempHTML + '        <div class="correct">';
         tempHTML = tempHTML + '            <p>Correct Attempts: ' + correctMatches + '</p>';
@@ -401,25 +403,32 @@ $(document).ready(function() {
         tempHTML = tempHTML + '            <p>Incorrect Attempts: ' + incorrectMatches + '</p>';
         tempHTML = tempHTML + '        </div>';
         tempHTML = tempHTML + '    </div>';
+
         tempHTML = tempHTML + '    <div class="survey">';
         tempHTML = tempHTML + '        <a href="https://tweetysurvey.typeform.com/to/m1GIH1" target="_blank"><p>Please take our survey to make this game better</p></a>';
         tempHTML = tempHTML + '    </div>';
+
         tempHTML = tempHTML + '    <div class="buttons">';
         tempHTML = tempHTML + '        <button class="answers">Answers</button>';
         tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';
+
+        tempHTML = tempHTML + '    <div class="leaderboard">';
+        tempHTML = tempHTML + '    </div>';
+
         tempHTML = tempHTML + '    <div class="answerTable">';
         tempHTML = tempHTML + '    </div>';
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
+        createLeaderboard(5);
     }
 
     $('body').on('click', '.answers', function(event) {
         createTable(peopleJSON, 'correct', '.answerTable');
         $('.answers').remove();
-        $('table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
-        $('table').fadeIn('slow');
-        $('table thead th').empty();
+        $('.answerTable table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
+        $('.answerTable table').fadeIn('slow');
+        $('.answerTable table thead th').empty();
     });
 
     $('body').on('click', '.playAgain', function(event) {
@@ -453,6 +462,55 @@ $(document).ready(function() {
              */
             $(".timer").data('timer', tmp).TimeCircles().restart();
         }
+    }
+
+    function createLeaderboard(leaderboardSize) {
+        var data;
+        $.ajax({
+            url: ("http://tweety.midnightjabber.com/php/scoreQueries.php?query=get_top_players&count=" + leaderboardSize),
+            type: "GET",
+            async: false,
+            success: function (response) {
+                data = JSON.parse(response);
+            }
+        });
+
+        var html = '';
+        html = '<table class="table">\n';
+        html = html + '    <thead>\n';
+        html = html + '        <tr>\n';
+        html = html + '            <th>\n' + 'Rank' + '</th>\n';
+        html = html + '            <th>\n' + 'Image' + '</th>\n';
+        html = html + '            <th>\n' + 'Name' + '</th>\n';
+        html = html + '            <th>\n' + 'Score' + '</th>\n';
+        html = html + '        </tr>\n';
+        html = html + '    </thead>\n';
+
+        html = html + '    <tbody>\n';
+        $.each(data, function(key, element) {
+
+            html = html + '        <tr>\n';
+            html = html + '            <td>\n';
+            html = html + '                <p class="rank">' + key + '</p>\n';
+            html = html + '            </td>\n';
+
+            html = html + '            <td>\n';
+            html = html + '                <img class="playerImage" src="http://' + element['profilePic'] + '">\n';
+            html = html + '            </td>\n';
+
+            html = html + '            <td>\n';
+            html = html + '                <p class="playerName">' + element['playerName'] + '</p>\n';
+            html = html + '            </td>\n';
+
+            html = html + '            <td>\n';
+            html = html + '                <p class="leaderboardScore">' + element['score'] + '</p>\n';
+            html = html + '            </td>\n';
+            html = html + '        </tr>\n';
+        });
+
+        html = html + '    </tbody>\n';
+        html = html + '</table>\n';
+        $('.leaderboard').append(html);
     }
 
     /**

@@ -124,28 +124,28 @@ body {
     }
 }
 
-.table {
+.gameTable {
     width: 70%;
     margin: auto;
 }
 
-th {
+.gameTable th {
     text-align: center;
     font-size: 2.5vw;
 }
 
-th:first-child {
+.gameTable th:first-child {
     width: 35%;
 }
 
-td:first-child {
+.gameTable td:first-child {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
 }
 
-td:nth-child(2) {
+.gameTable td:nth-child(2) {
     padding-left: 10% !important;
 }
 
@@ -354,4 +354,14 @@ td:nth-child(2) {
 
 .answerTable .tweetCard {
     text-align: left;
+}
+
+/* Leaderboard */
+
+.leaderboard thead th {
+    text-align: center;
+}
+
+.playerImage {
+    width: 50px;
 }
