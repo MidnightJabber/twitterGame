@@ -16,10 +16,23 @@ body {
 
 .version {
     position: absolute;
-    right: 2em;
+    left: 2em;
     top: 1.6em;
     color: white;
     font-size: 0.7em;
+}
+
+.avatar {
+    position: absolute;
+    border: none;
+    right: 2em;
+    top: 0.7em;
+    background-color: transparent;
+}
+
+.avatar span {
+    color: white;
+    font-size: 2em;
 }
 
 /* Header Navbar */
@@ -352,16 +365,35 @@ body {
     height: 100%;
 }
 
-.answerTable .tweetCard {
+.answerTable .tweetCard,
+.answerTable .userCard {
     text-align: left;
 }
 
 /* Leaderboard */
 
+.leaderboardTable {
+    width: 50%;
+    margin: 0 auto 2em;
+    border-radius: 0.6em;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 20px -5px rgba(0,0,0,0.2);
+}
+
 .leaderboard thead th {
     text-align: center;
 }
 
+.leaderboardTable tr:hover {
+    background-color: #F3F3F3;
+}
+
+.rank {
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
 .playerImage {
     width: 50px;
+    border-radius: 50%;
 }

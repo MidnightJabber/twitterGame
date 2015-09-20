@@ -72,7 +72,6 @@ $(document).ready(function() {
     });
 
 
-
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
         /* Creating table */
@@ -476,7 +475,7 @@ $(document).ready(function() {
         });
 
         var html = '';
-        html = '<table class="table">\n';
+        html = '<table class="leaderboardTable">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'Rank' + '</th>\n';
