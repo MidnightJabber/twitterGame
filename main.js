@@ -14,7 +14,7 @@ $(document).ready(function() {
      */
     function createTable(tableContentJSON, correctIncorrect, appendTo) {
         var html = '';
-        html = '<table class="gameTable">\n';
+        html = '<table class="gameTable" style="display:none;">\n';
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'User' + '</th>\n';
@@ -76,6 +76,7 @@ $(document).ready(function() {
         $(document).trigger('startGame');
         /* Creating table */
         createTable(peopleJSON, 'incorrect', '.addTableHere');
+        $('.gameTable').fadeIn('fast');
         startTime = $.now();
     });
 
