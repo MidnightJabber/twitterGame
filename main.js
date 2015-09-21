@@ -71,7 +71,6 @@ $(document).ready(function() {
         }
     });
 
-
     $('.startButton').on('click', function(event) {
         $(document).trigger('startGame');
         /* Creating table */
@@ -410,7 +409,8 @@ $(document).ready(function() {
         tempHTML = tempHTML + '    </div>';
 
         tempHTML = tempHTML + '    <div class="buttons">';
-        tempHTML = tempHTML + '        <button class="answers">Answers</button>';
+        tempHTML = tempHTML + '        <button class="leaderboardButton">Leaderboard</button>';
+        tempHTML = tempHTML + '        <button class="answersButton">Answers</button>';
         tempHTML = tempHTML + '        <button class="playAgain">Play Again</button>';
         tempHTML = tempHTML + '    </div>';
 
@@ -422,47 +422,6 @@ $(document).ready(function() {
         tempHTML = tempHTML + '</div>';
         $('body').append(tempHTML);
         createLeaderboard(5);
-    }
-
-    $('body').on('click', '.answers', function(event) {
-        createTable(peopleJSON, 'correct', '.answerTable');
-        $('.answers').remove();
-        $('.answerTable table').css('box-shadow', '0 0 30px -5px rgba(0,0,0,0.4)');
-        $('.answerTable table').fadeIn('slow');
-        $('.answerTable table thead th').empty();
-    });
-
-    $('body').on('click', '.playAgain', function(event) {
-        location.reload();
-    });
-
-    $('body').on('click', '.logoImg', function(event) {
-        location.reload();
-    });
-
-    /**
-     * Function is called when time needs to be duducted from the running timer.
-     * @param  {[Integer]} deduction [Amout of time in SECONDS to be deducted]
-     */
-    function deductTime(deduction) {
-        var tmp = $('.timer').TimeCircles().getTime();
-        // console.log(tmp);
-        tmp = Math.floor((tmp-deduction));
-        // console.log(tmp);
-
-        if (tmp <= 0) {
-            var endEvent = $.Event('endGame');
-            endEvent._all = false;
-            endEvent.timeLeft = 0;
-            $('body').trigger(endEvent);
-        } else {
-            /**
-             * At this point tmp hold the new time after deduction.
-             * eg: Incorrect selection occured at 115s
-             *     tmp now holds 105
-             */
-            $(".timer").data('timer', tmp).TimeCircles().restart();
-        }
     }
 
     function createLeaderboard(leaderboardSize) {
@@ -513,6 +472,57 @@ $(document).ready(function() {
         html = html + '</table>\n';
         $('.leaderboard').append(html);
     }
+
+    var createAnswerTable = 0;
+    $('body').on('click', '.answersButton', function(event) {
+        if (createAnswerTable === 0) {
+            createTable(peopleJSON, 'correct', '.answerTable');
+            createAnswerTable = 1;
+            $('.answerTable table').css('box-shadow', '0 0 20px -5px rgba(0,0,0,0.2)');
+        }
+        $('.leaderboardTable').hide();
+        $('.answerTable table').fadeIn('slow');
+        $('.answerTable table thead th').empty();
+    });
+
+    $('body').on('click', '.leaderboardButton', function(event) {
+        $('.answerTable table').hide();
+        $('.leaderboardTable').fadeIn('slow');
+    });
+
+    $('body').on('click', '.playAgain', function(event) {
+        location.reload();
+    });
+
+    $('body').on('click', '.logoImg', function(event) {
+        location.reload();
+    });
+
+    /**
+     * Function is called when time needs to be duducted from the running timer.
+     * @param  {[Integer]} deduction [Amout of time in SECONDS to be deducted]
+     */
+    function deductTime(deduction) {
+        var tmp = $('.timer').TimeCircles().getTime();
+        // console.log(tmp);
+        tmp = Math.floor((tmp-deduction));
+        // console.log(tmp);
+
+        if (tmp <= 0) {
+            var endEvent = $.Event('endGame');
+            endEvent._all = false;
+            endEvent.timeLeft = 0;
+            $('body').trigger(endEvent);
+        } else {
+            /**
+             * At this point tmp hold the new time after deduction.
+             * eg: Incorrect selection occured at 115s
+             *     tmp now holds 105
+             */
+            $(".timer").data('timer', tmp).TimeCircles().restart();
+        }
+    }
+
 
     /**
      * Initializes the countdown clock

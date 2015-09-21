@@ -340,7 +340,7 @@ body {
     padding-bottom: 1em;
 }
 
-.answers {
+.buttons>button:not(:last-of-type) {
     margin-right: 1em;
 }
 
