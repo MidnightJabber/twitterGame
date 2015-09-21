@@ -379,6 +379,7 @@ $(document).ready(function() {
         $.ajax({
             url: globalURL,
             type: "POST",
+            async: false,
             beforeSend: function (controller, options) {
                 if ((options.url != tempURL) || score > 18000 || cheated) {
                     controller.abort();
