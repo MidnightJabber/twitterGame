@@ -1,17 +1,56 @@
 body {
-    background: #F3F3F3;
+    background-color: #37474F;
+    color: white;
 }
 
-/* navbar */
-.navbar-default {
-    background-color: #0084b4;
-    border : 0px;
-    border-radius: 0px;
+.section {
+    text-align: center;
 }
 
-.navbar-brand img {
-    margin: auto;
+.gameHeading {
+    margin-bottom: 1em;
+}
+
+.section img {
+    width: 80%;
+    box-shadow: 1px 1px 30px -7px rgba(0,0,0,0.7);
+}
+
+.ruleHeading {
+    margin-bottom: 3em;
+    font-family: 'Raleway', sans-serif;
+}
+
+.wrapLines::before,
+.wrapLines::after {
+    font-family: 'Helvetica Neue', Helvetica, Arial;
+    color: #A0A0A0;
+    content: "__________";
+    position: relative;
+    top: -0.4em;
+    padding: 0 0.5em;
+}
+
+.downArrow {
+    display: none;
+    position: absolute;
+    bottom: 1em;
+    font-size: 1.4em;
+}
+
+.flipCard {
+    padding-bottom: 30em;
+}
+
+.flipCard:hover {
     cursor: pointer;
+}
+
+.flipCard ul {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 
 .version {
@@ -89,20 +128,13 @@ body {
 }
 
 .startButton {
-    display: table;
-    background-color: #0084B4;
-    padding: 0.5em;
-    margin: 0 auto;
-    box-sizing: content-box;
-    border-radius: 8px;
-    color: white;
-    font-size: 1.5vw;
-    vertical-align: middle;
-    opacity: 0.9;
+    color: #fff;
+    position: absolute;
+    display: none;
+    font-size: 2em;
 }
 
 .startButton:hover {
-    opacity: 1;
     cursor: pointer;
 }
 
