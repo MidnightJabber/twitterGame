@@ -278,6 +278,7 @@ body {
 
 .correctSelection {
     box-shadow: 0px 0px 0px 4px #2EB82E;
+    opacity: 0.3;
 }
 
 .correctSelectionAnimation {
