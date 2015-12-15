@@ -35,7 +35,10 @@ $(document).ready(function() {
         */
         var values = [1000, 6000, 115];
         var statTime = 1500;
-        rollingNumbers(values, statTime)
+        if (rollingAnimationFlag) {
+            rollingNumbers(values, statTime);
+            rollingAnimationFlag = false;
+        };
     }
 
     var rollingAnimationFlag = true;
