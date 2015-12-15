@@ -93,8 +93,8 @@ $(document).ready(function() {
     });
 
     $(document).on('startGame', function(event) {
-        $('.startButton').remove();
-        $('.guide').remove();
+        $('#pageScroll').remove();
+        $.fn.fullpage.destroy('all');
         $('table').fadeIn('slow');
         initializeTimer(121);       //Initializing timer when <table> is created
     });

@@ -74,20 +74,6 @@ body {
     font-size: 2em;
 }
 
-/* Header Navbar */
-@media screen and (min-width:768px) {
-    .navbar-brand-centered {
-        position: absolute;
-        left: 50%;
-        display: block;
-        width: 160px;
-        text-align: center;
-    }
-    .navbar>.container .navbar-brand-centered,
-    .navbar>.container-fluid .navbar-brand-centered {
-        margin-left: -80px;
-    }
-}
 
 .row {
     box-sizing: border-box;
@@ -172,6 +158,7 @@ body {
 .gameTable {
     width: 70%;
     margin: auto;
+    color: black;
 }
 
 .gameTable th {
