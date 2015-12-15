@@ -9,10 +9,54 @@ $(document).ready(function() {
     $('#pageScroll').fullpage({
         navigation: true,
         scrollingSpeed: 600,
-        touchSensitivity: 1
+        touchSensitivity: 1,
+        onLeave: function(index, nextIndex, direction){
+            var leavingSection = $(this);
+
+            // After leaving Section 1
+            if(index == 1 && direction =='down'){
+                animateStatistics();
+            }
+        }
     });
 
     $(".flipCard").flip();
+
+
+    /**
+     * Function that animates the first and last columns of the statistics section to move inwards.
+     */
+    function animateStatistics() {
+        $('.statsColumn.column-1').animate({left: 0}, 700);
+        $('.statsColumn.column-3').animate({right: 0}, 700);
+
+        /* These are test values.
+         * Will add ajax call to acuire actual statistics
+        */
+        var values = [1000, 6000, 115];
+        var statTime = 1500;
+        rollingNumbers(values, statTime)
+    }
+
+    var rollingAnimationFlag = true;
+    /**
+     * Function the creates the rolling numbers Animation.
+     * @param  {[Integer Array]} valueArray [Array that contains the stats for the 3 columns]
+     * @param  {[Integer (milliseconds)]} time       [Animation duration]
+     */
+    function rollingNumbers(valueArray, time) {
+        $('.value').each(function (index) {
+            $(this).prop('Counter',0).animate({
+                Counter: valueArray[index]
+            }, {
+                duration: time,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    }
 
     var startTime = 0;
     var endTime = 0;

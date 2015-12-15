@@ -74,43 +74,37 @@ body {
     font-size: 2em;
 }
 
-
 .row {
     box-sizing: border-box;
-    padding: 2.55em;
-    width: 100%;
+    margin: 0 auto;
 }
 
-.column-bg {
-    width: 60%;
-    padding: 3em;
-    vertical-align: middle;
-}
-
-.column-sml {
-    width: 40%;
-    vertical-align: middle;
-}
-
-.column {
-    display: table-cell;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.column img {
-    width: 100%;
-}
-
-.column ul {
+.statsColumn {
+    position: relative;
     display: inline-block;
+    margin: 0 1%;
+    padding: 2em;
+    width: 28%;
+    border: solid 1px #717171;
+    border-radius: 0.5em;
 }
 
-.column h2 {
-    text-align: center;
+.statsColumn.column-1 {
+    left: -20em;
 }
 
-.wrapper {
-    box-shadow: 1px 1px 30px -7px rgba(0,0,0,0.7);
+.statsColumn.column-3 {
+    right: -20em;
+}
+
+.statsLogos {
+    font-size: 2em;
+}
+
+span.value {
+    display: block;
+    margin-top: 1em;
+    font-size: 3em;
 }
 
 .startButton {
