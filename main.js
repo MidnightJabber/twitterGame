@@ -3,6 +3,19 @@
 /*global $, jQuery, alert*/
 
 $(document).ready(function() {
+    $('.startButton').delay(500).fadeIn(2000);
+    $('.downArrow').delay(1500).fadeIn(1000);
+
+    $('#pageScroll').fullpage({
+        navigation: true,
+        scrollingSpeed: 600,
+        touchSensitivity: 1
+    });
+
+    $(function($) {
+      $(".flipCard").flip(); 
+    });
+
     var startTime = 0;
     var endTime = 0;
     var cheated = false;
