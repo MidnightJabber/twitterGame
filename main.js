@@ -12,9 +12,7 @@ $(document).ready(function() {
         touchSensitivity: 1
     });
 
-    $(function($) {
-      $(".flipCard").flip(); 
-    });
+    $(".flipCard").flip();
 
     var startTime = 0;
     var endTime = 0;
