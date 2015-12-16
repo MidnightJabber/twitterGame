@@ -388,6 +388,7 @@ span.value {
     width: 50%;
     margin: 0 auto 2em;
     border-radius: 0.6em;
+    color: black;
     background-color: #f8f8f8;
     box-shadow: 0 0 20px -5px rgba(0,0,0,0.2);
 }
