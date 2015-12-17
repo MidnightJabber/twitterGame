@@ -57,6 +57,9 @@ switch((string)$query){
 	// Retrieve the number of complete Tweety games played
 	case "get_game_count":
 
+		// Get connection to the DB
+		$link = getConnection();
+
 		$totalGames = getTotalGamesPlayed();
 		echo $totalGames;
 		break;
@@ -65,6 +68,9 @@ switch((string)$query){
 
 	// Retreive the high scoring players of Tweety
 	case "get_top_players":
+
+		// Get connection to the DB
+		$link = getConnection();
 
 		$numOfPlayers = $_REQUEST['count'];
 
@@ -75,21 +81,73 @@ switch((string)$query){
 		}
 
 		echo getTopScorers($numOfPlayers);
+		break;
+
+	// Get Tweety Stats for the homepage
+	case "get_stats":
+
+		// Get connection to the DB
+		$link = getConnection();
+
+		echo getTweetyStats($link);
+
+		break;
+
 
 	default:
 		break;
 }
 
+
+
+
+/**
+* This method provides the STATS for the hompage of Tweety. The stats that are showcased
+* include:
+* 1) Total Games Played
+* 2) Highest Score
+* 3) Fastest Time i.e Quickest Game Played
+*
+* @param $connectionLink :: Connection to the DB 
+* 
+* @return stats : JSON containg information of the stats
+*/
+function getTweetyStats($connectionLink){
+
+	// Get connection to the DB
+	$link = $connectionLink;
+
+	// Aquire Total Games Played
+	$totalGames = getTotalGamesPlayed($link);
+
+	// Aquire Highest Score
+	$topScorer = json_decode(getTopScorers(1, $link), true);
+	$highestScore = $topScorer["1"]["score"];
+
+	// Aquire Fastest Time 
+	$fastScorer = json_decode(getFastestPlayers(1, $link), true);
+	$fastestTime = 120 - intval($fastScorer["1"]["timeRemaining"]);
+
+	$stats["0"] = $totalGames; 		// STAT #0 -> Total Games
+	$stats["1"] = $highestScore; 	// STAT #1 -> Highest Score
+	$stats["2"] = $fastestTime;  	// STAT #2 -> Fastest Time
+
+	return json_encode($stats);
+}
+
+
 /**
 * This method looking at how many game data was logged in terms of score, player name, num_correct
 * num_incorrect etc finds out how many total games were played.
 *
+* @param $connectionLink :: Connection to the DB 
+* 
 * @return noOfGamesPlayed : Number of Tweety Games Played
 */
-function getTotalGamesPlayed(){
+function getTotalGamesPlayed($connectionLink){
 
 	// Get connection to the DB
-	$link = getConnection();
+	$link = $connectionLink;
 
 	$query = "SELECT Count(*) FROM Scores;";
 	$res = mysqli_query($link,$query);
@@ -116,11 +174,12 @@ function getTotalGamesPlayed(){
 * @param num_incorrect :: Number of incorrect pairs selected
 * @param profile_pic :: Profile Picture link of the player
 * @param ip_address :: IP Address of the player
+* @param connectionLink :: Connection to the DB
 */
-function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address){
+function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address, $connectionLink){
 
 	// Get connection to the DB
-	$link = getConnection();
+	$link = $connectionLink;
 
 	// Generate global unique Game ID
 	$guid = getGUID();
@@ -152,17 +211,60 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 
 
 /**
+* This method provides information for the given number of fast game solving players for 'Tweety'.
+* The fast players are the All-Time fastest players.
+*
+* @param numOfResults :: The number of fast players needed.
+* @param connectionLink :: Connection to the DB
+*
+* @return topScorers :: JSON Object with ranks and other info of the fast players
+*/
+function getFastestPlayers($numOfResults, $connectionLink){
+
+	// Get connection to the DB
+	$link = $connectionLink;
+
+	$query = "SELECT * FROM Scores ORDER BY Time_Remaining DESC LIMIT " . (string)$numOfResults . ";";
+
+	$res = mysqli_query($link,$query);
+
+	// Associative Array to store the top players info
+	$topPlayers = array();
+
+	$rank = 1;
+
+	while($row = $res->fetch_array()){
+
+		// Add Players Details to the Associative Array
+		$topPlayers[$rank]['playerName']= $row['Player'];
+		$topPlayers[$rank]['playerID'] = $row['Player_ID'];
+		$topPlayers[$rank]['profilePic'] = $row['Profile_Pic'];
+		$topPlayers[$rank]['score'] = $row['Score'];
+		$topPlayers[$rank]['numCorrect'] = $row['Num_Correct'];
+		$topPlayers[$rank]['numIncorrect'] = $row['Num_Incorrect'];
+		$topPlayers[$rank]['timeRemaining'] = $row['Time_Remaining'];
+
+		// Increase the rank
+		$rank = $rank + 1;
+	}
+
+	return json_encode($topPlayers);
+}
+
+
+/**
 * This method provides information for the given number of top scorers for 'Tweety' to display in the High-Scores.
 * The top scorers are the All-Time top scorers.
 *
 * @param numOfResults :: The number of top scorers needed.
+* @param connectionLink :: Connection to the DB
 *
 * @return topScorers :: JSON Object with ranks and other info of the top scorers
 */
-function getTopScorers($numOfResults){
+function getTopScorers($numOfResults, $connectionLink){
 
 	// Get connection to the DB
-	$link = getConnection();
+	$link = $connectionLink;
 
 	$query = "SELECT * FROM Scores ORDER BY Score DESC LIMIT " . (string)$numOfResults . ";";
 
