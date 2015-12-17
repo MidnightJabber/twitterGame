@@ -47,7 +47,8 @@ body {
 }
 
 .flipCard ul {
-    width: 40%;
+    font-size: 1.5em;
+    width: 45%;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
@@ -85,8 +86,9 @@ body {
     margin: 0 1%;
     padding: 2em;
     width: 28%;
-    border: solid 1px #717171;
     border-radius: 0.5em;
+    background-color: #EFEFEF;
+    color: black;
 }
 
 .statsColumn.column-1 {
