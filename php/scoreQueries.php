@@ -21,6 +21,9 @@ switch((string)$query){
 	// Record the score an dother game details for a single tweety game in the DB
 	case "record_score":
 
+		// Get connection to the DB
+		$link = getConnection();
+
 		$player_name = $_REQUEST['name'];
 		$time_remaining = $_REQUEST['timeRemaining'];
 		$score = $_REQUEST['score'];
@@ -51,7 +54,7 @@ switch((string)$query){
 			break;
 		}
 
-		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address);
+		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address, $link);
 		break;
 
 	// Retrieve the number of complete Tweety games played
@@ -80,7 +83,7 @@ switch((string)$query){
 			$numOfPlayers = 10;
 		}
 
-		echo getTopScorers($numOfPlayers);
+		echo getTopScorers($numOfPlayers, $link);
 		break;
 
 	// Get Tweety Stats for the homepage
