@@ -401,7 +401,6 @@ span.value {
 
 .leaderboardTable tr:hover {
     background-color: #F3F3F3;
-    border-bottom: solid 1px #f0f0f0;
 }
 
 .leaderboardTable td {
