@@ -22,6 +22,18 @@ $(document).ready(function() {
 
     $(".flipCard").flip();
 
+    var statsResponse;
+    /**
+     * AJAX Call to get stats from database
+     */
+    $.ajax({
+        url: "php/scoreQueries.php?query=get_stats",
+        type: "GET",
+        async: false,
+        success: function (response) {
+            statsResponse = JSON.parse(response);
+        }
+    });
 
     /**
      * Function that animates the first and last columns of the statistics section to move inwards.
@@ -33,7 +45,7 @@ $(document).ready(function() {
         /* These are test values.
          * Will add ajax call to acuire actual statistics
         */
-        var values = [1000, 6000, 115];
+        var values = $.map(statsResponse, function(element) { return element; });
         var statTime = 1500;
         if (rollingAnimationFlag) {
             rollingNumbers(values, statTime);
