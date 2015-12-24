@@ -178,6 +178,14 @@ $(document).ready(function() {
     var globalURL = 'php/scoreQueries.php?query=record_score';
     var tempURL = '';
 
+    var consecutive = {
+        flag: false,
+        num: -1,
+        timeStamp: 0
+    };
+
+    // console.log(consecutive);
+
     $('.linkOne').on('click', function(data) {
         // console.log("link: ");
         // console.log(data);
@@ -320,6 +328,10 @@ $(document).ready(function() {
         //Selected Correct
         if(correctOrder[selectedUser]['tweetInfo']['tweetID'] == incorrectOrder[selectedTweet]['tweetInfo']['tweetID']) {
             // console.log('selected correct');
+            var correctSelectionTime = $('.timer').TimeCircles().getTime();
+
+            var correctEvent = $.Event('correct-selection');
+            correctEvent.time = correctSelectionTime;
             $('table').trigger('correct-selection');        //Triggering correct selection event
 
             selectedUserCard.toggleClass('correctSelection');
@@ -355,6 +367,11 @@ $(document).ready(function() {
         $('.incorrectSound').trigger('play');
         incorrectMatches = incorrectMatches + 1;
         removeIncorrectSelectionProperties(500, selectedUserCard, selectedTweetCard);
+
+        consecutive.flag = false;
+        consecutive.num = -1;
+        consecutive.timeStamp = 0;
+        // console.log(consecutive);
     });
 
     /**
@@ -362,6 +379,15 @@ $(document).ready(function() {
      */
     $('body').on('correct-selection', 'table', function(event) {
         correctMatches = correctMatches + 1;
+
+        consecutive.flag = true;
+        consecutive.num = consecutive.num + 1;
+        consecutive.timeStamp = $('.timer').TimeCircles().getTime();
+        // console.log(consecutive);
+
+        $('.correctSound').trigger('play');
+        addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
+
         if (correctMatches === 10) {
             var endEvent = $.Event('endGame');
             endEvent._all = true;
@@ -369,13 +395,11 @@ $(document).ready(function() {
             // console.log(endEvent);
             $('body').trigger(endEvent);
         }
-        $('.correctSound').trigger('play');
-        addCorrectSelectionProperties(0, selectedUserCard, selectedTweetCard);
 
         var remainingTime = $('.timer').TimeCircles().getTime();
         // console.log('Got time: ' + remainingTime);
 
-        $('.score').text(calculateScore(remainingTime));
+        $('.score').text(calculateScore(remainingTime, consecutive));
     });
 
     function addCorrectSelectionProperties(time, userCardSelected, tweetCardSelected) {
@@ -409,8 +433,9 @@ $(document).ready(function() {
         }, time);
     }
 
-    function calculateScore(time) {
-        var tempScore = 50 + Math.floor((Math.pow(1.05, time) * (correctMatches)));
+    function calculateScore(time, consecutiveObject) {
+        console.log("consecutive bonus: " + (50 * consecutiveObject.num));
+        var tempScore = 50 + (Math.floor((Math.pow(1.05, time) * (correctMatches)))) + (50 * consecutiveObject.num);
         var temp = score;
         score = score + tempScore;
         temp = score - temp;
@@ -427,6 +452,7 @@ $(document).ready(function() {
             cheated = true;
         }
         // console.log(event);
+        // Adding score for time left at the end of game
         finalTimeLeft = Math.floor(event.timeLeft);
         score = score + Math.floor((event.timeLeft)*20);
         $('table').remove();
