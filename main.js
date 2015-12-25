@@ -536,7 +536,7 @@ $(document).ready(function() {
         html = html + '    <thead>\n';
         html = html + '        <tr>\n';
         html = html + '            <th>\n' + 'Rank' + '</th>\n';
-        html = html + '            <th>\n' + 'Image' + '</th>\n';
+        html = html + '            <th>\n' + 'Player' + '</th>\n';
         html = html + '            <th>\n' + 'Name' + '</th>\n';
         html = html + '            <th>\n' + 'Score' + '</th>\n';
         html = html + '        </tr>\n';
@@ -545,8 +545,21 @@ $(document).ready(function() {
         html = html + '    <tbody>\n';
         $.each(data, function(key, element) {
 
-            html = html + '        <tr>\n';
+            var playerInLeaderboard = (element['score'] == score);
+
+            html = html + '        <tr';
+
+            if (playerInLeaderboard) {
+                html = html + ' class="highlightPlayerRow"';
+            }
+
+            html = html + '>\n';
             html = html + '            <td>\n';
+
+            if (playerInLeaderboard) {
+                html = html + '                <span class="fa fa-trophy"></span>\n';
+            }
+
             html = html + '                <p class="rank">' + key + '</p>\n';
             html = html + '            </td>\n';
 

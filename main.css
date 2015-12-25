@@ -406,7 +406,7 @@ span.value {
     text-align: center;
 }
 
-.leaderboardTable tr:hover {
+.leaderboardTable tr:hover:not(.highlightPlayerRow) {
     background-color: #F3F3F3;
 }
 
@@ -415,6 +415,7 @@ span.value {
 }
 
 .rank {
+    display: inline;
     font-size: 1.5em;
     font-weight: 900;
 }
@@ -422,4 +423,17 @@ span.value {
 .playerImage {
     width: 50px;
     border-radius: 50%;
+}
+
+.highlightPlayerRow {
+    background-color: #9391E0;
+}
+
+.fa-trophy {
+    position: relative;
+    margin-left: -1.3em;
+    padding-right: 0.2em;
+    font-size: 2em;
+    opacity: 0.5;
+    color: yellow;
 }
