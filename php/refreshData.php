@@ -11,6 +11,18 @@
 /// Author: Vishrut Reddi
 /// MidnightJabber (c) 2015 - 2016 
 
+///
+/// LOGIC FOR THE CRON JOB:
+///-------------------------
+/// 1) Run the script
+/// 2) Check the date in the FLAGS Table in the Database
+/// 3) If the Date in the DATABSE is today's date then abort the script. There is no need to refresh 
+///    Twitter Users as Date is always changed to today's date when all the twitter Users for today have been 
+///	   been refreshed.
+/// 4) If the dates dont match then grab 150 or less than 150 Twitter Users that have not been refreshed today.
+/// 5) If no Unrefreshed Twitter Users are retreived from the database then change the LastRefreshFlag in the database to be 
+///	   today's date so that no more refreshing for today takes place.
+///
 
 // Got it from: https://github.com/themattharris/tmhOAuth
 require 'tmhOAuth.php'; 
@@ -30,8 +42,142 @@ logInfo('tweetylogs.txt', 'New Session Starting.');
 logInfo('info.txt', 'New Session Starting.');
 logInfo('tweetylogs.html', '<b>New Session Starting</b>');
 
-insertTweetInDB();
+
+// Compare Database date with today's date
+checkDateToRefresh();
+
+// insertTweetInDB();
 //getTweet('@katyperry', 200);
+
+/**
+* This method checks and compares the date of last refresh from the database with today's date.
+* If the database mentions today's date then that means that every twitter user has been updated.
+* So the script is aborted otherwise remainign twitter users are updated.
+*/
+function checkDateToRefresh(){
+
+	// Get todays date
+	$date = new DateTime(null, new DateTimeZone('America/Chicago')); //Central
+	$todayDate = $date->format('d-m-Y');    // MySQL datetime format
+
+	$query = "SELECT * FROM Flags;";
+
+  	// Execute the query
+	$res = mysqli_query(getConnection(),$query);
+
+	$databaseDate = null;
+
+	// If one row from the table is collected from the database
+	if(mysqli_num_rows($res) >=1) {
+
+	    while($row = $res->fetch_array()) {
+	        
+	        // Date specified in the database
+	        $databaseDate = date_create($row["LastRefreshDate"])->format('d-m-Y');
+	    }
+	}
+
+	if($todayDate == $databaseDate){
+
+		// Log Info
+		logInfo('tweetylogs.txt', "NO REFRESH UPDATE NEEDED. All the Twitter User for Today have been updated. PHP script has been aborted. DATABASE DATE: " . $databaseDate . " TODAY'S DATE: " . $todayDate . "");
+		logInfo('info.txt', "NO REFRESH UPDATE NEEDED. All the Twitter User for Today have been updated. PHP script has been aborted. DATABASE DATE: " . $databaseDate . " TODAY'S DATE: " . $todayDate . "");
+		logInfo('tweetylogs.html', "<b>NO REFRESH UPDATE NEEDED</b>. All the Twitter User for Today have been updated. PHP script has been aborted. <br> DATABASE DATE: " . $databaseDate . " <br> TODAY'S DATE: " . $todayDate . "");
+
+		// Abort the script
+		exit();
+	}
+
+	else{
+
+		// Log Info
+		logInfo('tweetylogs.txt', "Every Twitter User has not been updated for today. INITIATING NEW REFRESH JOB FOR TWITTER USERS NOT REFRESHED TODAY. DATABASE DATE: " . $databaseDate . " TODAY'S DATE: " . $todayDate . "");
+		logInfo('info.txt', "Every Twitter User has not been updated for today. INITIATING NEW REFRESH JOB FOR TWITTER USERS NOT REFRESHED TODAY. DATABASE DATE: " . $databaseDate . " TODAY'S DATE: " . $todayDate . "");
+		logInfo('tweetylogs.html', "Every Twitter User has not been updated for today. <b>INITIATING NEW REFRESH JOB FOR TWITTER USERS NOT REFRESHED TODAY</b>. <br> DATABASE DATE: " . $databaseDate . " <br> TODAY'S DATE: " . $todayDate . "");
+			
+		insertTweetInDB();
+	}
+}
+
+
+/**
+* This method grabs Unrefreshed Twitter User handles from the Tweety Database. It only retreives the number of 
+* Twitter Users mentioned.
+*
+* IMPORTANT NOTE: The count cannot be more than 180 as Twitter API for user_timeline as that is th elimit for that API. 180 calls per 15mins.
+*
+* @param count :: The number of Unrefreshed twitter users needed
+*
+* @return JSON OBJ {"result": [ __Array_of_handles__]} (Of only the unrefreshed twitter users)
+*/
+function getUnrefreshedTwitterUsers($count){
+
+	$query = "SELECT TwitterHandle FROM TwitterUsers WHERE Refresh = 0 LIMIT" . $count .";";
+
+  	// Execute the query
+	$res = mysqli_query(getConnection(),$query);
+	$result = array();
+
+	if(mysqli_num_rows($res) >=1) {
+
+	    while($row = $res->fetch_array()) {
+	        
+	        array_push($result,$row['TwitterHandle']);
+	    }
+	}
+
+	// Get Info about logging data
+	$rowsFromDB = mysqli_num_rows($res);
+
+	// If no Unrefreshed Twitter Users are retreived
+	if(count($result) == 0){
+
+		// Change the flag of LastRefreshDate to today's date
+		$query = "UPDATE Flags SET LastRefreshDate = now()";
+
+		// Execute the query
+		$res = mysqli_query(getConnection(),$query);
+
+		logSuccess('tweetylogs.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users have been refreshed so DATABASE FLAG DATE HAS BEEN CHANGED TO TODAY');
+		logSuccess('success.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users have been refreshed so DATABASE FLAG DATE HAS BEEN CHANGED TO TODAY');
+		logSuccess('tweetylogs.html', 'Grabbed <b>' . $rowsFromDB . '</b> Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users have been refreshed so <b>DATABASE FLAG DATE HAS BEEN CHANGED TO TODAY</b>');
+
+
+		// Make Refresh 0 for every Twitter User
+		$query = "UPDATE TwitterUsers SET Refresh = 0";
+
+		// Execute the query
+		$res = mysqli_query(getConnection(),$query);
+		
+
+		// Abort the Script 
+		exit();
+	}
+	
+	$usersGrabbed = "";
+
+	foreach($result as $user){
+		$usersGrabbed = $usersGrabbed . " | " .  $user . " | ";
+	}
+
+	// Logging Data
+	if($rowsFromDB == count($result)){
+
+		logSuccess('tweetylogs.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logSuccess('success.txt', 'Grabbed ' . $rowsFromDB . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logSuccess('tweetylogs.html', 'Grabbed <b>' . $rowsFromDB . '</b> Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were grabbed. Users that were grabbed are the following: <br>' . $usersGrabbed);
+
+	}
+	else{
+
+		logWarning('tweetylogs.txt', 'Grabbed ' . count($result) . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logWarning('warning.txt', 'Grabbed ' . count($result) . ' Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: ' . $usersGrabbed);
+		logWarning('tweetylogs.html', 'Grabbed <b>' . count($result) . '</b> Twitter Users for the new Session of refreshing Tweet Data. All Twitter Users were not Grabbed. Users that were grabbed are the following: <br>' . $usersGrabbed);
+	}
+
+	return array("result" => $result);
+
+}
 
 
 /**
@@ -66,7 +212,7 @@ function getAllTwitterUsers(){
 	$usersGrabbed = "";
 
 	foreach($result as $user){
-		$usersGrabbed = $user . " | ";
+		$usersGrabbed = $usersGrabbed . " | " .  $user . " | ";
 	}
 
 	// Logging Data
@@ -105,10 +251,10 @@ function getTweet($screenName, $count){
 	$parameters['count'] = $count;
 
 	$connection = new tmhOAuth(array(	
-  	'consumer_key' => 'C8U6aOYWFkfuPxOiFBxoF87jF',
-	'consumer_secret' => 'cODzOUcJSqd3ATG15J25GXZlz7AyhK6gHbRCmsCiMIn0rfMKIu',
-	'user_token' => '2261472366-CPKf4pZ9fosiZ2zCQfXi7tiexIzbiNfzJ8lEcoC', //access token
-	'user_secret' => 'gH6qWAAOCrmS38sf5ipaXIxHZHLHNGtYOmCZcJrFli0M9' //access token secret
+  	'consumer_key' => 'consumer-key-goes-here',
+	'consumer_secret' => 'consumer-secret-goes-here',
+	'user_token' => 'user-token-goes-here', //access token
+	'user_secret' => 'user-secret-goes-here' //access token secret
 	));
 
 	$twitterPath = '1.1/statuses/user_timeline.json';
@@ -174,11 +320,18 @@ function clearTweetsTable(){
 function insertTweetInDB(){
 
 	//$users = array("result" => ["@katyperry"]);
-	$users = getAllTwitterUsers();
+	// $users = getAllTwitterUsers();
+	$users = getUnrefreshedTwitterUsers(150);
 
 	$twitterApiCallCount = 0;
 	foreach ($users['result'] as $user) {
 		
+		// Cannont exceed 180 Twitter user updates in one CRON Job
+		if($twitterApiCallCount > 179){
+
+			break;
+		}
+
 		if($twitterApiCallCount % 180 == 0 && $twitterApiCallCount != 0){
 
 			// Sleep for 15mins and 30 seconds
@@ -191,6 +344,10 @@ function insertTweetInDB(){
 		$twitterApiCallCount += 1;
 		$count = 1;
 
+		// Make the refresh for the Twitter User to be True
+		$query = "UPDATE TwitterUsers SET Refresh = True WHERE TwitterHandle = '" . $user . "';";
+		$res = mysqli_query(getConnection(),$query);
+
 		mysqli_query(getConnection(), "START TRANSACTION;");
 
 		foreach($twitterResp as $response){
@@ -198,15 +355,16 @@ function insertTweetInDB(){
 			$response["source"] = str_replace('"', '\"', $response["source"]);
 			$response["text"] = str_replace('"', '\"', $response["text"]);
 			$object = json_encode($response);
+
 			// Escaping all the ' character from the Tweet Data
 			$object = str_replace("'","\'", $object);
 
-			$query = "REPLACE INTO Tweets(Number, TwitterHandle, TwitterResp) VALUES('".(string)$count."', '".$user."', '".$object."');";
+			$query = "REPLACE INTO Tweets(Number, TwitterHandle, TwitterResp) VALUES('". (string)$count ."', '". $user ."', '". $object ."');";
 
 			$count += 1;
 
 			$res = mysqli_query(getConnection(),$query);
-			
+				
 			if(false === $res) {
 
 				logWarning('tweetylogs.txt', "Insertion for Tweet #" . $count . " for Twitter User " . $user . " failed. Insertion error: " . mysqli_error($link));
