@@ -3,7 +3,120 @@
 /*global $, jQuery, alert*/
 
 $(document).ready(function() {
-    $('.startButton').delay(500).fadeIn(2000);
+
+    var loginResponse;
+    /* AJAX request to check if user is logged in or not */
+    $.ajax({
+        url: "php/social-media.php?query=get_homepage_response",
+        type: "GET",
+        async: false,
+        success: function (response) {
+            console.log(response);
+            loginResponse = JSON.parse(response);
+            console.log(loginResponse);
+        }
+    });
+
+    var loggedIn = loginResponse.loggedIn;
+    var fb_login_url = loginResponse.fb_login_url;
+    var twitter_login_url = loginResponse.twitter_login_url;
+    // add twitter_loginurl when twitter login is done
+
+    if (loggedIn) {
+        /* Creating Profile if Logged In */
+        var profileHTML = "";
+
+        profileHTML = profileHTML + '<div class="picture">\n';
+        profileHTML = profileHTML + '    <img src="' + loginResponse.profile_pic + '" alt="">\n';
+        profileHTML = profileHTML + '    <p><span class="name">' + loginResponse.fullname + '</span>\n<span class="fa fa-sign-out signOut" data-url="' + loginResponse.logout_url + '"></span></p>\n';
+        profileHTML = profileHTML + '    <p><span class="rank">#' + loginResponse.player_stats.rank + '</span><p>\n';
+        profileHTML = profileHTML + '</div>\n';
+
+        profileHTML = profileHTML + '<div class="infoCard">\n';
+        profileHTML = profileHTML + '    <table class="quadrants">\n';
+        profileHTML = profileHTML + '        <tbody>\n';
+        profileHTML = profileHTML + '            <tr>\n';
+        profileHTML = profileHTML + '                <td>\n';
+        profileHTML = profileHTML + '                    <p class="quadrant customPadding firstQuadrant total_correct">\n';
+        profileHTML = profileHTML + '                        <span class="infoLabel">Total Correct</span>\n';
+        profileHTML = profileHTML + '                    </p>\n';
+        profileHTML = profileHTML + '                </td>\n';
+        profileHTML = profileHTML + '                <td>\n';
+        profileHTML = profileHTML + '                    <p class="quadrant customPadding secondQuadrant total_incorrect">\n';
+        profileHTML = profileHTML + '                        <span class="infoLabel">Total Incorrect</span>\n';
+        profileHTML = profileHTML + '                    </p>\n';
+        profileHTML = profileHTML + '                </td>\n';
+        profileHTML = profileHTML + '            </tr>\n';
+        profileHTML = profileHTML + '            <tr>\n';
+        profileHTML = profileHTML + '                <td>\n';
+        profileHTML = profileHTML + '                    <p class="quadrant customPadding thirdQuadrant numGames">\n';
+        profileHTML = profileHTML + '                        <span class="infoLabel"># Games</span>\n';
+        profileHTML = profileHTML + '                    </p>\n';
+        profileHTML = profileHTML + '                </td>\n';
+        profileHTML = profileHTML + '                <td>\n';
+        profileHTML = profileHTML + '                    <p class="quadrant customPadding fourthQuadrant bestScore">\n';
+        profileHTML = profileHTML + '                        <span class="infoLabel">Best Score</span>\n';
+        profileHTML = profileHTML + '                    </p>\n';
+        profileHTML = profileHTML + '                </td>\n';
+        profileHTML = profileHTML + '            </tr>\n';
+        profileHTML = profileHTML + '        </tbody>\n';
+        profileHTML = profileHTML + '    </table>\n';
+
+        profileHTML = profileHTML + '    <div class="lastGameCard">\n';
+        profileHTML = profileHTML + '        <u><h3>Last Game</h3></u>\n';
+        profileHTML = profileHTML + '        <table class="lastGame">\n';
+        profileHTML = profileHTML + '            <thead>\n';
+        profileHTML = profileHTML + '                <tr>\n';
+        profileHTML = profileHTML + '                    <th>Score</th>\n';
+        profileHTML = profileHTML + '                    <th>Correct</th>\n';
+        profileHTML = profileHTML + '                    <th>Incorrect</th>\n';
+        profileHTML = profileHTML + '                </tr>\n';
+        profileHTML = profileHTML + '            </thead>\n';
+        profileHTML = profileHTML + '            <tbody>\n';
+        profileHTML = profileHTML + '                <tr>\n';
+        profileHTML = profileHTML + '                    <td class="lastScore">' + loginResponse.player_stats.last_game.score + '</td>\n';
+        profileHTML = profileHTML + '                    <td class="lastCorrect">' + loginResponse.player_stats.last_game.num_correct + '</td>\n';
+        profileHTML = profileHTML + '                    <td class="lastIncorrect">' + loginResponse.player_stats.last_game.num_incorrect + '</td>\n';
+        profileHTML = profileHTML + '                </tr>\n';
+        profileHTML = profileHTML + '            </tbody>\n';
+        profileHTML = profileHTML + '        </table>\n';
+        profileHTML = profileHTML + '    </div>\n';
+        profileHTML = profileHTML + '</div>\n';
+
+        $('.loginProfile').addClass('profile');
+        $('.profile').removeClass('loginProfile');
+        $('.profile').append(profileHTML);
+    } else {
+        var loginIcon = '<span class="initialButton loginButton fa fa fa-user"></span>';
+        $('.initialButtons').prepend(loginIcon);
+
+        var loginHtml = "";
+        loginHtml = loginHtml + '<div class="loginOptions">\n';
+        loginHtml = loginHtml + '    <span class="option facebook fa fa-facebook" data-url="' + fb_login_url + '"></span>\n';
+        loginHtml = loginHtml + '    <span class="option twitter fa fa-twitter" data-url="' + twitter_login_url + '"></span>\n';
+        loginHtml = loginHtml + '</div>\n';
+        console.log(loginHtml);
+
+        $('.loginProfile').append(loginHtml.toString());
+    }
+
+    /* Clicking on any option(Facebook or Twitter) to login */
+    $('.loginOptions .option').on('click', function(event) {
+        window.location = $(this).data('url');
+    });
+
+    /* Clicking on the logout button */
+    $('.signOut').on('click', function(event) {
+        window.location = $(this).data('url');
+    });
+
+    /* On clicking the user icon the page scrolls to the login/last section. */
+    $('.initialButton.loginButton').on('click', function(event) {
+        $.fn.fullpage.moveTo(($('#pageScroll .section').index($('.profileSection')) + 1));
+    });
+
+
+    $('.initialButtons').delay(500).fadeIn(2000);
     $('.downArrow').delay(1500).fadeIn(1000);
 
     $('#pageScroll').fullpage({
@@ -13,28 +126,29 @@ $(document).ready(function() {
         onLeave: function(index, nextIndex, direction){
             var leavingSection = $(this);
 
+            console.log('\n\nindex: ' + index);
+            console.log('nextIndex: ' + nextIndex);
+            console.log('direction: ' + direction);
+
+
             // After leaving Section 1
             if(index == 1 && direction =='down'){
                 animateStatistics();
+            }
+
+            var indexOfProfileSection = $('.section').index($('.profileSection')) + 1;
+            if (((nextIndex == indexOfProfileSection) && (direction == 'down' || direction == 'up') && loggedIn)) {
+                animateProfile();
             }
         }
     });
 
     $(".flipCard").flip();
 
-    var statsResponse;
-    /**
-     * AJAX Call to get stats from database
-     */
-    $.ajax({
-        url: "php/scoreQueries.php?query=get_stats",
-        type: "GET",
-        async: false,
-        success: function (response) {
-            statsResponse = JSON.parse(response);
-        }
-    });
+    /* Global Game Stats are being accessed here. Earlier there was an AJAX request to scoreQueries.php. */
+    var statsResponse = loginResponse.homepage_stats;
 
+    var rollingAnimationFlag = true;
     /**
      * Function that animates the first and last columns of the statistics section to move inwards.
      */
@@ -42,25 +156,47 @@ $(document).ready(function() {
         $('.statsColumn.column-1').animate({left: 0}, 700);
         $('.statsColumn.column-3').animate({right: 0}, 700);
 
-        /* These are test values.
-         * Will add ajax call to acuire actual statistics
-        */
         var values = $.map(statsResponse, function(element) { return element; });
         var statTime = 1500;
         if (rollingAnimationFlag) {
-            rollingNumbers(values, statTime);
+            rollingNumbers(values, statTime, '.value');
             rollingAnimationFlag = false;
         };
     }
 
-    var rollingAnimationFlag = true;
+    var profileRollingFlag = true;
+    /**
+     * Function that animates the profile Section.
+     */
+    function animateProfile() {
+        $('.profile .picture>*').eq(0).animate({left: 0}, 500);
+        $('.profile .picture>*').eq(1).animate({left: 0}, 600);
+        $('.profile .picture>*').eq(2).animate({left: 0}, 700);
+
+        var obj = loginResponse.player_stats;
+        var values = [obj.total_correct, obj.total_incorrect, obj.games_played, obj.best_score];
+        var profileStatTime = 1500;
+        if (profileRollingFlag) {
+            setTimeout((function(){
+                $('.infoLabel').empty()
+                    .addClass('infoValue')
+                    .removeClass('infoLabel');
+                $('.customPadding').removeClass('customPadding');
+
+                rollingNumbers(values, profileStatTime, '.infoValue');
+            }), 3000);
+            profileRollingFlag = false;
+        }
+    }
+
     /**
      * Function the creates the rolling numbers Animation.
      * @param  {[Integer Array]} valueArray [Array that contains the stats for the 3 columns]
      * @param  {[Integer (milliseconds)]} time       [Animation duration]
+     * @param  {[String]} selector       [The selector of the elements that the number are going into]
      */
-    function rollingNumbers(valueArray, time) {
-        $('.value').each(function (index) {
+    function rollingNumbers(valueArray, time, selector) {
+        $(selector).each(function (index) {
             $(this).prop('Counter',0).animate({
                 Counter: valueArray[index]
             }, {
@@ -464,6 +600,11 @@ $(document).ready(function() {
         addScoreToURL();
         addCorrectMatchesToURL();
         addIncorrectMatchesToURL();
+        addPlayerIDToUrl();
+        addSocialMediaToUrl();
+        addGenderToUrl();
+        addProfileLinkToUrl();
+        addLocationToUrl();
         addIPToURL();
         addImageToURL();
         addEndInformation();
@@ -564,11 +705,11 @@ $(document).ready(function() {
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
-            html = html + '                <img class="playerImage" src="http://' + element['profilePic'] + '">\n';
+            html = html + '                <img class="playerImage hasLink" src="http://' + element['profilePic'] + '" data-link="' + loginResponse['link'] + '">\n';
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
-            html = html + '                <p class="playerName">' + element['playerName'] + '</p>\n';
+            html = html + '                <p class="playerName hasLink"' + ' data-link="' + loginResponse['link'] + '">' + element['playerName'] + '</p>\n';
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
@@ -581,6 +722,12 @@ $(document).ready(function() {
         html = html + '</table>\n';
         $('.leaderboard').append(html);
     }
+
+    /* Link listners for leaderboard (to redirect to players profile) */
+    $('body').on('click', '.leaderboardTable .hasLink', function(event) {
+        console.log($(this));
+        window.open($(this).data('link'), '_blank');
+    });
 
     var createAnswerTable = 0;
     $('body').on('click', '.answersButton', function(event) {
@@ -690,7 +837,11 @@ $(document).ready(function() {
 
     var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
     function addNameToURL () {
-        globalURL = globalURL + "&name='" + 'anonymous' + "'";
+        var submit_name = 'anonymous';
+        if (loggedIn) {
+            submit_name = loginResponse.fullname;
+        }
+        globalURL = globalURL + "&name='" + submit_name + "'";
         tempURL = globalURL;
     }
 
@@ -714,8 +865,57 @@ $(document).ready(function() {
         tempURL = globalURL;
     }
 
+    function addPlayerIDToUrl () {
+        if (loggedIn) {
+            var submit_id = loginResponse.player_id;
+            globalURL = globalURL + "&player_id=" + submit_id;
+            tempURL = globalURL;
+        }
+    }
+
+    function addSocialMediaToUrl () {
+        if (loggedIn) {
+            var submit_social = loginResponse.social_media;
+            globalURL = globalURL + "&social_media='" + submit_social + "'";
+            tempURL = globalURL;
+        }
+    }
+
+    function addGenderToUrl () {
+        if (loggedIn) {
+            var submit_gender = loginResponse.gender;
+            globalURL = globalURL + "&gender='" + submit_gender + "'";
+            tempURL = globalURL;
+        }
+    }
+
+    function addProfileLinkToUrl () {
+        if (loggedIn) {
+            var submit_profileLink = loginResponse['link'];
+            submit_profileLink = submit_profileLink.replace(/(https?:\/\/)/i, '');
+            console.log(submit_profileLink);
+            globalURL = globalURL + "&profile_link='" + submit_profileLink + "'";
+            tempURL = globalURL;
+        }
+    }
+
+    function addLocationToUrl () {
+        if (loggedIn) {
+            var submit_location = loginResponse['location'];
+            console.log(submit_location);
+            globalURL = globalURL + "&location='" + submit_location + "'";
+            tempURL = globalURL;
+        }
+    }
+
     function addImageToURL () {
-        globalURL = globalURL + "&profile_pic='" + defaultProfileLinks[Math.floor(Math.random()*5)] + "'";
+        var submit_pic = defaultProfileLinks[Math.floor(Math.random()*5)];
+        if (loggedIn) {
+            submit_pic = loginResponse.profile_pic;
+            submit_pic = submit_pic.replace(/(https?:\/\/)/i, '');
+            console.log(submit_pic);
+        }
+        globalURL = globalURL + "&profile_pic='" + submit_pic + "'";
         tempURL = globalURL;
     }
 
