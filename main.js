@@ -677,7 +677,7 @@ $(document).ready(function() {
     function createLeaderboard(leaderboardSize) {
         var data;
         $.ajax({
-            url: ("http://tweety.midnightjabber.com/php/scoreQueries.php?query=get_top_players&count=" + leaderboardSize),
+            url: ("http://tweety.midnightjabber.com/php/scoreQueries.php?query=get_top_players"),
             type: "GET",
             async: false,
             success: function (response) {
