@@ -13,30 +13,39 @@ include('connection.php');
 // To Log Data
 include('logger.php');
 
+
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+
+
 // Get the query/function that needs to be performed
 $query = $_REQUEST['query'];
 
+
 switch((string)$query){
 
-	// Record the score an dother game details for a single tweety game in the DB
+	// Record the score and other game details for a single tweety game in the DB
 	case "record_score":
+
 
 		// Get connection to the DB
 		$link = getConnection();
+		
 
-		$player_name = $_REQUEST['name'];
-		$time_remaining = $_REQUEST['timeRemaining'];
-		$score = $_REQUEST['score'];
-		$num_correct = $_REQUEST['correct'];
-		$num_incorrect = $_REQUEST['incorrect'];
-		$profile_pic = $_REQUEST['profile_pic'];
-		$ip_address = $_REQUEST['ipAddress'];
+		$player_name = $_POST['name'];
+		$time_remaining = $_POST['timeRemaining'];
+		$score = $_POST['score'];
+		$num_correct = $_POST['correct'];
+		$num_incorrect = $_POST['incorrect'];
+		$profile_pic = $_POST['profile_pic'];
+		$ip_address = $_POST['ipAddress'];
 
-		$player_id = $_REQUEST['player_id'];
-		$social_media = $_REQUEST['social_media'];
-		$gender = $_REQUEST['gender'];
-		$profile_link = $_REQUEST['profile_link'];
-		$location = $_REQUEST['location'];
+		$player_id = $_POST['player_id'];
+		$social_media = $_POST['social_media'];
+		$gender = $_POST['gender'];
+		$profile_link = $_POST['profile_link'];
+		$location = $_POST['location'];
+		
 
 		// Checking if the parameters received from AJAX call have been set or not
 		if(isset($player_name) == false){
@@ -86,6 +95,9 @@ switch((string)$query){
 		}
 
 		storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num_incorrect, $profile_pic, $ip_address, $gender, $player_id, $social_media, $profile_link, $location, $link);
+		
+		
+		echo json_encode("Success");
 		break;
 
 	// Retrieve the number of complete Tweety games played
@@ -327,7 +339,7 @@ function storeGameInfo($player_name, $time_remaining, $score, $num_correct, $num
 	$guid = getGUID();
 
 	// Insert Game Data for the Player
-	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address, Player_ID, Gender, Profile_Link, Location, Social_Media) VALUES('".(string)$guid."',".$player_name.", ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", ".$profile_pic.", ".$ip_address.", ".$player_id.", ".$gender.", ".$profile_link.", ".$location.", ".$social_media.");";
+	$query = "INSERT INTO Scores(Game_ID, Player, Score, Time_Remaining, Num_Correct, Num_Incorrect, Profile_Pic, IP_Address, Player_ID, Gender, Profile_Link, Location, Social_Media) VALUES('".(string)$guid."','".$player_name."', ".$score.", ".$time_remaining.", ".$num_correct.", ".$num_incorrect.", '".$profile_pic."', '".$ip_address."', '".$player_id."', '".$gender."', '".$profile_link."', '".$location."', '".$social_media."');";
 
 	$res = mysqli_query($link,$query);
 
