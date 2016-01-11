@@ -623,7 +623,7 @@ $(document).ready(function() {
             dataType: 'json',
             async: false,
             beforeSend: function (controller, options) {
-                if ((JSON.stringify(options.data) != JSON.stringify(tempSubmissionData)) || score > 18000 || cheated) {
+                if ((options.data != $.param(tempSubmissionData)) || score > 18000 || cheated) {
                     controller.abort();
                 }
             },
