@@ -311,7 +311,7 @@ $(document).ready(function() {
     var incorrectMatches = 0;
     var score = 0;
     var finalTimeLeft = 0;
-    var globalURL = 'php/scoreQueries.php?query=record_score';
+    var globalURL = 'http://tweety.midnightjabber.com/php/scoreQueries.php?query=record_score';
     var tempURL = '';
 
     var consecutive = {
@@ -595,35 +595,48 @@ $(document).ready(function() {
         $('.timer').TimeCircles().destroy();
         $('.timer').remove();
         $('.score').remove();
-        addNameToURL();
-        addTimeToURL();
-        addScoreToURL();
-        addCorrectMatchesToURL();
-        addIncorrectMatchesToURL();
-        addPlayerIDToUrl();
-        addSocialMediaToUrl();
-        addGenderToUrl();
-        addProfileLinkToUrl();
-        addLocationToUrl();
-        addIPToURL();
-        addImageToURL();
+        addNameToSubmissionObject();
+        addTimeToSubmissionObject();
+        addScoreToSubmissionObject();
+        addCorrectMatchesToSubmissionObject();
+        addIncorrectMatchesToSubmissionObject();
+        addPlayerIDToSubmissionObject();
+        addSocialMediaToSubmissionObject();
+        addGenderToSubmissionObject();
+        addProfileLinkToSubmissionObject();
+        addLocationToSubmissionObject();
+        addIPToSubmissionObject();
+        addImageToSubmissionObject();
         addEndInformation();
     });
 
+
+    var globalSubmissionData = {};
+    var tempSubmissionData = {};
     function addEndInformation () {
         var tempHTML = '';
 
         $.ajax({
             url: globalURL,
             type: "POST",
+            data: globalSubmissionData,
+            dataType: 'json',
             async: false,
             beforeSend: function (controller, options) {
-                if ((options.url != tempURL) || score > 18000 || cheated) {
+                if ((JSON.stringify(options.data) != JSON.stringify(tempSubmissionData)) || score > 18000 || cheated) {
                     controller.abort();
                 }
             },
             success: function (response) {
-                // console.log("DATA POSTED TO DATABASE");
+                console.log(response);
+                console.log("Data posted to databse.");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("Error Occured");
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+
             }
         });
 
@@ -835,91 +848,93 @@ $(document).ready(function() {
         });
     }
 
+
     var defaultProfileLinks = ["www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-bad-werewolf.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-knives-ninja.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-foxy-fox.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png", "www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-nerd-pug.png"];
-    function addNameToURL () {
+    function addNameToSubmissionObject () {
         var submit_name = 'anonymous';
         if (loggedIn) {
             submit_name = loginResponse.fullname;
         }
-        globalURL = globalURL + "&name='" + submit_name + "'";
-        tempURL = globalURL;
+
+        globalSubmissionData['name'] = submit_name;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addTimeToURL () {
-        globalURL = globalURL + '&timeRemaining=' + finalTimeLeft;
-        tempURL = globalURL;
+    function addTimeToSubmissionObject () {
+        globalSubmissionData['timeRemaining'] = finalTimeLeft;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addScoreToURL () {
-        globalURL = globalURL + '&score=' + score;
-        tempURL = globalURL;
+    function addScoreToSubmissionObject () {
+        globalSubmissionData['score'] = score;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addCorrectMatchesToURL () {
-        globalURL = globalURL + '&correct=' + correctMatches;
-        tempURL = globalURL;
+    function addCorrectMatchesToSubmissionObject () {
+        globalSubmissionData['correct'] = correctMatches;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addIncorrectMatchesToURL () {
-        globalURL = globalURL + '&incorrect=' + incorrectMatches;
-        tempURL = globalURL;
+    function addIncorrectMatchesToSubmissionObject () {
+        globalSubmissionData['incorrect'] = incorrectMatches;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addPlayerIDToUrl () {
+    function addPlayerIDToSubmissionObject () {
         if (loggedIn) {
             var submit_id = loginResponse.player_id;
-            globalURL = globalURL + "&player_id=" + submit_id;
-            tempURL = globalURL;
+            globalSubmissionData['player_id'] = submit_id;
+            tempSubmissionData = globalSubmissionData;
         }
     }
 
-    function addSocialMediaToUrl () {
+    function addSocialMediaToSubmissionObject () {
         if (loggedIn) {
             var submit_social = loginResponse.social_media;
-            globalURL = globalURL + "&social_media='" + submit_social + "'";
-            tempURL = globalURL;
+            globalSubmissionData['social_media'] = submit_social;
+            tempSubmissionData = globalSubmissionData;
         }
     }
 
-    function addGenderToUrl () {
+    function addGenderToSubmissionObject () {
         if (loggedIn) {
             var submit_gender = loginResponse.gender;
-            globalURL = globalURL + "&gender='" + submit_gender + "'";
-            tempURL = globalURL;
+            globalSubmissionData['gender'] = submit_gender;
+            tempSubmissionData = globalSubmissionData;
         }
     }
 
-    function addProfileLinkToUrl () {
+    function addProfileLinkToSubmissionObject () {
         if (loggedIn) {
             var submit_profileLink = loginResponse['link'];
             submit_profileLink = submit_profileLink.replace(/(https?:\/\/)/i, '');
             console.log(submit_profileLink);
-            globalURL = globalURL + "&profile_link='" + submit_profileLink + "'";
-            tempURL = globalURL;
+            globalSubmissionData['profile_link'] = submit_profileLink;
+            tempSubmissionData = globalSubmissionData;
         }
     }
 
-    function addLocationToUrl () {
+    function addLocationToSubmissionObject () {
         if (loggedIn) {
             var submit_location = loginResponse['location'];
             console.log(submit_location);
-            globalURL = globalURL + "&location='" + submit_location + "'";
-            tempURL = globalURL;
+            globalSubmissionData['location'] = submit_location;
+            tempSubmissionData = globalSubmissionData;
         }
     }
 
-    function addImageToURL () {
+    function addImageToSubmissionObject () {
         var submit_pic = defaultProfileLinks[Math.floor(Math.random()*5)];
         if (loggedIn) {
             submit_pic = loginResponse.profile_pic;
             submit_pic = submit_pic.replace(/(https?:\/\/)/i, '');
             console.log(submit_pic);
         }
-        globalURL = globalURL + "&profile_pic='" + submit_pic + "'";
-        tempURL = globalURL;
+        globalSubmissionData['profile_pic'] = submit_pic;
+        tempSubmissionData = globalSubmissionData;
     }
 
-    function addIPToURL () {
+    function addIPToSubmissionObject () {
         var ip = '';
         $.ajax({
             url: "http://jsonip.com?callback=",
@@ -928,9 +943,9 @@ $(document).ready(function() {
             success: function (response) {
                 // console.log("DATA POSTED TO DATABASE");
                 ip = response.ip;
-                globalURL = globalURL + "&ipAddress='" + ip + "'";
-                tempURL = globalURL;
-                console.log(tempURL);
+                globalSubmissionData['ipAddress'] = ip;
+                tempSubmissionData = globalSubmissionData;
+                console.log(tempSubmissionData);
             }
         });
     }
