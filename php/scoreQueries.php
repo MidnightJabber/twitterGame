@@ -118,15 +118,8 @@ switch((string)$query){
 		// Get connection to the DB
 		$link = getConnection();
 
-		$numOfPlayers = $_REQUEST['count'];
-
-		// Checking if the parameters received from AJAX call have been set or not
-		if(isset($numOfPlayers) == false || $numOfPlayers > 20){
-			logWarning('gameSelectionLogs.html', '<b>Count Parameter</p> was not set for retreiver top scoring players or the count was higher than the allowed value (i.e 20). Defaulted to: 10.');
-			$numOfPlayers = 10;
-		}
-
-		echo getTopScorers($numOfPlayers, $link);
+		// Get 5 Top Players
+		echo getTopScorers(5, $link);
 		break;
 
 	// Get Tweety Stats for the homepage
