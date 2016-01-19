@@ -429,6 +429,7 @@ function getTopScorers($numOfResults, $connectionLink){
 		$topPlayers[$rank]['playerID'] = $row['Player_ID'];
 		$topPlayers[$rank]['profilePic'] = $row['Profile_Pic'];
 		$topPlayers[$rank]['score'] = $row['Score'];
+		$topPlayers[$rank]['link'] = $row['Profile_Link'];
 		$topPlayers[$rank]['numCorrect'] = $row['Num_Correct'];
 		$topPlayers[$rank]['numIncorrect'] = $row['Num_Incorrect'];
 		$topPlayers[$rank]['timeRemaining'] = $row['Time_Remaining'];
