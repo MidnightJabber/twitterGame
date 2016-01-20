@@ -11,9 +11,9 @@ $(document).ready(function() {
         type: "GET",
         async: false,
         success: function (response) {
-            console.log(response);
+            // console.log(response);
             loginResponse = JSON.parse(response);
-            console.log(loginResponse);
+            // console.log(loginResponse);
         }
     });
 
@@ -126,9 +126,9 @@ $(document).ready(function() {
         onLeave: function(index, nextIndex, direction){
             var leavingSection = $(this);
 
-            console.log('\n\nindex: ' + index);
-            console.log('nextIndex: ' + nextIndex);
-            console.log('direction: ' + direction);
+            // console.log('\n\nindex: ' + index);
+            // console.log('nextIndex: ' + nextIndex);
+            // console.log('direction: ' + direction);
 
 
             // After leaving Section 1
@@ -628,14 +628,14 @@ $(document).ready(function() {
                 }
             },
             success: function (response) {
-                console.log(response);
-                console.log("Data posted to databse.");
+                // console.log(response);
+                // console.log("Data posted to databse.");
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("Error Occured");
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+                // console.log(jqXHR);
+                // console.log(textStatus);
+                // console.log(errorThrown);
 
             }
         });
@@ -681,7 +681,7 @@ $(document).ready(function() {
             type: "GET",
             async: false,
             success: function (response) {
-                console.log(response);
+                // console.log(response);
                 data = JSON.parse(response);
             }
         });
@@ -929,7 +929,7 @@ $(document).ready(function() {
         if (loggedIn) {
             submit_pic = loginResponse.profile_pic;
             submit_pic = submit_pic.replace(/(https?:\/\/)/i, '');
-            console.log(submit_pic);
+            // console.log(submit_pic);
         }
         globalSubmissionData['profile_pic'] = submit_pic;
         tempSubmissionData = globalSubmissionData;
@@ -946,7 +946,7 @@ $(document).ready(function() {
                 ip = response.ip;
                 globalSubmissionData['ipAddress'] = ip;
                 tempSubmissionData = globalSubmissionData;
-                console.log(tempSubmissionData);
+                // console.log(tempSubmissionData);
             }
         });
     }
