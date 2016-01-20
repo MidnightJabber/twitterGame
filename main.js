@@ -681,6 +681,7 @@ $(document).ready(function() {
             type: "GET",
             async: false,
             success: function (response) {
+                console.log(response);
                 data = JSON.parse(response);
             }
         });
@@ -718,11 +719,11 @@ $(document).ready(function() {
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
-            html = html + '                <img class="playerImage hasLink" src="http://' + element['profilePic'] + '" data-link="' + loginResponse['link'] + '">\n';
+            html = html + '                <img class="playerImage hasLink" src="http://' + element['profilePic'] + '" data-link="http://' + element['link'] + '">\n';
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
-            html = html + '                <p class="playerName hasLink"' + ' data-link="' + loginResponse['link'] + '">' + element['playerName'] + '</p>\n';
+            html = html + '                <p class="playerName hasLink"' + ' data-link="http://' + element['link'] + '">' + element['playerName'] + '</p>\n';
             html = html + '            </td>\n';
 
             html = html + '            <td>\n';
