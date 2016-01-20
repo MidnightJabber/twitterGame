@@ -115,7 +115,8 @@ function twitter_login(){
         $response['fullname'] = $data->name;
         $response['location'] = $data->location;
         $response['player_id'] = $data->id;
-        $response['profile_pic'] = str_replace("_normal", "", $data->profile_image_url);
+        //$response['profile_pic'] = str_replace("_normal", "", $data->profile_image_url); --> We need a profile pic link that updates itself
+        $response['profile_pic'] = "https://twitter.com/" . $data->screen_name ."/profile_image?size=original";
         $response['gender'] = 'undefined';
         $response['link'] = 'http://twitter.com/' . $data->screen_name;
         $response['social_media'] = "Twitter";
