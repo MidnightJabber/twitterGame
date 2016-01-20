@@ -2,7 +2,7 @@
 This repo represents a game which interestingly uses twitter data. The idea of the game is based upon simple "Match the Following" kind problems. This game picks 10 popular Twitter Users from a lot of many and then picks a recent random tweet for each of those 10 users. All the tweets and the Twitter users are shuffled up and placed on the screen just like a 'Match the Following' problem. The game is to match all the Twitter User with their correct tweet in a stipulated time. The faster the game is solved more points are gained. There are point deductions for each wrong match to avoid mindless matching.
 
 ## Purpose of Creating the Game
-This game provides a new and interesting way of interacting with Twitter Data. The idea of using twitter data and creating a game out of it with time, score and realism(real time tweets) can prove to be engaging as well as an entertaining experience. We have also structured the game in a way where it feels competitive and is different everytime you play it. 
+This game provides a new and interesting way of interacting with Twitter Data. The idea of using twitter data and creating a game out of it with time, score and realism(real time tweets) can prove to be engaging as well as an entertaining experience. We have also structured the game in a way where it feels competitive and is different everytime you play it.
 
 ## Scoring System
 The scoring system is fairly simple. The basic thing to know about the scoring is that the player would be able to earn more points if the player is able to maximize his or her correct matches as early as possible. Time is key here. Also if there is any time remaining when the puzzle is solved then for each remaining second some extra bonus points are awarded.
@@ -37,39 +37,12 @@ The following graph depicts how potential score drops every second if we move fr
 ![Alt text](https://github.com/vreddi/twitterGame/blob/readme/images/Scoring-Plot.png "Scoring Plot")
 
 ## Twitter API
-This game is based on the data provided by Twitter. Using Twitter's public API we are able to get the most recent tweets for a twitter user (if the tweets are not private). Using these recent tweets we select a random tweet that becomes the part of the matching game. 
+This game is based on the data provided by Twitter. Using Twitter's public API we are able to get the most recent tweets for a twitter user (if the tweets are not private). Using these recent tweets we select a random tweet that becomes the part of the matching game.
 
 [GET statuses/user_timeline](https://dev.twitter.com/rest/reference/get/statuses/user_timeline_)
 
-The above is the API call which helps in creating the game. 
+The above is the API call which helps in creating the game.
 
 The Twitter API now authenticates using OAuth for which we thank [@themattharris](https://twitter.com/themattharris) for his contribution: [An OAuth library written in PHP by @themattharris](https://github.com/themattharris/tmhOAuth).
 
 Using the Twitter API we create a local JSON file which acts as the Game Object [(Example Game Object)](https://github.com/MidnightJabber/twitterGame/blob/master/ExampleData.json). This Object contains all the data that is needed for the game including the correct matchings. It also contains incorrect matchings. The incorrect matchings specify which tweet needs to be dispayed infront of what Twitter user so that the game is properly shuffled.
-
-<pre lang="markdown">
-<code>
-The MIT License (MIT)
-
-Copyright (c) 2015-2016 MidnightJabber
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-</code>
-</pre>
