@@ -37,6 +37,14 @@ body {
     padding: 0 0.5em;
 }
 
+.beta {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
 .downArrow {
     display: none;
     position: absolute;
