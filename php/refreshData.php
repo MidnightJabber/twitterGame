@@ -112,7 +112,7 @@ function checkDateToRefresh(){
 */
 function getUnrefreshedTwitterUsers($count){
 
-	$query = "SELECT TwitterHandle FROM TwitterUsers WHERE Refresh = 0 LIMIT" . $count .";";
+	$query = "SELECT TwitterHandle FROM TwitterUsers WHERE Refresh = 0 LIMIT " . $count .";";
 
   	// Execute the query
 	$res = mysqli_query(getConnection(),$query);
