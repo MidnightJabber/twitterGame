@@ -319,7 +319,7 @@ span.value {
 
 .gameTable {
     display: block;
-    padding-bottom: 1em;
+    padding: 1em 0;
     width: 70%;
     margin: 5em auto;
     color: black;
@@ -525,6 +525,14 @@ span.value {
     padding-top: 2em;
 }
 
+.surver a {
+    color: #337ab7;
+}
+
+.surver a:hover {
+    color: #337ab7;
+}
+
 .buttons {
     padding-bottom: 1em;
 }
@@ -592,7 +600,8 @@ span.value {
 }
 
 .playerImage {
-    width: 50px;
+    width: 3.572em;
+    height: 3.572em;
     border-radius: 50%;
 }
 
