@@ -2,21 +2,20 @@
 /*jslint node: true*/
 /*global $, jQuery, alert*/
 
-var loginResponse;
-/* AJAX request to check if user is logged in or not */
-$.ajax({
-    url: "php/social-media.php?query=get_homepage_response",
-    type: "GET",
-    async: false,
-    success: function (response) {
-        // console.log(response);
-        loginResponse = JSON.parse(response);
-        // console.log(loginResponse);
-    }
-});
 
 $(document).ready(function() {
-
+    var loginResponse;
+    /* AJAX request to check if user is logged in or not */
+    $.ajax({
+        url: "php/social-media.php?query=get_homepage_response",
+        type: "GET",
+        async: false,
+        success: function (response) {
+            // console.log(response);
+            loginResponse = JSON.parse(response);
+            // console.log(loginResponse);
+        }
+    });
 
     var loggedIn = loginResponse.loggedIn;
     var fb_login_url = loginResponse.fb_login_url;
@@ -701,7 +700,7 @@ $(document).ready(function() {
         html = html + '    <tbody>\n';
         $.each(data, function(key, element) {
 
-            var playerInLeaderboard = (element['score'] == score);
+            var playerInLeaderboard = ( (element.playerID == loginResponse.player_id) && (element.playerName == loginResponse.fullname) );
 
             html = html + '        <tr';
 
